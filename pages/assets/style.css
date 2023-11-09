@@ -1,6 +1,4 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
-    color: blue;
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -161,7 +159,46 @@ h1 {
     color: #ffffff;
     text-align: center;
 }
+
+h2 {
+    font-family: 'Nunito', Helvetica;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+}
 /*#endregion */
+
+/*#region KOLMEN KOLLAASI ************************************/
+
+.kolmen_kollaasi {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-family: 'Nunito', Helvetica;
+    font-size: 14px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.kollaasi_osa {
+    width: 33%;
+    margin: 20px;
+}
+/*#endregion*/
+
+/*#region SEKALAINEN ************************************/
+ul {
+    list-style-type: disc;
+    padding-left: 16px;
+}
+
+li {
+    padding-bottom: 5px;
+}
 
 /*#region FOOTER ************************************/
 footer {
@@ -227,6 +264,15 @@ footer p {
         width: 40%;
         margin: 15px;
     }
+
+    .kolmen_kollaasi {
+        width: 80%;
+        flex-direction: column;
+    }
+    
+    .kollaasi_osa {
+        width: auto;
+    }
 }
 
 /* Responsiivinen navigaatio JS:lle */
@@ -268,6 +314,16 @@ footer p {
 
     .header_logo img {
         height: 70px;
+    }
+
+    .kolmen_kollaasi {
+        width: 80%;
+        flex-direction: none;
+        flex-wrap: wrap;
+    }
+    
+    .kollaasi_osa {
+        width: auto;
     }
 }
 
