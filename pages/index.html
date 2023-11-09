@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<!-- HUOM!! Tarkista kommenttikohdat ennen kuin otat tämän layotin käyttöön muille sivuille.
+    Ainakin navigaation linkit täytyy olla korjattuna jotteivät virheet toistu muualle.
+    Tämän kommentin voi poistaa jos kaikki on ok ja layout kopiointikelpoinen.
+    -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&family=Poppins:wght@100..900&family=Open+Sans:wght@300..800">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/java.js"></script>
+    <title>KinoKutkuttaja - elokuvien keidas vuodesta 1985</title>
+</head>
+
+<body>
+    <div class="runko">
+        <header>
+            <div class="header_logo">
+                <img src="images/logo.png">
+            </div>
+            <div class="header_navigaatio" id="myTopnav">
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                    <!--
+                        Linkit:
+                        Linkkejä ei ole määritelty sivuihin
+                    -->
+                    <a href="link" class="nav">Etusivu</a>
+                    <a href="link" class="nav">Info</a>
+                    <a href="link" class="nav">Uutiset</a>
+                    <a href="link" class="nav">Elokuvat</a>
+                    <a href="link" class="nav">Yhteisö</a>
+                    <!--
+                        Kirjaudu / Rekisteröidy:
+                        Lisää JS-koodi, joka muuttaa buttonin tekstin kun kirjauduttu sisään
+                    -->
+                    <a href="link"><button class="btn_kirjaudu">Kirjaudu / Rekisteröidy</button></a>
+                </a>
+            </div>
+        </header>
+
+        <div class="sisalto">
+            <h1>Ajankohtaista juuri nyt</h1>
+            <!--
+                Mediakortti:
+                Tänne muokataan kuvien ja tietojen hakemiset mallien tilalle
+            -->
+            <div class="ajankohtaistajuurinyt">
+                <div class="mediakortti">
+                    <img src="images/movie1.jpeg">
+                    <h1>2023 / action</h1>
+                    <h2>Dark Knight Rises</h2>
+                </div>
+                <div class="mediakortti">
+                    <img src="images/movie2.jpg">
+                    <h1>2023 / animation</h1>
+                    <h2>Paw Patrol: The Might Movie</h2>
+                </div>
+                <div class="mediakortti">
+                    <img src="images/movie3.jpg">
+                    <h1>2023 / biography</h1>
+                    <h2>Oppenheimer</h2>
+                </div>
+                <div class="mediakortti">
+                    <img src="images/movie2.jpg">
+                    <h1>2023 / animation</h1>
+                    <h2>Paw Patrol: The Might Movie</h2>
+                </div>
+                <div class="mediakortti">
+                    <img src="images/movie3.jpg">
+                    <h1>2023 / biography</h1>
+                    <h2>Oppenheimer</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
