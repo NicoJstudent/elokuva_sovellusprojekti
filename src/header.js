@@ -23,7 +23,7 @@ const Header = () => {
                 <a href="#" className="nav">Uutiset</a>
                 <a href="#" className="nav">Elokuvat</a>
                 <a href="#" className="nav">Yhteisö</a>
-                <a href="#" className="nav"><button className="btn_kirjaudu">Kirjaudu / Rekisteröidy</button></a>
+                <a href="#"><button className="btn_kirjaudu">Kirjaudu / Rekisteröidy</button></a>
             </div>
             <div className="hamburger" onClick={toggleMenu}>
                 <i class="fa fa-bars"></i>

@@ -9,6 +9,10 @@ body {
   background: -webkit-linear-gradient(360deg, hsla(218, 56%, 23%, 1) 0%, hsla(225, 43%, 16%, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1A335D", endColorstr="#18213C", GradientType=1);
   transition: background 0.5s ease-in-out;
+  font-family: 'Open Sans', Helvetica;
+  font-size: 14px;
+  color: white;
+  font-weight: 400;
 }
 
 h1 {

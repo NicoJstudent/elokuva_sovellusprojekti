@@ -119,6 +119,10 @@
         border-bottom: 0;
         padding-bottom: 3%;
     }
+
+    .btn_kirjaudu {
+      margin-bottom: 25px;
+    }
   
     .hamburger {
       display: block;
