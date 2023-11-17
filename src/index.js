@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './App';
 import './index.css';
-//import App from './App';
 import reportWebVitals from './reportWebVitals';
-import API_tmdb from './API_tmdb';  //importtaa APItmdb.js tiedoston
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <API_tmdb />
+    <App />
+    
   </React.StrictMode>
 );
 

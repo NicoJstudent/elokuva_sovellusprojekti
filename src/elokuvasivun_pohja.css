@@ -1,0 +1,132 @@
+.row {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.tiedot_runko {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.vasenkuva {
+    float: left;
+    width: auto;
+    margin-right: 8%;
+}
+.vasenkuva img {
+    height: 400px;
+    width: auto;
+}
+
+.runko_osa1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.runko_osa2 {
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.otsikko {
+    float: left;
+}
+
+.tahdet {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    float: right;
+}
+
+.tahdet img {
+    height: 25px;
+    margin-right: 10px;
+}
+
+.lisatiedot {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Nunito', Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: left;
+}
+
+.osa1 {
+    margin-top: -10px;
+    justify-content: center;
+}
+
+.lisatiedot_osa {
+    float: left;
+    margin-right: 10px;
+}
+
+p {
+    font-family: 'Nunito', Helvetica;
+    font-size: 14px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+h1 {
+    font-family: 'Nunito', Helvetica;
+    font-size: 23px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: left;
+}
+
+h2 {
+    font-family: 'Nunito', Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: left;
+    margin-top: -10px;
+}
+
+/* Buttonit */
+button {
+    width: auto;
+    color: white;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.3s ease;
+    
+    border-radius: 25px;
+    margin: 20px 10px 20px 0px;
+}
+
+.sininen {
+    background-color: #4DAAB3;
+    border: none;
+}
+
+.oranssi {
+    background-color: #C7613D;
+    border: none;
+}
+
+.ontto {
+    border: 1px solid #4DAAB3;
+    background-color: transparent;
+}
+
+button:hover {
+    opacity: 0.6;
+}
