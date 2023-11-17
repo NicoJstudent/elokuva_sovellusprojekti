@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Elokuvasivu from "./elokuvasivun_pohja2";
+import Elokuvasivu from "./elokuvasivun_pohja";
 
 const Moviepage = () => {
     return (

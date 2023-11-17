@@ -74,7 +74,7 @@
 
 p {
     font-family: 'Nunito', Helvetica;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 300;
     color: #ffffff;
     line-height: 1.5;
@@ -95,6 +95,11 @@ h2 {
     color: #ffffff;
     text-align: left;
     margin-top: -10px;
+}
+
+.tekijat {
+    line-height: 0;
+    font-weight: 400;
 }
 
 /* Buttonit */

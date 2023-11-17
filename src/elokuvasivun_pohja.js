@@ -1,19 +1,30 @@
 import { useEffect, useState } from 'react';
-import fetchMovieData from './API_tmdb2';
+//import fetchMovieData from './API_tmdb_fetchMovieData';
+import { fetchMovieAdditionalData, fetchMovieData } from './API_tmdb_fetchMovieData';
 import './elokuvasivun_pohja.css';
 import star from './images/star.png';
+
+/* Ongelmakohdat ja muutostarpeet:
+- Elokuvan id tulee hakea ja siirtää tänne muilta sivuilta, kuinka?
+- Ikäraja ei toimi odotetusti (vain K-18/sallittu)
+*/
 
 const Elokuvasivu = () => {
 
     const [movie, setMovie] = useState({});
+    const [additionalData, setAdditionalData] = useState({});  //uusi
 
     useEffect(() => {
-        //const movieId = 872585; // Oppenheimer
-        const movieId = 155; // Batman
+        const movieId = 872585; // Oppenheimer
+        //const movieId = 155; // Batman
         const fetchData = async () => {
             try {
                 const movieData = await fetchMovieData(movieId);
                 setMovie(movieData);
+
+                const additionalData = await fetchMovieAdditionalData(movieId); //uusi
+                setAdditionalData(additionalData); //uusi
+
             } catch (error) {
                 console.error('Error fetching movie data:', error.message);
             }
@@ -26,19 +37,11 @@ const Elokuvasivu = () => {
         <>
             <div className='row'>
                 <Kuva posterPath={movie.poster_path}/>
-                <Tiedot movie={movie} />
+                <Tiedot movie={movie} additionalData={additionalData}/>
             </div>
         </>
     );
 };
-
-/*const Kuva = () => {
-    return (
-        <div className='vasenkuva'>
-            <img src='kuva tähän' alt="" />
-        </div>
-    );
-}*/
 
 const Kuva = ({posterPath}) => {
     if (!posterPath) { return <div className='vasenkuva'>Kuvaa ei löydy</div>;
@@ -53,8 +56,8 @@ const Kuva = ({posterPath}) => {
 }
 
 
-const Tiedot = ({ movie }) => {
-
+const Tiedot = ({ movie, additionalData }) => {
+    if (!movie || typeof movie.vote_average !== 'number') { return null;}
     const pyoristettyArvio = movie.vote_average.toFixed(1);
 
     return (
@@ -85,7 +88,10 @@ const Tiedot = ({ movie }) => {
                     </div>
                 </div>
                 <p>{movie.overview}</p>
-
+                <p className='tekijat'>Ohjaus · {additionalData.directors.name}</p>
+                <p className='tekijat'>Käsikirjoitus · {additionalData.writers.join(', ')}</p>
+                <p className='tekijat'>Näyttelijät · {additionalData.cast.slice(0,3).join(', ')}</p>
+                <p>Lisätietoja: {movie.genre_ids}</p>
             </div>
 
         </div>
