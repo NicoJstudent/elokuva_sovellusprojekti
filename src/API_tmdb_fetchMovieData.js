@@ -68,5 +68,6 @@ const fetchPersonData = async (personId) => {
     }
 };
 
+
 //export default fetchMovieData;
 export { fetchMovieAdditionalData, fetchMovieData };

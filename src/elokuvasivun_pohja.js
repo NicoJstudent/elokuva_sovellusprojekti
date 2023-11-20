@@ -11,8 +11,8 @@ import star from './images/star.png';
 
 const Elokuvasivu = () => {
 
-    const [movie, setMovie] = useState({});
-    const [additionalData, setAdditionalData] = useState({});  //uusi
+    const [movie, setMovie] = useState({}); //haetaan elokuvan tiedot
+    const [additionalData, setAdditionalData] = useState({}); //haetaan cast & crew
 
     useEffect(() => {
         const movieId = 872585; // Oppenheimer
@@ -22,8 +22,8 @@ const Elokuvasivu = () => {
                 const movieData = await fetchMovieData(movieId);
                 setMovie(movieData);
 
-                const additionalData = await fetchMovieAdditionalData(movieId); //uusi
-                setAdditionalData(additionalData); //uusi
+                const additionalData = await fetchMovieAdditionalData(movieId);
+                setAdditionalData(additionalData);
 
             } catch (error) {
                 console.error('Error fetching movie data:', error.message);
@@ -36,28 +36,29 @@ const Elokuvasivu = () => {
     return (
         <>
             <div className='row'>
-                <Kuva posterPath={movie.poster_path}/>
-                <Tiedot movie={movie} additionalData={additionalData}/>
+                <Kuva posterPath={movie.poster_path} />
+                <Tiedot movie={movie} additionalData={additionalData} />
             </div>
         </>
     );
 };
 
-const Kuva = ({posterPath}) => {
-    if (!posterPath) { return <div className='vasenkuva'>Kuvaa ei löydy</div>;
+const Kuva = ({ posterPath }) => {
+    if (!posterPath) {
+        return <div className='vasenkuva'>Kuvaa ei löydy</div>;
     }
     const imageUrl = `https://image.tmdb.org/t/p/w500${posterPath}`;
 
     return (
         <div className='vasenkuva'>
             <img src={imageUrl} alt="" />
-            </div>
+        </div>
     );
 }
 
 
 const Tiedot = ({ movie, additionalData }) => {
-    if (!movie || typeof movie.vote_average !== 'number') { return null;}
+    if (!movie || typeof movie.vote_average !== 'number') { return null; }
     const pyoristettyArvio = movie.vote_average.toFixed(1);
     const imdbId = movie.imdb_id;
     const imdbLink = imdbId ? `https://www.imdb.com/title/${imdbId}` : '#';
@@ -87,13 +88,18 @@ const Tiedot = ({ movie, additionalData }) => {
                         {movie.genres?.map((genre) => (
                             <button className='ontto'>{genre.name}</button>
                         ))}
-                        </div>
+                    </div>
                 </div>
                 <p>{movie.overview}</p>
                 <p className='tekijat'>Ohjaus · {additionalData.directors?.name}</p>
                 <p className='tekijat'>Käsikirjoitus · {additionalData.writers?.join(', ')}</p>
-                <p className='tekijat'>Näyttelijät · {additionalData.cast?.slice(0,3).join(', ')}</p>
-                <p>Lisätietoja: <a href={imdbLink}>IMDb</a></p>
+                <p className='tekijat'>Näyttelijät · {additionalData.cast?.slice(0, 3).join(', ')}</p>
+                <p>Lisätietoja: <a href={imdbLink} target="_blank" rel="noopener noreferrer">IMDb</a></p>
+
+                <div className='lisatiedot_osa'>
+                    <button className='sininen linkit'>Katso elokuvan traileri</button>
+                    <button className='oranssi linkit'>Lisää suosikiksi</button>
+                </div>
             </div>
 
         </div>

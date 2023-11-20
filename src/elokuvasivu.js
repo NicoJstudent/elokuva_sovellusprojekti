@@ -7,7 +7,7 @@ const Moviepage = () => {
         <>
             <div className='section'>
             <Elokuvasivu />
-            </div> 
+            </div>
         </>
     )
 };

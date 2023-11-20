@@ -76,25 +76,11 @@ p {
     font-family: 'Nunito', Helvetica;
     font-size: 15px;
     font-weight: 300;
-    color: #ffffff;
     line-height: 1.5;
 }
 
 h1 {
-    font-family: 'Nunito', Helvetica;
-    font-size: 23px;
-    font-weight: 600;
-    color: #ffffff;
     text-align: left;
-}
-
-h2 {
-    font-family: 'Nunito', Helvetica;
-    font-size: 16px;
-    font-weight: 400;
-    color: #ffffff;
-    text-align: left;
-    margin-top: -10px;
 }
 
 .tekijat {
@@ -130,6 +116,13 @@ button {
 .ontto {
     border: 1px solid #4DAAB3;
     background-color: transparent;
+}
+
+.linkit {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin: 0px 10px 20px 0px;
 }
 
 button:hover {
