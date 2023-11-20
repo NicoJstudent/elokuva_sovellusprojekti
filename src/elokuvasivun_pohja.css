@@ -94,7 +94,7 @@ h1 {
 }
 
 /* Buttonit */
-button {
+.btn {
     width: auto;
     color: white;
     padding: 5px 15px;
@@ -131,7 +131,7 @@ button {
     padding: 7px 25px;
 }
 
-button:hover {
+.btn:hover {
     opacity: 0.6;
 }
 

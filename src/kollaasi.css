@@ -26,21 +26,25 @@ li {
     padding-bottom: 5px;
 }
 
-h3 {
+.kollaasityylit h3 {
     color: #4DAAB3;
     font-size: 12px;
     margin-bottom: -15px;
     padding-left: 10px;
 }
 
-h4 {
+.kollaasityylit h4 {
     color: #ffffff;
     font-size: 16px;
     font-weight: 500;
     padding-left: 10px;
 }
 
-hr {
+.kollaasityylit h4:hover {
+    color: #C7613D;
+}
+
+.kollaasityylit hr {
     height: 1px;
     width: 100%;
     background-color: #aeaeae;

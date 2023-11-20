@@ -1,0 +1,28 @@
+/* Buttonit */
+.yleinen_btn {
+    width: auto;
+    color: white;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.3s ease;
+    font-family: 'Nunito', Helvetica;
+    border-radius: 25px;
+    margin: 20px 10px 20px 0px;
+}
+
+.sininen {
+    background-color: #4DAAB3;
+    border: none;
+}
+
+.oranssi {
+    background-color: #C7613D;
+    border: none;
+}
+
+.yleinen_btn:hover {
+    opacity: 0.6;
+}

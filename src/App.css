@@ -28,7 +28,7 @@ h1 {
 
 h2 {
   font-family: 'Nunito', Helvetica;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: #ffffff;
 }
@@ -47,6 +47,15 @@ p a {
 a:hover {
   text-decoration: none;
   color: #4DAAB3;
+}
+
+.esittelytxt {
+  font-family: 'Nunito', Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  width: 70%;
 }
 
 .section {

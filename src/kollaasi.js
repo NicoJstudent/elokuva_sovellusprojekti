@@ -22,7 +22,7 @@ const Kollaasi = () => {
 
 const Kollaasi_yhteiso = () => {
     return (
-        <>
+        <div className='kollaasityylit'>
         <h2>Viimeisimmät yhteisöt</h2>
         <p>Tähän tulee 4-5 viimeisintä aktiivista yhteisöä</p>
         <h3>00.00.0000</h3>
@@ -33,22 +33,22 @@ const Kollaasi_yhteiso = () => {
         <hr/>
         <h3>00.00.0000</h3>
         <h4>Yhteisön nimi</h4>
-        </>
+        </div>
     );
 }
 
 const Kollaasi_uutiset = () => {
     return (
-        <>
+        <div className='kollaasityylit'>
         <h2>Uutiset</h2>
         <p>Tähän 3 uusinta uutista</p>
         <p>Ensimmäiseen matala kuva ja otsikko, muihin pelkkä otsikko. Jos kuvan kanssa ongelmia, voidaan mennä ilmankin</p>
-        <h4><a href="#">Otsikko</a></h4>
+        <a href="#"><h4>Otsikko</h4></a>
         <hr/>
-        <h4><a href="#">Otsikko</a></h4>
+        <a href="#"><h4>Otsikko</h4></a>
         <hr/>
-        <h4><a href="#">Otsikko</a></h4>
-        </>
+        <a href="#"><h4>Otsikko</h4></a>
+        </div>
     );
 }
 
