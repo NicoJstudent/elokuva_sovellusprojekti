@@ -12,6 +12,10 @@
     flex-direction: column;
 }
 
+.leveyden_asetus {
+    width: 80%;
+}
+
 .vasenkuva {
     float: left;
     width: auto;
@@ -79,7 +83,7 @@ p {
     line-height: 1.5;
 }
 
-h1 {
+h1{
     text-align: left;
 }
 
@@ -98,7 +102,7 @@ button {
     text-decoration: none;
     text-align: center;
     transition: 0.3s ease;
-    
+    font-family: 'Nunito', Helvetica;
     border-radius: 25px;
     margin: 20px 10px 20px 0px;
 }
@@ -119,10 +123,11 @@ button {
 }
 
 .linkit {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 400;
     letter-spacing: 0.5px;
-    margin: 0px 10px 20px 0px;
+    margin: 5px 20px 20px 0px;
+    padding: 7px 25px;
 }
 
 button:hover {

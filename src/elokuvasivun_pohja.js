@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 //import fetchMovieData from './API_tmdb_fetchMovieData';
 import { fetchMovieAdditionalData, fetchMovieData } from './API_tmdb_fetchMovieData';
+import './App.css';
 import './elokuvasivun_pohja.css';
 import star from './images/star.png';
 
 /* Ongelmakohdat ja muutostarpeet:
 - Elokuvan id tulee hakea ja siirtää tänne muilta sivuilta, kuinka?
 - Ikäraja ei toimi odotetusti (vain K-18/sallittu)
+- Traileria ei haettu
+- Suosikki-nappia ei aktivoitu
 */
 
 const Elokuvasivu = () => {
@@ -35,9 +38,14 @@ const Elokuvasivu = () => {
 
     return (
         <>
+        <div className='section'>
             <div className='row'>
                 <Kuva posterPath={movie.poster_path} />
                 <Tiedot movie={movie} additionalData={additionalData} />
+            </div>
+            </div>
+            <div className='section'>
+            <Arvostelut />
             </div>
         </>
     );
@@ -101,9 +109,25 @@ const Tiedot = ({ movie, additionalData }) => {
                     <button className='oranssi linkit'>Lisää suosikiksi</button>
                 </div>
             </div>
-
         </div>
     );
+}
+
+const Arvostelut = () => {
+    return (
+        <div className='tiedot_runko leveyden_asetus'>
+                <div className='runko_osa1'>
+                <div className='otsikko'>
+                <h1>Arvostelut</h1>
+            <p>Yhteensä 30 arvostelua</p>
+                </div>
+                <div className='tahdet'>
+                <button className='sininen linkit'>+ Arvostele elokuva</button>
+                </div>
+            </div>
+            <p>Pelkkä tähtisysteemi? Alle numeroarviona sama lukema? Tuleeko noita ylläolevia?</p>
+        </div>
+    )
 }
 
 export default Elokuvasivu;

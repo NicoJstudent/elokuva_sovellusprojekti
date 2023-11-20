@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Moviepage from "./elokuvasivu";
+import Elokuvasivu from "./elokuvasivun_pohja";
 import Etusivu from "./etusivu";
 import Footer from "./footer";
 import Header from "./header";
@@ -13,7 +13,7 @@ function App() {
 
         <Routes>
             <Route path="/" element={<Etusivu/>} />
-            <Route path="/moviepage" element={<Moviepage/>} />
+            <Route path="/elokuvasivu" element={<Elokuvasivu/>} />
         </Routes>
 
         <Footer />
