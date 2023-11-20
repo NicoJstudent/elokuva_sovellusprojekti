@@ -86,9 +86,9 @@ const Tiedot = ({ movie, additionalData }) => {
                     </div>
                 </div>
                 <p>{movie.overview}</p>
-                <p className='tekijat'>Ohjaus · {additionalData.directors.name}</p>
-                <p className='tekijat'>Käsikirjoitus · {additionalData.writers.join(', ')}</p>
-                <p className='tekijat'>Näyttelijät · {additionalData.cast.slice(0,3).join(', ')}</p>
+                <p className='tekijat'>Ohjaus · {additionalData.directors?.name}</p>
+                <p className='tekijat'>Käsikirjoitus · {additionalData.writers?.join(', ')}</p>
+                <p className='tekijat'>Näyttelijät · {additionalData.cast?.slice(0,3).join(', ')}</p>
                 <p>Lisätietoja: <a href={'https://www.imdb.com/title/${movie.imdb_id}'}>IMDb, linkki ei toimi</a></p>
             </div>
 
