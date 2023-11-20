@@ -82,8 +82,10 @@ const Tiedot = ({ movie, additionalData }) => {
 
                 <div className='lisatiedot'>
                     <div className='lisatiedot_osa'>
-                    <button className='ontto'>genret</button>
-                    </div>
+                        {movie.genres?.map((genre) => (
+                            <button className='ontto'>{genre.name}</button>
+                        ))}
+                        </div>
                 </div>
                 <p>{movie.overview}</p>
                 <p className='tekijat'>Ohjaus · {additionalData.directors?.name}</p>
