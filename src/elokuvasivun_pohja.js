@@ -4,6 +4,7 @@ import { fetchMovieAdditionalData, fetchMovieData } from './API_tmdb_fetchMovieD
 import './App.css';
 import './elokuvasivun_pohja.css';
 import star from './images/star.png';
+import './monikkotyylit.css';
 
 /* Ongelmakohdat ja muutostarpeet:
 - Elokuvan id tulee hakea ja siirtää tänne muilta sivuilta, kuinka?
@@ -94,7 +95,7 @@ const Tiedot = ({ movie, additionalData }) => {
                 <div className='lisatiedot'>
                     <div className='lisatiedot_osa'>
                         {movie.genres?.map((genre) => (
-                            <button className='btn ontto'>{genre.name}</button>
+                            <button className='btn_genre'>{genre.name}</button>
                         ))}
                     </div>
                 </div>
@@ -105,8 +106,8 @@ const Tiedot = ({ movie, additionalData }) => {
                 <p>Lisätietoja: <a href={imdbLink} target="_blank" rel="noopener noreferrer">IMDb</a></p>
 
                 <div className='lisatiedot_osa'>
-                    <button className='btn sininen linkit'>Katso elokuvan traileri</button>
-                    <button className='btn oranssi linkit'>Lisää suosikiksi</button>
+                    <button className='yleinen_btn sininen valistys'>Katso elokuvan traileri</button>
+                    <button className='yleinen_btn oranssi valistys'>Lisää suosikiksi</button>
                 </div>
             </div>
         </div>
@@ -122,7 +123,7 @@ const Arvostelut = () => {
             <p>Yhteensä 30 arvostelua</p>
                 </div>
                 <div className='tahdet'>
-                <button className='btn sininen linkit'>+ Arvostele elokuva</button>
+                <button className='yleinen_btn sininen'>+ Arvostele elokuva</button>
                 </div>
             </div>
             <p>Pelkkä tähtisysteemi? Alle numeroarviona sama lukema? Tuleeko noita ylläolevia?</p>

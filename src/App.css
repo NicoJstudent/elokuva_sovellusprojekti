@@ -33,6 +33,17 @@ h2 {
   color: #ffffff;
 }
 
+h3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+h4 {
+  color: #4DAAB3;
+  font-size: 13px;
+  font-weight: 400;
+}
+
 .start {
   min-height: 100vh;
   display: flex;
@@ -64,4 +75,28 @@ a:hover {
   align-items: center;
   width: 80%;
   margin: 3% auto;
+}
+
+.luettelo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  font-family: 'Nunito', Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.luettelo_osio {
+  float: left;
+  width: auto;
+}
+
+hr {
+  height: 1px;
+  width: 85%;
+  background-color: #aeaeae;
+  border: 0;
 }

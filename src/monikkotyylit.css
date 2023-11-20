@@ -2,15 +2,21 @@
 .yleinen_btn {
     width: auto;
     color: white;
-    padding: 5px 15px;
+    padding: 7px 30px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
     text-decoration: none;
     text-align: center;
     transition: 0.3s ease;
     font-family: 'Nunito', Helvetica;
     border-radius: 25px;
-    margin: 20px 10px 20px 0px;
+    margin: 10px 0px 0px 0px;
+}
+
+.levea {
+    padding: 7px 50px;
 }
 
 .sininen {
@@ -23,6 +29,14 @@
     border: none;
 }
 
-.yleinen_btn:hover {
-    opacity: 0.6;
+.sininen:hover {
+    background-color: #C7613D;
+}
+
+.oranssi:hover {
+    background-color: #4DAAB3;
+}
+
+.valistys {
+    margin: 5px 20px 0px 0px;
 }

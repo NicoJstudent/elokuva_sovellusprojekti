@@ -94,7 +94,7 @@ h1 {
 }
 
 /* Buttonit */
-.btn {
+.btn_genre {
     width: auto;
     color: white;
     padding: 5px 15px;
@@ -106,33 +106,8 @@ h1 {
     font-family: 'Nunito', Helvetica;
     border-radius: 25px;
     margin: 20px 10px 20px 0px;
-}
-
-.sininen {
-    background-color: #4DAAB3;
-    border: none;
-}
-
-.oranssi {
-    background-color: #C7613D;
-    border: none;
-}
-
-.ontto {
     border: 1px solid #4DAAB3;
     background-color: transparent;
-}
-
-.linkit {
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    margin: 5px 20px 20px 0px;
-    padding: 7px 25px;
-}
-
-.btn:hover {
-    opacity: 0.6;
 }
 
 

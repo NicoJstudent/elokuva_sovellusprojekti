@@ -38,18 +38,11 @@ li {
     font-size: 16px;
     font-weight: 500;
     padding-left: 10px;
+    margin-bottom: 20px;
 }
 
 .kollaasityylit h4:hover {
     color: #C7613D;
-}
-
-.kollaasityylit hr {
-    height: 1px;
-    width: 100%;
-    background-color: #aeaeae;
-    border: 0;
-    margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 700px) {
