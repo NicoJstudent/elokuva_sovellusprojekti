@@ -59,6 +59,8 @@ const Kuva = ({posterPath}) => {
 const Tiedot = ({ movie, additionalData }) => {
     if (!movie || typeof movie.vote_average !== 'number') { return null;}
     const pyoristettyArvio = movie.vote_average.toFixed(1);
+    const imdbId = movie.imdb_id;
+    const imdbLink = imdbId ? `https://www.imdb.com/title/${imdbId}` : '#';
 
     return (
         <div className='tiedot_runko'>
@@ -91,7 +93,7 @@ const Tiedot = ({ movie, additionalData }) => {
                 <p className='tekijat'>Ohjaus · {additionalData.directors?.name}</p>
                 <p className='tekijat'>Käsikirjoitus · {additionalData.writers?.join(', ')}</p>
                 <p className='tekijat'>Näyttelijät · {additionalData.cast?.slice(0,3).join(', ')}</p>
-                <p>Lisätietoja: <a href={'https://www.imdb.com/title/${movie.imdb_id}'}>IMDb, linkki ei toimi</a></p>
+                <p>Lisätietoja: <a href={imdbLink}>IMDb</a></p>
             </div>
 
         </div>
