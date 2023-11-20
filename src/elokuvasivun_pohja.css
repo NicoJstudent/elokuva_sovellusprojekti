@@ -21,6 +21,7 @@
     width: auto;
     margin-right: 8%;
 }
+
 .vasenkuva img {
     height: 400px;
     width: auto;
@@ -83,7 +84,7 @@ p {
     line-height: 1.5;
 }
 
-h1{
+h1 {
     text-align: left;
 }
 
@@ -132,4 +133,61 @@ button {
 
 button:hover {
     opacity: 0.6;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .row {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .runko_osa1 {
+        flex-direction: column;
+    }
+
+    .vasenkuva {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .tahdet {
+        justify-content: center;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .otsikko {
+        text-align: center;
+    }
+
+    .leveyden_asetus {
+        width: 100%;
+    }
+
+    .tekijat {
+        line-height: normal;
+    }
+
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1050px) {
+    .row {
+        width: 100%;
+    }
+    .runko_osa1 {
+        flex-direction: column;
+    }
+    .lisatiedot_osa {
+        margin-right: auto;
+    }
+    .leveyden_asetus {
+        width: 100%;
+    }
+    .tekijat {
+        line-height: normal;
+    }
 }
