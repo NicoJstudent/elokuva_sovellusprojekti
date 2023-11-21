@@ -67,6 +67,23 @@ textarea {
     border: 1px solid #5D6275;
 }
 
+.tekstialue {
+    background-color: #f9f9f9;
+    width: auto;
+    height: auto;
+    padding: 5px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    font-family: 'Nunito', Helvetica;
+    color: #3e3e3e;
+    text-align: left;
+    border-radius: 25px;
+    margin: 0px 5px 0px 0px;
+    border: 1px solid #5D6275;
+}
+
 
 @media only screen and (max-width: 800px) {
     textarea {

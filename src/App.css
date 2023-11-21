@@ -80,7 +80,7 @@ a:hover {
 .luettelo {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: none;
   justify-content: space-between;
   width: 80%;
   font-family: 'Nunito', Helvetica;
@@ -91,6 +91,7 @@ a:hover {
 
 .filtterijono {
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .luettelo_osio {
@@ -98,9 +99,21 @@ a:hover {
   width: auto;
 }
 
+.luettelo_osio h3 {
+  padding-right: 20px;
+}
+
 .kirjoitusalueet {
   width: 60%;
   align-items: normal;
+}
+
+.luettelo_filtterit {
+  width: 70%;
+}
+
+.luettelo_etsi {
+  width: 30%;
 }
 
 .vasen {

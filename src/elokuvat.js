@@ -29,6 +29,7 @@ const generateApiUrl = (endpoint = {}) => { //Tekee endpointista osoitteen
 
 const Elokuvat = () => {
     const [movies, setMovies] = useState([]);
+    const [searchTerm, setSearchTerm] = useState(''); //txt haku
 
     const fetchData = async (endpoint) => {
         try {
@@ -39,30 +40,48 @@ const Elokuvat = () => {
             console.error('Error fetching data:', error.message);
         }
     };
+
+    //elokuvien haku tekstillä
+    const searchMovies = async () => {
+        if (searchTerm) {
+            fetchData(`/search/movie?query=${searchTerm}`);
+        }
+    };
+
     return (
         <>
-                <div className='section'>
-                    <h1>Elokuvat</h1>
-                    <div className='row'>
-                        <div className='luettelo filtterijono'>
-                            <div className='luettelo_osio'>
-                                <h3>Suodata näkymää:</h3>
-                            </div>
-                            <div className='luettelo_osio'>
-                                <button onClick={() => fetchData('/movie/now_playing')} className='yleinen_btn oranssi filtterit'>Teattereissa</button>
-                            </div>
-                            <div className='luettelo_osio'>
-                                <button onClick={() => fetchData('/movie/popular')} className='yleinen_btn oranssi filtterit'>Suositut</button>
-                            </div>
-                            <div className='luettelo_osio'>
-                                <button onClick={() => fetchData('/movie/top_rated')} className='yleinen_btn oranssi filtterit'>Arvostetuimmat</button>
-                            </div>
-                            <div className='luettelo_osio'>
-                                <button onClick={() => fetchData('/movie/upcoming')} className='yleinen_btn oranssi filtterit'>Tulossa</button>
-                            </div>
+            <div className='section'>
+                <h1>Elokuvat</h1>
+                
+                    <div className='luettelo filtterijono'>
+                    <div className='luettelo_filtterit'>
+                        <div className='luettelo_osio'>
+                            <h3>Suodata näkymää:</h3>
                         </div>
-                    
-                </div>
+                        <div className='luettelo_osio'>
+                            <button onClick={() => fetchData('/movie/now_playing')} className='yleinen_btn oranssi filtterit'>Teattereissa</button>
+                        </div>
+                        <div className='luettelo_osio'>
+                            <button onClick={() => fetchData('/movie/popular')} className='yleinen_btn oranssi filtterit'>Suositut</button>
+                        </div>
+                        <div className='luettelo_osio'>
+                            <button onClick={() => fetchData('/movie/top_rated')} className='yleinen_btn oranssi filtterit'>Arvostetuimmat</button>
+                        </div>
+                        <div className='luettelo_osio'>
+                            <button onClick={() => fetchData('/movie/upcoming')} className='yleinen_btn oranssi filtterit'>Tulossa</button>
+                        </div>
+                        </div>
+                        <div className='luettelo_etsi'>
+                        <div className='luettelo_osio'>
+                            <input type="text" placeholder="Etsi elokuva" className='tekstialue' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                        </div>
+                        <div className='luettelo_osio'>
+                            <button onClick={searchMovies} className='yleinen_btn oranssi filtterit'>Etsi</button>
+                        </div>
+                        </div>
+                    </div>
+
+                
                 <Elokuvalistaus movies={movies} />
                 <h1>Elokuvat</h1>
                 <p className="esittelytxt">kesken</p>
