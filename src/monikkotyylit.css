@@ -17,6 +17,7 @@
 
 .levea {
     padding: 7px 50px;
+    margin-top: 20px;
 }
 
 .sininen {
@@ -54,8 +55,17 @@ textarea {
     font-family: 'Nunito', Helvetica;
     color: #ffffff;
     text-align: left;
-    border-radius: 20px;
+    border-radius: 25px;
     margin: 10px 0px 0px 0px;
     resize: none;
     border: 1px solid #5D6275;
 }
+
+
+@media only screen and (max-width: 800px) {
+    textarea {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1050px) {}
