@@ -94,6 +94,19 @@ a:hover {
   width: auto;
 }
 
+.kirjoitusalueet {
+  width: 50%;
+  align-items: normal;
+}
+
+.vasen {
+  width: 20%;
+}
+
+.oikea {
+  width: 80%;
+}
+
 hr {
   height: 1px;
   width: 85%;
