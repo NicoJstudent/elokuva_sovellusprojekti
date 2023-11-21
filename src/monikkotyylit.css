@@ -48,25 +48,6 @@
     margin: 5px 20px 0px 0px;
 }
 
-textarea {
-    background-color: #8A92A2;
-    width: 100%;
-    height: 35%;
-    padding: 5px 20px;
-    font-size: 15px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    text-align: center;
-    font-family: 'Nunito', Helvetica;
-    color: #ffffff;
-    text-align: left;
-    border-radius: 25px;
-    margin: 10px 0px 0px 0px;
-    resize: none;
-    border: 1px solid #5D6275;
-}
-
 .tekstialue {
     background-color: #f9f9f9;
     width: auto;
@@ -82,6 +63,10 @@ textarea {
     border-radius: 25px;
     margin: 0px 5px 0px 0px;
     border: 1px solid #5D6275;
+}
+
+.sataprosenttia {
+    width: 90%;
 }
 
 

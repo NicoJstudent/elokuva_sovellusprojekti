@@ -28,13 +28,13 @@ const Kirjaudu = () => {
         <div className='luettelo kirjoitusalueet'>
             <div className='luettelo_osa vasen'><h3>Käyttäjänimi:</h3></div>
             <div className='luettelo_osa oikea'>
-                <textarea placeholder='käyttäjätunnus'></textarea>
+                <input className='tekstialue sataprosenttia' placeholder='käyttäjätunnus'></input>
             </div>
         </div>
         <div className='luettelo kirjoitusalueet'>
         <div className='luettelo_osa vasen'><h3>Salasana:</h3></div>
         <div className='luettelo_osa oikea'>
-            <textarea placeholder='****'></textarea>
+            <input className='tekstialue sataprosenttia' placeholder='****'></input>
         </div>
     </div>
     </>
@@ -47,19 +47,19 @@ const Rekisteroidy = () => {
         <div className='luettelo kirjoitusalueet'>
             <div className='luettelo_osa vasen'><h3>Nimimerkki:</h3></div>
             <div className='luettelo_osa oikea'>
-                <textarea placeholder='nimimerkki'></textarea>
+                <input className='tekstialue sataprosenttia' placeholder='nimimerkki'></input>
             </div>
         </div>
         <div className='luettelo kirjoitusalueet'>
         <div className='luettelo_osa vasen'><h3>Sähköposti:</h3></div>
         <div className='luettelo_osa oikea'>
-            <textarea placeholder='sähköposti'></textarea>
+            <input className='tekstialue sataprosenttia' placeholder='sähköposti'></input>
         </div>
     </div>
     <div className='luettelo kirjoitusalueet'>
         <div className='luettelo_osa vasen'><h3>Salasana:</h3></div>
         <div className='luettelo_osa oikea'>
-            <textarea placeholder='vähintään 8 kirjainta'></textarea>
+            <input className='tekstialue sataprosenttia' placeholder='vähintään 8 kirjainta'></input>
         </div>
     </div>
     </>
