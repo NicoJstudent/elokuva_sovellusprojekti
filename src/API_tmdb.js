@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 
 //API avain täytyy salata
 const apiKey = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMTI5MjQ1MGRjMDAzNTEwMjMzZWY3NDVmOWJkNWFhMiIsInN1YiI6IjY1NDhkMzI2ZDhjYzRhMDBlM2NjOTJkZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pinVZ6Vu_Dy5u-YOpXG60nUsEssui8GV8TpBwEozhdE';
@@ -78,6 +78,7 @@ const APItmdb = () => {
         {movies.map(movie => (
           <li key={movie.id}>
             <p>Title: {movie.title}</p>
+            <p>Julkaisu: {movie.release_date}</p>
             <p>Julkaisu: {new Date(movie.release_date).toLocaleDateString('fi-FI')}</p>
             <p>Arvosana: {movie.vote_average}</p>
             <p>Genre: {getGenreNames(movie.genre_ids)}</p>

@@ -1,0 +1,79 @@
+/* Buttonit */
+.yleinen_btn {
+    width: auto;
+    color: white;
+    padding: 7px 30px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.3s ease;
+    font-family: 'Nunito', Helvetica;
+    border-radius: 25px;
+    margin: 10px 0px 0px 0px;
+}
+
+.levea {
+    padding: 7px 50px;
+    margin-top: 20px;
+}
+
+.filtterit {
+    padding: 5px 20px;
+    margin: 5px 20px 0px 0px;
+    font-size: 12px;
+}
+
+.sininen {
+    background-color: #4DAAB3;
+    border: none;
+}
+
+.oranssi {
+    background-color: #C7613D;
+    border: none;
+}
+
+.sininen:hover {
+    background-color: #C7613D;
+}
+
+.oranssi:hover {
+    background-color: #4DAAB3;
+}
+
+.valistys {
+    margin: 5px 20px 0px 0px;
+}
+
+.tekstialue {
+    background-color: #f9f9f9;
+    width: auto;
+    height: auto;
+    padding: 5px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    font-family: 'Nunito', Helvetica;
+    color: #3e3e3e;
+    text-align: left;
+    border-radius: 25px;
+    margin: 0px 5px 0px 0px;
+    border: 1px solid #5D6275;
+}
+
+.sataprosenttia {
+    width: 90%;
+}
+
+
+@media only screen and (max-width: 800px) {
+    textarea {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1050px) {}

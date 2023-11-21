@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
   width: 100%;
   background: hsla(225, 43%, 16%, 1);
   background: linear-gradient(360deg, hsla(218, 56%, 23%, 1) 0%, hsla(225, 43%, 16%, 1) 100%);
@@ -11,8 +10,12 @@ body {
   transition: background 0.5s ease-in-out;
   font-family: 'Open Sans', Helvetica;
   font-size: 14px;
-  color: white;
+  color: #ffffff;
   font-weight: 400;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 h1 {
@@ -25,7 +28,165 @@ h1 {
 
 h2 {
   font-family: 'Nunito', Helvetica;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: #ffffff;
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+h4 {
+  color: #4DAAB3;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.start {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+p a {
+  text-decoration: none;
+  color: #C7613D;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #4DAAB3;
+}
+
+.esittelytxt {
+  font-family: 'Nunito', Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  width: 70%;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 3% auto;
+}
+
+.luettelo {
+  display: flex;
+  flex-direction: row;
+  align-items: none;
+  justify-content: space-between;
+  width: 80%;
+  font-family: 'Nunito', Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.filtterijono {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.luettelo_osio {
+  float: left;
+  width: auto;
+}
+
+.luettelo_osio h3 {
+  padding-right: 20px;
+}
+
+.kirjoitusalueet {
+  width: 60%;
+  align-items: normal;
+}
+
+.luettelo_filtterit {
+  width: 70%;
+}
+
+.luettelo_etsi {
+  width: 30%;
+}
+
+.vasen {
+  width: 20%;
+}
+
+.oikea {
+  width: 80%;
+}
+
+hr {
+  height: 1px;
+  width: 85%;
+  background-color: #aeaeae;
+  border: 0;
+}
+
+.uutiset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.uutiset_kuva{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 900px;
+  height: auto;
+  max-height: 250px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+
+.uutiset_kuva img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.uutiset_info {
+  margin-top: -20px;
+}
+
+
+@media only screen and (max-width: 800px) {
+  .esittelytxt {
+    width: 100%;
+  }
+  .luettelo {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .vasen {
+    width: 100%;
+  }
+
+  .oikea {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1050px) {
+  .esittelytxt {
+    width: 100%;
+  }
+  .luettelo {
+    width: 100%;
+  }
 }
