@@ -70,4 +70,5 @@ const fetchPersonData = async (personId) => {
 
 
 //export default fetchMovieData;
-export { fetchMovieAdditionalData, fetchMovieData };
+export { fetchMovieAdditionalData, fetchMovieData, generateApiUrl };
+

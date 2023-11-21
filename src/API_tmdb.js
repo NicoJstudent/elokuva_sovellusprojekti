@@ -47,7 +47,7 @@ const APItmdb = () => {
   //{movie.adult} (bool) - Onko elokuva aikuisille
 
 
-  /*return (  //Testausta, voi muokata haluamansa näköiseksi
+  return (  //Testausta, voi muokata haluamansa näköiseksi
     <div>
       <h1>Listaus testi</h1>
       <button onClick={() => fetchData('/movie/now_playing')}>Teattereissa</button>
@@ -67,7 +67,6 @@ const APItmdb = () => {
       </ul>
     </div>
   );
-);*/
 };
 
 export default APItmdb;

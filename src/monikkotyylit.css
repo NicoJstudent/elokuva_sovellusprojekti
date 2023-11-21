@@ -20,6 +20,12 @@
     margin-top: 20px;
 }
 
+.filtterit {
+    padding: 5px 20px;
+    margin: 5px 20px 0px 0px;
+    font-size: 12px;
+}
+
 .sininen {
     background-color: #4DAAB3;
     border: none;
