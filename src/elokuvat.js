@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; //linkki
 import './App.css';
 import star from './images/star.png';
 import './mediacard.css';
@@ -51,7 +52,6 @@ const Elokuvat = () => {
     //haetaan sivun aloitusnäkymä
     const fetchRandomMovies = async () => {
         try {
-          // Käytä /movie/popular -endpoinitia saadaksesi suosituimmat elokuvat.
           const response = await axios.get(generateApiUrl('/movie/popular'), options);
       
           // Sekoita elokuvien järjestys satunnaiseen järjestykseen.
@@ -129,7 +129,7 @@ const Elokuvalistaus = ({ movies }) => {
                     <div key={movie.id} className="mediakortti">
                         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                         <h1>{new Date(movie.release_date).getFullYear()} &nbsp;&nbsp; <img src={star} style={{ width: '10px', height: 'auto', padding: '0px' }} alt="" /> {movie.vote_average?.toFixed(1)}</h1>
-                        <h2><a href="#">{movie.title}</a></h2>
+                        <h2><Link to={`${process.env.PUBLIC_URL}/elokuvasivu/${movie.id}`}>{movie.title}</Link></h2>
                     </div>
                 ))}
             </div>

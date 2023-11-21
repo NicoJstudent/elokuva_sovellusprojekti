@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 //import fetchMovieData from './API_tmdb_fetchMovieData';
+import { useParams } from 'react-router-dom';
 import { fetchMovieAdditionalData, fetchMovieData } from './API_tmdb_fetchMovieData';
 import './App.css';
 import './elokuvasivun_pohja.css';
@@ -17,16 +18,19 @@ const Elokuvasivu = () => {
 
     const [movie, setMovie] = useState({}); //haetaan elokuvan tiedot
     const [additionalData, setAdditionalData] = useState({}); //haetaan cast & crew
+    const { id } = useParams(); //haetaan elokuvan id linkistä
 
     useEffect(() => {
-        const movieId = 872585; // Oppenheimer
+        //const movieId = 872585; // Oppenheimer
         //const movieId = 155; // Batman
         const fetchData = async () => {
             try {
-                const movieData = await fetchMovieData(movieId);
+                //const movieData = await fetchMovieData(movieId);
+                const movieData = await fetchMovieData(id);
                 setMovie(movieData);
 
-                const additionalData = await fetchMovieAdditionalData(movieId);
+                //const additionalData = await fetchMovieAdditionalData(movieId);
+                const additionalData = await fetchMovieAdditionalData(id);
                 setAdditionalData(additionalData);
 
             } catch (error) {
@@ -35,7 +39,7 @@ const Elokuvasivu = () => {
         };
 
         fetchData();
-    }, []);
+    }, [id]);
 
     return (
         <>

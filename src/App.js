@@ -18,7 +18,7 @@ function App() {
 
         <Routes>
             <Route path="/" element={<Etusivu/>} />
-            <Route path="/elokuvasivu" element={<Elokuvasivu/>} />
+            <Route path="/elokuvasivu/:id" element={<Elokuvasivu/>} />
             <Route path="/yhteiso" element={<Yhteiso/>} />
             <Route path="/uutiset" element={<Uutiset/>} />
             <Route path="/info" element={<Info/>} />
