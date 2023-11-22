@@ -103,11 +103,8 @@ const Elokuvat = () => {
                         </div>
                         </div>
                     </div>
-
                 
                 <Elokuvalistaus movies={movies} />
-                <h1>Elokuvat</h1>
-                <p className="esittelytxt">kesken</p>
 
             </div>
         </>

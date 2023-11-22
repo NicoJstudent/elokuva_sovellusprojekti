@@ -13,6 +13,8 @@
     font-family: 'Nunito', Helvetica;
     border-radius: 25px;
     margin: 10px 0px 0px 0px;
+    background-color: #5C667B;
+    border:none;
 }
 
 .levea {
@@ -28,17 +30,14 @@
 
 .sininen {
     background-color: #4DAAB3;
-    border: none;
 }
 
 .oranssi {
     background-color: #C7613D;
-    border: none;
 }
 
 .punainen {
     background-color: #E33333;
-    border: none;
 }
 
 .sininen:hover {
@@ -50,7 +49,7 @@
 }
 
 .punainen:hover {
-    background-color: #C7613D;
+    background-color: #B40000;
 }
 
 .valistys {
@@ -76,7 +75,7 @@
 
 .tekstialue_leveys90 {
     width: 90%;
-  }
+}
 
 .avatar {
     width: 100%;
