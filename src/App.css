@@ -147,11 +147,12 @@ a:hover {
 
 hr {
   height: 1px;
-  width: 85%;
+  width: 95%;
   background-color: #aeaeae;
   border: 0;
 }
 
+/*Yhteisön hallintapaneelin linkit */
 .hyvaksy a{
   color: #4DAAB3;
   font-size: 13px;
@@ -172,6 +173,7 @@ hr {
   color: #4DAAB3;
 }
 
+/* Uutiset */
 .uutiset {
   display: flex;
   flex-direction: column;

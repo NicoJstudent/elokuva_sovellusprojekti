@@ -32,9 +32,9 @@ const YhteisoJasensivuTiedot = () => {
 const YhteisoJasensivuButtonit = () => {
     return (
         <div className='luettelo_osa leveys30'>
-            <button className='yleinen_btn sininen'>Lisää uutisaihe</button>
+            <a href="#"><button className='yleinen_btn sininen'>Lisää uutisaihe</button></a>
             <br/>
-            <button className='yleinen_btn punainen'>Eroa yhteisöstä</button>
+            <a href="#"><button className='yleinen_btn punainen'>Eroa yhteisöstä</button></a>
         </div>
     )
 }

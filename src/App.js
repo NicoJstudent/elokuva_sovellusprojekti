@@ -13,6 +13,8 @@ import KirjRek from "./kirjaudurekisteroidy";
 import Uutiset from "./uutiset";
 import Yhteiso from "./yhteiso";
 import YhteisoUusiYhteiso from "./yhteiso_UusiYhteiso";
+import YhteisoEroa1 from "./yhteiso_eroa1";
+import YhteisoEroa2 from "./yhteiso_eroa2";
 import YhteisoHallintapaneeli from "./yhteiso_hallintapaneeli";
 import YhteisoLiity from "./yhteiso_liity";
 import YhteisoJasensivu from "./yhteiso_sivuJasen";
@@ -40,6 +42,8 @@ function App() {
             <Route path="/yhteiso_sivuJasen" element={<YhteisoJasensivu/>}/>
             <Route path="/yhteiso_sivuOmistaja" element={<YhteisoOmistajasivu/>}/>
             <Route path="/yhteiso_hallintapaneeli" element={<YhteisoHallintapaneeli/>}/>
+            <Route path="yhteiso_eroa1" element={<YhteisoEroa1/>}/>
+            <Route path="yhteiso_eroa2" element={<YhteisoEroa2/>}/>
         </Routes>
 
         <Footer />

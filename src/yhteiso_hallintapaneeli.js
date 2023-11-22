@@ -33,7 +33,8 @@ const YhteisoHallintaTiedot = () => {
 const YhteisoHallintaButton = () => {
     return (
         <div className='luettelo_osa'>
-            <button className='yleinen_btn punainen'>Poista yhteisö</button>
+            <a href="yhteiso_sivuomistaja"><button className='yleinen_btn sininen'>Palaa yhteisöön</button></a><br/>
+            <a href="yhteiso_eroa1"><button className='yleinen_btn punainen'>Poista yhteisö</button></a>
         </div>
     )
 }

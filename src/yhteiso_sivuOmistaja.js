@@ -38,7 +38,7 @@ const YhteisoOmistajasivuButtonit = () => {
         <div className='luettelo_osa leveys30'>
             <button className='yleinen_btn sininen'>Lisää uutisaihe</button>
             <br/>
-            <button className='yleinen_btn oranssi'>Hallintapaneeli</button>
+            <a href="yhteiso_hallintapaneeli"><button className='yleinen_btn oranssi'>Hallintapaneeli</button></a>
         </div>
     )
 }
