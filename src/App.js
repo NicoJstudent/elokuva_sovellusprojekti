@@ -6,6 +6,7 @@ import Etusivu from "./etusivu";
 import Footer from "./footer";
 import Header from "./header";
 import Info from "./info";
+import Kayttaja from "./kayttaja";
 import KirjRek from "./kirjaudurekisteroidy";
 import Uutiset from "./uutiset";
 import Yhteiso from "./yhteiso";
@@ -24,6 +25,7 @@ function App() {
             <Route path="/info" element={<Info/>} />
             <Route path="/elokuvat" element={<Elokuvat/>} />
             <Route path="/kirjaudurekisteroidy" element={<KirjRek/>} />
+            <Route path="/kayttaja" element={<Kayttaja/>}/>
         </Routes>
 
         <Footer />

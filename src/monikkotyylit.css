@@ -36,12 +36,21 @@
     border: none;
 }
 
+.punainen {
+    background-color: #E33333;
+    border: none;
+}
+
 .sininen:hover {
     background-color: #C7613D;
 }
 
 .oranssi:hover {
     background-color: #4DAAB3;
+}
+
+.punainen:hover {
+    background-color: #C7613D;
 }
 
 .valistys {
@@ -65,8 +74,14 @@
     border: 1px solid #5D6275;
 }
 
-.sataprosenttia {
+.tekstialue_leveys90 {
     width: 90%;
+  }
+
+.avatar {
+    width: 100%;
+    height: auto;
+    max-height: 100px;
 }
 
 

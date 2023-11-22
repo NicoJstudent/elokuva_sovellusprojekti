@@ -44,6 +44,14 @@ h4 {
   font-weight: 400;
 }
 
+h5 {
+  font-family: 'Nunito', Helvetica;
+  font-size: 18px;
+  font-weight: 600;
+  color: #C7613D;
+  margin-bottom: 0px;
+}
+
 .start {
   min-height: 100vh;
   display: flex;
@@ -94,6 +102,15 @@ a:hover {
   margin-top: 20px;
 }
 
+.kayttaja {
+  width: 50%;
+  justify-content: none;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
 .luettelo_osio {
   float: left;
   width: auto;
@@ -108,19 +125,19 @@ a:hover {
   align-items: normal;
 }
 
-.luettelo_filtterit {
+.leveys70 {
   width: 70%;
 }
 
-.luettelo_etsi {
+.leveys30 {
   width: 30%;
 }
 
-.vasen {
+.leveys20 {
   width: 20%;
 }
 
-.oikea {
+.leveys80 {
   width: 80%;
 }
 

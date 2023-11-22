@@ -9,11 +9,6 @@ import './mediacard.css';
     - linkki elokuvan sivulle
     */
 
-/* Huom! Olisin käyttänyt kuvien lisäämiseen perinteisempää <img src="kuvan-osoite"> -tapaa,
-    mutta se toimii vain jos kuva on samassa kansiossa tämän tiedoston
-    kanssa. Sen vuoksi kuvat on nyt importattu. Voi olla että IMDB:n
-    haussa tämä keino toimii, jolloin koodi vähenisi. Kannattaa kokeilla. */
-
 
 /* Lisätäänkö etusivulle eli tähän joku filtteri suodattamaan elokuvien listaa?
     Jos kyllä, pitänee tätä näkymää vielä muokata etsimään randomilla elokuvien tietoja

@@ -77,7 +77,7 @@ const Elokuvat = () => {
                 <h1>Elokuvat</h1>
                 
                     <div className='luettelo filtterijono'>
-                    <div className='luettelo_filtterit'>
+                    <div className='leveys70'>
                         <div className='luettelo_osio'>
                             <h3>Suodata näkymää:</h3>
                         </div>
@@ -94,7 +94,7 @@ const Elokuvat = () => {
                             <button onClick={() => fetchData('/movie/upcoming')} className='yleinen_btn oranssi filtterit'>Tulossa</button>
                         </div>
                         </div>
-                        <div className='luettelo_etsi'>
+                        <div className='leveys30'>
                         <div className='luettelo_osio'>
                             <input type="text" placeholder="Etsi elokuva" className='tekstialue' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                         </div>

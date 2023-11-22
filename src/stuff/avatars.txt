@@ -1,0 +1,13 @@
+Tässä lista avatarien osoitteita joista voidaan hakea
+
+https://api.dicebear.com/7.x/thumbs/svg?seed=Tinkerbell
+https://api.dicebear.com/7.x/thumbs/svg?seed=Sugar
+https://api.dicebear.com/7.x/thumbs/svg?seed=Rocky
+https://api.dicebear.com/7.x/thumbs/svg?seed=Sammy
+https://api.dicebear.com/7.x/thumbs/svg?seed=Sasha
+https://api.dicebear.com/7.x/thumbs/svg?seed=Precious
+https://api.dicebear.com/7.x/thumbs/svg?seed=Tiger
+https://api.dicebear.com/7.x/thumbs/svg?seed=Molly
+https://api.dicebear.com/7.x/thumbs/svg?seed=Snuggles
+
+Lähde: https://www.dicebear.com/playground/ Thumbs 
