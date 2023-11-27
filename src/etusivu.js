@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Ajankohtaista from './ajankohtaista';
+//import Ajankohtaista from './ajankohtaista';
 import Kollaasi from './kollaasi';
-import Elokuvat_etusivulla from './oletko-jo-tutustunut-naihin';
+import { Ajankohtaista, OletkoTutustunut } from './mediacards';
 
 function Etusivu() {
   return (
@@ -14,8 +14,7 @@ function Etusivu() {
 
     <div className='section'>
       <h1>Oletko jo tutustunut näihin?</h1>
-      <p>filtterit tähän? ulkonäöllisesti, toimintaehdotukset koodissa</p>
-      <Elokuvat_etusivulla />
+      <OletkoTutustunut />
     </div>
     <Kollaasi />
     </>
