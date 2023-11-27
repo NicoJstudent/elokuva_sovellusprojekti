@@ -11,7 +11,6 @@ const Header = () => {
         setIsOpen(!isOpen);
     };
 
-// Linkit puuttuvat
 // Kirjaudu / Rekisteröidy -nappi tarvitsee linkin ja tekstimuunnoksen kun kirjauduttu
 
     return (
