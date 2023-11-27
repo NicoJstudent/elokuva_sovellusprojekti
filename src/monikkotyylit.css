@@ -14,7 +14,7 @@
     border-radius: 25px;
     margin: 10px 0px 0px 0px;
     background-color: #5C667B;
-    border:none;
+    border: none;
 }
 
 .levea {
@@ -30,26 +30,32 @@
 
 .sininen {
     background-color: #4DAAB3;
+    border: 1px solid #4DAAB3;
 }
 
 .oranssi {
     background-color: #C7613D;
+    border: 1px solid #C7613D;
 }
 
 .punainen {
     background-color: #E33333;
+    border: 1px solid #E33333;
 }
 
 .sininen:hover {
-    background-color: #C7613D;
+    background-color: #377a81;
+    border: 1px solid #4DAAB3;
 }
 
 .oranssi:hover {
-    background-color: #4DAAB3;
+    background-color: #8e4429;
+    border: 1px solid #C7613D;
 }
 
 .punainen:hover {
     background-color: #B40000;
+    border: 1px solid #e33333;
 }
 
 .valistys {
