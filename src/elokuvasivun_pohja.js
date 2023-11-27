@@ -9,7 +9,6 @@ import './monikkotyylit.css';
 
 /* Ongelmakohdat ja muutostarpeet:
 - Ikäraja ei toimi odotetusti (vain K-18/sallittu)
-- Traileria ei haettu
 - Suosikki-nappia ei aktivoitu
 */
 
