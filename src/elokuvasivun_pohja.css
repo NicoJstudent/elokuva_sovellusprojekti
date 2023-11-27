@@ -110,6 +110,10 @@ h1 {
     background-color: transparent;
 }
 
+.btn_genre:hover {
+    border: 1px solid #aeaeae;
+}
+
 
 @media only screen and (max-width: 800px) {
     .row {
