@@ -145,6 +145,15 @@ a:hover {
   width: 80%;
 }
 
+.leveys90 {
+  width: 90%;
+}
+
+.leveys100 {
+  width: 100%;
+
+}
+
 hr {
   height: 1px;
   width: 95%;
