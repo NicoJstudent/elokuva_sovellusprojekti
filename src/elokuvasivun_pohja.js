@@ -8,9 +8,7 @@ import star from './images/star.png';
 import './monikkotyylit.css';
 
 /* Ongelmakohdat ja muutostarpeet:
-- Elokuvan id tulee hakea ja siirtää tänne muilta sivuilta, kuinka?
 - Ikäraja ei toimi odotetusti (vain K-18/sallittu)
-- Traileria ei haettu
 - Suosikki-nappia ei aktivoitu
 */
 
@@ -90,7 +88,7 @@ const Tiedot = ({ movie, additionalData }) => {
                     </div>
                 </div>
                 <div className='tahdet'>
-                    <img src={star} alt="" />
+                    <img src={star} alt="Tähtiluokitus." />
                     <h1>{pyoristettyArvio} / 10</h1>
                 </div>
             </div>
@@ -107,10 +105,10 @@ const Tiedot = ({ movie, additionalData }) => {
                 <p className='tekijat'>Ohjaus · {additionalData.directors?.name}</p>
                 <p className='tekijat'>Käsikirjoitus · {additionalData.writers?.join(', ')}</p>
                 <p className='tekijat'>Näyttelijät · {additionalData.cast?.slice(0, 3).join(', ')}</p>
-                <p>Lisätietoja: <a href={imdbLink} target="_blank" rel="noopener noreferrer">IMDb</a></p>
+                <p></p>
 
                 <div className='lisatiedot_osa'>
-                    <button className='yleinen_btn sininen valistys'>Katso elokuvan traileri</button>
+                <a href={imdbLink} target="_blank" rel="noopener noreferrer"><button className='yleinen_btn sininen valistys'>Lisätietoja & traileri (IMDb)</button></a>
                     <button className='yleinen_btn oranssi valistys'>Lisää suosikiksi</button>
                 </div>
             </div>

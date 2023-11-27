@@ -19,11 +19,11 @@ const Header = () => {
             <div className="logo"><img src={logo} alt="" /></div>
             <div className={`links ${isOpen ? 'open' : ''}`}>
                 <a href="/" className="nav">Etusivu</a>
-                <a href="info" className="nav">Info</a>
-                <a href="uutiset" className="nav">Uutiset</a>
-                <a href="elokuvat" className="nav">Elokuvat</a>
-                <a href="yhteiso" className="nav">Yhteisö</a>
-                <a href="kirjaudurekisteroidy"><button className="btn_kirjaudu">Kirjaudu / Rekisteröidy</button></a>
+                <a href="/info" className="nav">Info</a>
+                <a href="/uutiset" className="nav">Uutiset</a>
+                <a href="/elokuvat" className="nav">Elokuvat</a>
+                <a href="/yhteiso" className="nav">Yhteisö</a>
+                <a href="/kirjaudurekisteroidy"><button className="btn_kirjaudu">Kirjaudu / Rekisteröidy</button></a>
             </div>
             <div className="hamburger" onClick={toggleMenu}>
                 <i class="fa fa-bars"></i>

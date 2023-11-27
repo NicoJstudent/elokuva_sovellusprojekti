@@ -88,7 +88,7 @@ a:hover {
 .luettelo {
   display: flex;
   flex-direction: row;
-  align-items: none;
+  align-items: center;
   justify-content: space-between;
   width: 80%;
   font-family: 'Nunito', Helvetica;
@@ -129,6 +129,10 @@ a:hover {
   width: 70%;
 }
 
+.leveys60 {
+  width: 60%;
+}
+
 .leveys30 {
   width: 30%;
 }
@@ -141,13 +145,44 @@ a:hover {
   width: 80%;
 }
 
+.leveys90 {
+  width: 90%;
+}
+
+.leveys100 {
+  width: 100%;
+
+}
+
 hr {
   height: 1px;
-  width: 85%;
+  width: 95%;
   background-color: #aeaeae;
   border: 0;
 }
 
+/*Yhteisön hallintapaneelin linkit */
+.hyvaksy a{
+  color: #4DAAB3;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.hyvaksy a:hover{
+  color: #C7613D;
+}
+
+.hylkays a{
+  color: #E33333;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.hylkays a:hover{
+  color: #4DAAB3;
+}
+
+/* Uutiset */
 .uutiset {
   display: flex;
   flex-direction: column;
@@ -190,11 +225,27 @@ hr {
     text-align: center;
   }
 
-  .vasen {
+  .leveys20 {
     width: 100%;
   }
 
-  .oikea {
+  .leveys80 {
+    width: 100%;
+  }
+
+  .leveys30 {
+    width: 100%;
+  }
+
+  .leveys70 {
+    margin-bottom: 20px;
+  }
+
+  .kayttaja {
+    width: 100%;
+  }
+
+  .kirjoitusalueet {
     width: 90%;
   }
 }
