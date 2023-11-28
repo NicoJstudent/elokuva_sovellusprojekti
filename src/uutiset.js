@@ -1,41 +1,85 @@
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import './monikkotyylit.css';
 
 const Uutiset = () => {
-    return (
-        <>
-            <div className='section'>
-                <h1>Uutiset</h1>
-                <UutisetLista />
-            </div>
-        </>
-    );
+    const [newsArticles, setNewsArticles] = useState([]);
+    const { DOMParser } = require('xmldom');
+
+useEffect(() => {
+    const fetchDataAndParse = async () => {
+    try {
+        const response = await fetch('https://www.finnkino.fi/xml/News/');
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+
+        const xmlString = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+        const showElements = xmlDoc.getElementsByTagName('NewsArticle');
+
+        const filteredNews = [];
+        for (let index = 0; index < showElements.length; index++) {       //"showElements.length" indeksiin hakutuloksien määrä
+            const showElement = showElements[index];
+            const categoryElement = showElement.getElementsByTagName('NewsArticleCategory')[0];
+
+            if (categoryElement) {
+                const categoryID = categoryElement.getElementsByTagName('ID')[0].textContent;
+            
+            if (categoryID == '1079') {
+            const title = showElement.getElementsByTagName('Title')[0].textContent;
+            const publishDate = showElement.getElementsByTagName('PublishDate')[0].textContent;
+            const htmlLead = showElement.getElementsByTagName('HTMLLead')[0].textContent;
+            const htmlContent = showElement.getElementsByTagName('HTMLContent')[0].textContent;
+            const imageURL = showElement.getElementsByTagName('ImageURL')[0].textContent;
+            const articleURL = showElement.getElementsByTagName('ArticleURL')[0].textContent;
+
+            filteredNews.push({
+                title,
+                publishDate,
+                htmlLead,
+                htmlContent,
+                imageURL,
+                articleURL,
+            });
+            }
+        }
+    }
+    setNewsArticles(filteredNews);
+    } catch (error) {
+        console.error('Error fetching and parsing XML data:', error);
+    }
+};
+
+fetchDataAndParse();
+}, []);
+
+return (
+    <>
+        <div className='section'>
+            <h1>Uutiset</h1>
+            <UutisetLista newsArticles={newsArticles}/>
+        </div>
+    </>
+);
 };
 
 
-const UutisetLista  = () => {
+const UutisetLista  = ({newsArticles}) => {
+    function dateTrim(date) {       //Poistaa päivämäärästä kellonajan
+        return date.split('T')[0].replace(/-/g, '.');
+    }
+
     return (
         <>
-        <div className='uutiset'>
-            <div className='uutiset_kuva'><img src="https://www.leffatykki.com/wp-content/uploads/2023/11/thelastofuse_season1_pedorpascal_hbomax.jpg"/></div>
-            <div><h3>Uusi näyttelijäkiinnitys saattaa olla vihje Marvelin suunnanvaihdoksesta</h3></div>
-            <div className='uutiset_info'><h4>16.11.2023 16:03</h4></div>
+        {newsArticles?.map((article, index) => (
+        <div className='uutiset' key={index}>
+            <div className='uutiset_kuva'><a href={article.articleURL}><img src={article.imageURL} alt=""/></a></div>
+            <div><a href={article.articleURL}><h3>{article.title}</h3></a></div>
+            <div className='uutiset_info'><h4>{dateTrim(article.publishDate)}</h4></div>
         </div>
-        <div className='uutiset'>
-            <div className='uutiset_kuva'><img src="https://www.leffatykki.com/wp-content/uploads/2023/11/themarvelsdisneybriejaiman2023.jpg"/></div>
-            <div><h3>Missä vika? The Marvels ei kilisytä kassaa toivotusti</h3></div>
-            <div className='uutiset_info'><h4>16.11.2023 16:03</h4></div>
-        </div>
-        <div className='uutiset'>
-            <div className='uutiset_kuva'><img src="https://www.leffatykki.com/wp-content/uploads/2023/11/nolan_tenet_wb.jpg"/></div>
-            <div><h3>Christopher Nolan saattaa palata yhteistyöhön tutun studion kanssa</h3></div>
-            <div className='uutiset_info'><h4>16.11.2023 16:03</h4></div>
-        </div>
-        <div className='uutiset'>
-            <div className='uutiset_kuva'><img src="https://www.leffatykki.com/wp-content/uploads/2023/11/priscilla2023a24.jpg"/></div>
-            <div><h3>Tuore Elvikseen liittyvä elokuva kohtasi yllättäviä esteitä – jo musiikkiraidan tekeminen oli iso haaste</h3></div>
-            <div className='uutiset_info'><h4>16.11.2023 16:03</h4></div>
-        </div>
+        ))}
         </>
     );
 }
