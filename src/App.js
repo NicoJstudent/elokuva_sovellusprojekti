@@ -12,7 +12,6 @@ import KayttajaPoisto2 from "./kayttajaPoisto2";
 import KirjRek from "./kirjaudurekisteroidy";
 import Uutiset from "./uutiset";
 import Yhteiso from "./yhteiso";
-import YhteisoUusiYhteiso from "./yhteiso_UusiYhteiso";
 import YhteisoEroa1 from "./yhteiso_eroa1";
 import YhteisoEroa2 from "./yhteiso_eroa2";
 import YhteisoHallintapaneeli from "./yhteiso_hallintapaneeli";
@@ -38,7 +37,6 @@ function App() {
             <Route path="/kayttajaPoisto1" element={<KayttajaPoisto1/>}/>
             <Route path="/kayttajaPoisto2" element={<KayttajaPoisto2/>}/>
             <Route path="/yhteiso_liity" element={<YhteisoLiity/>}/>
-            <Route path="/yhteiso_UusiYhteiso" element={<YhteisoUusiYhteiso/>}/>
             <Route path="/yhteiso_sivuJasen" element={<YhteisoJasensivu/>}/>
             <Route path="/yhteiso_sivuOmistaja" element={<YhteisoOmistajasivu/>}/>
             <Route path="/yhteiso_hallintapaneeli" element={<YhteisoHallintapaneeli/>}/>

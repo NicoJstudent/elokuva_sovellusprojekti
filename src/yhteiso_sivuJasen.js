@@ -15,8 +15,7 @@ const YhteisoJasensivu = () => {
     return (
         <>
             <div className='section'>
-                <h1>Yhteisö</h1>
-                <h5 style={{ margin: '20px 0px 40px 0px' }}>Yhteisön nimi</h5>
+                <h1>Yhteisön nimi</h1>
                     <YhteisoJasensivuTiedot />
                 <YhteisoUutiset />
             </div>
@@ -44,7 +43,7 @@ const YhteisoJasensivuTiedot = () => {
         </div>
             {showText && (
             <>
-            <h3 style={{ margin: '30px 0px 20px 0px' }}>Lisää uutisaihe</h3>
+            <h5 style={{ margin: '30px 0px 20px 0px' }}>Lisää uutisaihe</h5>
             <div className='luettelo kirjoitusalueet'>
             <div className='luettelo_osa leveys20'><h3>Otsikko:</h3></div>
             <div className='luettelo_osa leveys80'>
@@ -65,7 +64,7 @@ const YhteisoJasensivuTiedot = () => {
 const YhteisoUutiset = () => {
     return (
 <>
-<h3 style={{ margin: '60px 0px 20px 0px' }}>Yhteisöön jaetut uutiset</h3>
+<h2 style={{ margin: '60px 0px 20px 0px' }}>Yhteisöön jaetut uutiset</h2>
         <div className='luettelo leveys60'>
             <div className='luettelo_osa leveys30'><h3><a href="yhteiso_liity" target="_blank" rel="noopener noreferrer">Uutisotsikko sis. linkin</a></h3></div>
             <div className='luettelo_osa'><h4>Lisännyt: *käyttäjänimi*</h4></div>
