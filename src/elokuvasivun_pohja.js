@@ -116,7 +116,11 @@ const Tiedot = ({ movie, additionalData }) => {
     );
 }
 
-const Arvostelut = () => {
+
+const Arvostelut = ({}) => {
+    const [showText, setShowText] = useState(false);
+    const handleClick = () => setShowText(!showText);
+
     return (
         <div className='tiedot_runko leveyden_asetus'>
                 <div className='runko_osa1'>
@@ -125,10 +129,11 @@ const Arvostelut = () => {
             <p>Yhteensä 30 arvostelua</p>
                 </div>
                 <div className='tahdet'>
-                <button className='yleinen_btn sininen'>+ Arvostele elokuva</button>
+                <button onClick={handleClick} className='yleinen_btn sininen'>+ Arvostele elokuva</button>
                 </div>
             </div>
-            <p>Pelkkä tähtisysteemi? Alle numeroarviona sama lukema? Tuleeko noita ylläolevia?</p>
+            {showText && <p className='keskitys'>TÄHÄN TULEE KÄYTTÄJÄN OMA ARVOSTELUMAHDOLLISUUS</p>}
+            <p>Tänne listataan ennestään annetut arvosanat / yleisarvosana</p>
         </div>
     )
 }

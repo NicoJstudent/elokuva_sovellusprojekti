@@ -23,25 +23,25 @@ const YhteisoLista = () => {
         <>
         <p>Tähän tulee yhteisölistaus. Alle koottu malli kuinka alkuperäinen oli suunniteltu. Muokataan kun tilanne kehittyy.</p>
         <div className='luettelo'>
-            <div className='luettelo_osa'><h3><a href="yhteiso_liity">Yhteisön nimi (ei pääsyä)</a></h3></div>
+            <div className='luettelo_osa leveys30'><h3><a href="yhteiso_liity">Yhteisön nimi (ei pääsyä)</a></h3></div>
             <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
             <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
         </div>
         <hr style={{width:'85%'}}/>
         <div className='luettelo'>
-            <div className='luettelo_osa'><h3><a href="yhteiso_sivujasen">Yhteisön nimi (pääsy)</a></h3></div>
+            <div className='luettelo_osa leveys30'><h3><a href="yhteiso_sivujasen">Yhteisön nimi (pääsy)</a></h3></div>
             <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
             <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
         </div>
         <hr style={{width:'85%'}}/>
         <div className='luettelo'>
-            <div className='luettelo_osa'><h3><a href="yhteiso_sivuomistaja">Yhteisön nimi (omistaja)</a></h3></div>
+            <div className='luettelo_osa leveys30'><h3><a href="yhteiso_sivuomistaja">Yhteisön nimi (omistaja)</a></h3></div>
             <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
             <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
         </div>
         <hr style={{width:'85%'}}/>
         <div className='luettelo'>
-            <div className='luettelo_osa'><h3>Yhteisön nimi</h3></div>
+            <div className='luettelo_osa leveys30'><h3>Yhteisön nimi</h3></div>
             <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
             <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
         </div>
