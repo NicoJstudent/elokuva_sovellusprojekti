@@ -27,7 +27,7 @@ useEffect(() => {
             if (categoryElement) {
                 const categoryID = categoryElement.getElementsByTagName('ID')[0].textContent;
             
-            if (categoryID == '1079') {
+            if (categoryID === '1079') {
             const title = showElement.getElementsByTagName('Title')[0].textContent;
             const publishDate = showElement.getElementsByTagName('PublishDate')[0].textContent;
             const htmlLead = showElement.getElementsByTagName('HTMLLead')[0].textContent;
@@ -70,13 +70,16 @@ const UutisetLista  = ({newsArticles}) => {
     function dateTrim(date) {       //Poistaa päivämäärästä kellonajan
         return date.split('T')[0].replace(/-/g, '.');
     }
+    function removeWord(text) {     //Poistaa sanan "Leffauutiset:" otsikosta
+        return text.replace(/Leffauutiset:/, '');
+    }
 
     return (
         <>
         {newsArticles?.map((article, index) => (
         <div className='uutiset' key={index}>
-            <div className='uutiset_kuva'><a href={article.articleURL}><img src={article.imageURL} alt=""/></a></div>
-            <div><a href={article.articleURL}><h3>{article.title}</h3></a></div>
+            <div className='uutiset_kuva'><a href={article.articleURL} target="_blank" rel="noopener noreferrer"><img className="uutiskuva" src={article.imageURL} alt={article.title}/></a></div>
+            <div><a href={article.articleURL} target="_blank" rel="noopener noreferrer"><h3>{removeWord(article.title)}</h3></a></div>
             <div className='uutiset_info'><h4>{dateTrim(article.publishDate)}</h4></div>
         </div>
         ))}

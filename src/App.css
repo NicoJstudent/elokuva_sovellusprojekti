@@ -210,6 +210,10 @@ hr {
   object-fit: cover;
 }
 
+.uutiskuva:hover {
+  opacity: 0.8;
+}
+
 .uutiset_info {
   margin-top: -20px;
 }
