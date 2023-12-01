@@ -31,6 +31,7 @@ const Kirjaudu = () => {
           const response = await axios.post('http://localhost:5000/login', { usernick, password });
     
           if (response.data.success) {
+            localStorage.setItem('token', response.data.token); // Tallentaa tokenin local storageen
             console.log('Kirjautuminen onnistui');
           } else {
             console.error('Kirjautuminen epäonnistui:', response.data.message);
