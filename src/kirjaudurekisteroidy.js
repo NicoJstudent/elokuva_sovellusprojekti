@@ -10,7 +10,6 @@ const KirjRek = () => {
                 <h1>Kirjaudu sisään</h1>
                 <p className="esittelytxt">Mikäli sinulla on jo käyttäjätunnus ja salasana, voit kirjautua sisään.</p>
                 <Kirjaudu />
-                <button className='yleinen_btn levea sininen'>Kirjaudu sisään</button>
             </div>
 
             <div className='section'>
@@ -24,20 +23,38 @@ const KirjRek = () => {
 
 
 const Kirjaudu = () => {
+    const [usernick, setUsernick] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async () => {
+        try {
+          const response = await axios.post('http://localhost:5000/login', { usernick, password });
+    
+          if (response.data.success) {
+            console.log('Kirjautuminen onnistui');
+          } else {
+            console.error('Kirjautuminen epäonnistui:', response.data.message);
+          }
+        } catch (error) {
+          console.error('Error during login:', error.message);
+        }
+      };
+
     return (
         <>
             <div className='luettelo kirjoitusalueet'>
                 <div className='luettelo_osa leveys20'><h3>Käyttäjänimi:</h3></div>
                 <div className='luettelo_osa leveys80'>
-                    <input className='tekstialue tekstialue_leveys90' placeholder='käyttäjätunnus'></input>
+                    <input className='tekstialue tekstialue_leveys90' placeholder='käyttäjätunnus' type="text" value={usernick} onChange={(e) => setUsernick(e.target.value)}></input>
                 </div>
             </div>
             <div className='luettelo kirjoitusalueet'>
                 <div className='luettelo_osa leveys20'><h3>Salasana:</h3></div>
                 <div className='luettelo_osa leveys80'>
-                    <input className='tekstialue tekstialue_leveys90' placeholder='****'></input>
+                    <input className='tekstialue tekstialue_leveys90' placeholder='****'type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                 </div>
             </div>
+            <button className='yleinen_btn levea sininen' onClick={handleLogin}>Kirjaudu sisään</button>
         </>
     );
 }
@@ -52,9 +69,9 @@ const Rekisteroidy = () => {
             const response = await axios.post('http://localhost:5000/register', { usernick, password, email });
 
             if (response.data.success) {
-                console.log('Registration successful');
+                console.log('Käyttäjätunnuksen luominen onnistui');
             } else {
-                console.error('Registration failed:', response.data.message);
+                console.error('Käyttäjätunnuksen luominen epäonnistui:', response.data.message);
             }
         } catch (error) {
             console.error('Error during registration:', error.message);
