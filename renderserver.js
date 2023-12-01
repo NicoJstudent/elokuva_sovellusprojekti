@@ -15,13 +15,16 @@ const pool = new Pool({
   database: 'kinodb_n58n',
   password: 'giMExHitidVvYFnYLeZ2ETouv9Y6CmxY',
   port: 5432,
+  ssl: {
+    rejectUnauthorized: false, // Use only for development if your PostgreSQL server uses a self-signed certificate
+  },
 });
-
+//rekisteröinnin koodit
 app.post('/register', async (req, res) => {
-    const { usernick, password } = req.body;
+    const { usernick, password, email } = req.body;
   
     try {
-      const result = await pool.query('INSERT INTO users (usernick, password) VALUES ($1, $2) RETURNING *', [usernick, password]);
+      const result = await pool.query('INSERT INTO customer (usernick, password, email) VALUES ($1, $2, $3) RETURNING *', [usernick, password, email]);
   
       res.json({ success: true, message: 'Rekisteröinti onnistui', user: result.rows[0] });
     } catch (error) {
