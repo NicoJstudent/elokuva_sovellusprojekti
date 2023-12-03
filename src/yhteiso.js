@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import './monikkotyylit.css';
+import isAuthenticated from './isAuthenticated';
 
 /* HUOM!
     Tämän sivun täytyy tunnistaa jos käyttäjä ei ole kirjautunut sisään
@@ -27,6 +28,10 @@ const LisaaUusiYhteisö = () => {
     const [showText, setShowText] = useState(false);
     const handleClick = () => setShowText(!showText);
 
+    if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
+        window.location.href = '/kirjaudurekisteroidy';
+    }
+    
     return (
         <>
             <button onClick={handleClick} className='yleinen_btn levea sininen'>+ Lisää uusi yhteisö</button>
