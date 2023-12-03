@@ -9,50 +9,52 @@ app.get('/account', (request, response) => {
       response.json(dbResult);
     }
   });
+});
 
-  app.get('/:id', function (request, response) {
-    account.getById(request.params.id, function (err, dbResult) {
+app.get('/:id', function (request, response) {
+  account.getById(request.params.id, function (err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult[0]);
+    }
+  });
+});
+
+
+app.post('/',
+  function (request, response) {
+    account.add(request.body, function (err, dbResult) {
       if (err) {
         response.json(err);
       } else {
-        response.json(dbResult[0]);
+        response.json(dbResult);
       }
     });
   });
 
 
-  app.post('/',
-    function (request, response) {
-      account.add(request.body, function (err, dbResult) {
-        if (err) {
-          response.json(err);
-        } else {
-          response.json(dbResult);
-        }
-      });
+app.delete('/:id',
+  function (request, response) {
+    account.delete(request.params.id, function (err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult.affectedRows);
+      }
     });
+  });
 
 
-  app.delete('/:id',
-    function (request, response) {
-      account.delete(request.params.id, function (err, dbResult) {
-        if (err) {
-          response.json(err);
-        } else {
-          response.json(dbResult.affectedRows);
-        }
-      });
+app.put('/:id',
+  function (request, response) {
+    account.update(request.params.id, request.body, function (err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
     });
-
-
-  app.put('/:id',
-    function (request, response) {
-      account.update(request.params.id, request.body, function (err, dbResult) {
-        if (err) {
-          response.json(err);
-        } else {
-          response.json(dbResult);
-        }
-      });
-    });
-  module.exports = app;
+  });
+  
+module.exports = app;
