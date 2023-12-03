@@ -9,5 +9,9 @@ const isAuthenticated = () => {
 
       }
   };
+
+  const getUserId = () => {
+    return localStorage.getItem('userid');
+  };
   
   export default isAuthenticated;

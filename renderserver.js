@@ -53,6 +53,19 @@ app.post('/register', async (req, res) => {
     }
 });
 
+// yhteisön luominen
+app.post('/groups', async (req, res) => {
+    const { userid, groupid } = req.body;
+
+    try {
+        const result = await pool.query('INSERT INTO groups (userid, groupid) VALUES ($1, $2) RETURNING *', [userid, groupid]);
+        res.json({ success: true, message: 'Yhteisön luominen onnistui', group: result.rows[0] });
+    } catch (error) {
+        console.error('Error executing query', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
 // Kirjautuminen
 app.post('/login', async (req, res) => {
     const { usernick, password } = req.body;

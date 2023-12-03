@@ -32,6 +32,7 @@ const Kirjaudu = () => {
     
           if (response.data.success) {
             localStorage.setItem('token', response.data.token); // Tallentaa tokenin local storageen
+            localStorage.setItem('usernick', usernick); // Tallentaa loginin
             console.log('Kirjautuminen onnistui');
           } else {
             console.error('Kirjautuminen epäonnistui:', response.data.message);
