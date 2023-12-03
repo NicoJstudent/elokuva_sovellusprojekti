@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 //import fetchMovieData from './API_tmdb_fetchMovieData';
 import { useParams } from 'react-router-dom';
+import StarRatings from 'react-star-ratings';
 import { fetchMovieAdditionalData, fetchMovieData } from './API_tmdb_fetchMovieData';
 import './App.css';
 import './elokuvasivun_pohja.css';
@@ -41,14 +42,14 @@ const Elokuvasivu = () => {
 
     return (
         <>
-        <div className='section'>
-            <div className='row'>
-                <Kuva posterPath={movie.poster_path} />
-                <Tiedot movie={movie} additionalData={additionalData} />
-            </div>
+            <div className='section'>
+                <div className='row'>
+                    <Kuva posterPath={movie.poster_path} />
+                    <Tiedot movie={movie} additionalData={additionalData} />
+                </div>
             </div>
             <div className='section'>
-            <Arvostelut />
+                <Arvostelut />
             </div>
         </>
     );
@@ -108,7 +109,7 @@ const Tiedot = ({ movie, additionalData }) => {
                 <p></p>
 
                 <div className='lisatiedot_osa'>
-                <a href={imdbLink} target="_blank" rel="noopener noreferrer"><button className='yleinen_btn sininen valistys'>Lisätietoja & traileri (IMDb)</button></a>
+                    <a href={imdbLink} target="_blank" rel="noopener noreferrer"><button className='yleinen_btn sininen valistys'>Lisätietoja & traileri (IMDb)</button></a>
                     <button className='yleinen_btn oranssi valistys'>Lisää suosikiksi</button>
                 </div>
             </div>
@@ -116,19 +117,39 @@ const Tiedot = ({ movie, additionalData }) => {
     );
 }
 
-const Arvostelut = () => {
+
+const Arvostelut = ({ }) => {
+    const [showText, setShowText] = useState(false);
+    const handleClick = () => setShowText(!showText);
+    const [rating, setRating] = useState(0);
+    const changeRating = (newRating) => { setRating(newRating);};
+
     return (
         <div className='tiedot_runko leveyden_asetus'>
-                <div className='runko_osa1'>
+            <div className='runko_osa1'>
                 <div className='otsikko'>
-                <h1>Arvostelut</h1>
-            <p>Yhteensä 30 arvostelua</p>
+                    <h1>Arvostelut</h1>
+                    <p>Yhteensä 30 arvostelua</p>
                 </div>
                 <div className='tahdet'>
-                <button className='yleinen_btn sininen'>+ Arvostele elokuva</button>
+                    <button onClick={handleClick} className='yleinen_btn sininen'>+ Arvostele elokuva</button>
                 </div>
             </div>
-            <p>Pelkkä tähtisysteemi? Alle numeroarviona sama lukema? Tuleeko noita ylläolevia?</p>
+            {showText && (
+                <>
+                    <h5 className='keskitys' style={{ margin: '30px 0px 10px 0px' }}>Arvostele elokuva</h5>
+                    <p className='keskitys'>
+                    <StarRatings
+                        rating={rating}
+                        starRatedColor="gold"
+                        changeRating={changeRating}
+                        numberOfStars={10}
+                        name='rating'
+                        starDimension="30px" />
+                        <br/><br/>
+                        Oma arviosi elokuvalle: {rating}/10</p>
+                </>)}
+            <p>Tänne listataan ennestään annetut arvosanat / yleisarvosana</p>
         </div>
     )
 }

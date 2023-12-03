@@ -11,12 +11,11 @@ const Header = () => {
         setIsOpen(!isOpen);
     };
 
-// Linkit puuttuvat
 // Kirjaudu / Rekisteröidy -nappi tarvitsee linkin ja tekstimuunnoksen kun kirjauduttu
 
     return (
         <nav className="navigation">
-            <div className="logo"><img src={logo} alt="" /></div>
+            <div className="logo"><a href="/"><img src={logo} alt="Logo." /></a></div>
             <div className={`links ${isOpen ? 'open' : ''}`}>
                 <a href="/" className="nav">Etusivu</a>
                 <a href="/info" className="nav">Info</a>

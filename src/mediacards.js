@@ -29,7 +29,7 @@ const Ajankohtaista = () => {
             <div className='mediakorttien_runko'>
                 {moviesAjankohtaista?.map(movie => (
                     <div key={movie.id} className="mediakortti">
-                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="Elokuvan juliste." />
+                        <Link to={`${process.env.PUBLIC_URL}/elokuvasivu/${movie.id}`}><img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="Elokuvan juliste." /></Link>
                         <h1>{new Date(movie.release_date).getFullYear()} &nbsp;&nbsp; <img src={star} style={{ width: '10px', height: 'auto', padding: '0px' }} alt="" /> {movie.vote_average?.toFixed(1)}</h1>
                         <h2><Link to={`${process.env.PUBLIC_URL}/elokuvasivu/${movie.id}`}>{movie.title}</Link></h2>
                     </div>
@@ -63,7 +63,7 @@ const OletkoTutustunut = () => {
             <div className='mediakorttien_runko'>
                 {moviesOletkoTutustunut?.map(movie => (
                     <div key={movie.id} className="mediakortti">
-                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="Elokuvan juliste." />
+                        <Link to={`${process.env.PUBLIC_URL}/elokuvasivu/${movie.id}`}><img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="Elokuvan juliste." /></Link>
                         <h1>{new Date(movie.release_date).getFullYear()} &nbsp;&nbsp; <img src={star} style={{ width: '10px', height: 'auto', padding: '0px' }} alt="" /> {movie.vote_average?.toFixed(1)}</h1>
                         <h2><Link to={`${process.env.PUBLIC_URL}/elokuvasivu/${movie.id}`}>{movie.title}</Link></h2>
                     </div>

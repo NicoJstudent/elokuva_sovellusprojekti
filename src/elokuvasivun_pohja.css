@@ -93,6 +93,10 @@ h1 {
     font-weight: 400;
 }
 
+.keskitys {
+    text-align: center;
+}
+
 /* Buttonit */
 .btn_genre {
     width: auto;
