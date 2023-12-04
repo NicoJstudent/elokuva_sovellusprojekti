@@ -89,9 +89,13 @@ const TiliSuosikit = () => {
 }
 
 const TiliButtonit = () => {
+    const handleLogin = async () => {
+        window.location.href = '/kayttajapoisto1';
+    }
+
     return (
     <>
-    <button className='yleinen_btn levea punainen'>Poista käyttäjätunnus</button>
+    <button className='yleinen_btn levea punainen' onClick={handleLogin}>Poista käyttäjätunnus</button>
     </>
     )
 }

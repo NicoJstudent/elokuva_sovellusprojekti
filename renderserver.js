@@ -23,6 +23,11 @@ const pool = new Pool({
     },
 });
 
+const customer = [
+    { usernick: 'user1', email: 'user1@example.com' },
+    { usernick: 'user2', email: 'user2@example.com' },
+  ];
+
 // hakee käyttäjän tiedot
 async function fetchUserData(usernick) {
     try {
@@ -68,13 +73,49 @@ app.post('/groups', async (req, res) => {
 
 app.get('/customer', async (req, res) => {
     try {
-      const result = await pool.query('SELECT usernick, email FROM customer WHERE usernick = $1', [req.query.usernick]);
-      res.json(result.rows[0]);
+        const result = await pool.query('SELECT usernick, email FROM customer WHERE usernick = $1', [req.query.usernick]);
+        res.json(result.rows[0]);
     } catch (error) {
-      console.error('Error executing query', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error executing query', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
+});
+
+//app.delete('/deleteAccount/:usernick', (req, res) => {
+//    const { usernick } = req.params;
+//    
+//    console.log('Received request to delete account for usernick:', usernick);
+//    console.log('Current contents of customer array:', customer);
+//    // Find the user in the dummy database
+//    const userIndex = customer.findIndex(customer => customer.usernick === usernick);
+//  
+//    if (userIndex !== -1) {
+//      // Remove the user from the array
+//      customer.splice(userIndex, 1);
+//  
+//      // Respond with success
+//      res.json({ success: true, message: 'Account deleted successfully' });
+//    } else {
+//      // Log the error message
+//      console.error(`Error deleting account for usernick ${usernick}: User not found`);
+//  
+//      // Respond with failure if the user is not found
+//      res.status(404).json({ success: false, message: 'User not found' });
+//    }
+//  });
+
+app.delete('/customer/:usernick', async (req, res) => {
+    const { usernick } = req.params;
+
+    try {
+        const result = await pool.query('DELETE FROM customer WHERE usernick = $1', [usernick]);
+        res.json({ success: true, message: 'Käyttäjätunnuksen poistaminen onnistui' });
+        console.log(usernick);
+    } catch (error) {
+        console.error('Error executing query', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 app.get('/groups', async (req, res) => {
     const { usernick } = req.query;
