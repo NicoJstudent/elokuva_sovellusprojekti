@@ -19,7 +19,7 @@ const pool = new Pool({
     password: 'giMExHitidVvYFnYLeZ2ETouv9Y6CmxY',
     port: 5432,
     ssl: {
-        rejectUnauthorized: false, 
+        rejectUnauthorized: false,
     },
 });
 
@@ -66,6 +66,23 @@ app.post('/groups', async (req, res) => {
     }
 });
 
+app.get('/groups', async (req, res) => {
+    const { usernick } = req.query;
+
+    try {
+        const result = await pool.query('SELECT userid, groupid FROM users WHERE usernick = $1', [usernick]);
+
+        if (result.rows.length > 0) {
+            res.json({ userid: result.rows[0].userid, groupid: result.rows[0].groupid });
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 // Kirjautuminen
 app.post('/login', async (req, res) => {
     const { usernick, password } = req.body;
@@ -74,7 +91,7 @@ app.post('/login', async (req, res) => {
         const result = await pool.query('SELECT * FROM customer WHERE usernick = $1 AND password = $2', [usernick, password]);
 
         if (result.rows.length > 0) {
-            
+
             console.log('Autentikaatio onnistui, kirjauduttu sisään');
 
             const user = result.rows[0];
@@ -92,7 +109,7 @@ app.post('/login', async (req, res) => {
 
 // Varmistetaan, että käyttäjä on kirjautunut sisään
 app.get('/protected-route', (req, res) => {
-    
+
     const token = req.headers.authorization;
 
     if (!token) {

@@ -26,6 +26,7 @@ const Kirjaudu = () => {
     const [usernick, setUsernick] = useState('');
     const [password, setPassword] = useState('');
 
+
     const handleLogin = async () => {
         try {
           const response = await axios.post('http://localhost:5000/login', { usernick, password });
@@ -34,6 +35,7 @@ const Kirjaudu = () => {
             localStorage.setItem('token', response.data.token); // Tallentaa tokenin local storageen
             localStorage.setItem('usernick', usernick); // Tallentaa loginin
             console.log('Kirjautuminen onnistui');
+            window.location.href = '/';
           } else {
             console.error('Kirjautuminen epäonnistui:', response.data.message);
           }
