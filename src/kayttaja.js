@@ -1,6 +1,8 @@
 import './App.css';
 import './kollaasi.css';
 import './monikkotyylit.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 /* To do:
 - Muunna avatar satunnaiseksi -> arpoo yhdelle id:lle tietyn? Pitäisikö olla merkitty tietokantaan? Vai vaihtuuko joka kerta erilaiseen?
@@ -23,6 +25,17 @@ const Kayttaja = () => {
 };
 
 const Tili = () => {
+    const [userData, setUserData] = useState({});
+    useEffect(() => {
+        // Replace 'usernick' with the actual usernick you want to fetch
+        const usernick = localStorage.getItem('usernick');
+    
+        // Make a request to the server-side API
+        axios.get(`http://localhost:5000/customer?usernick=${usernick}`)
+          .then(response => setUserData(response.data))
+          .catch(error => console.error('Error fetching user data', error));
+      }, []);
+
     return (
         <>
         <div className='luettelo kayttaja'>
@@ -30,8 +43,8 @@ const Tili = () => {
             <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=Tinkerbell" className="avatar" alt="avatar" />
             </div>
             <div className='luettelo_osa leveys70'>
-                <h3>Käyttäjänimi: </h3>
-                <h3>Sähköposti: </h3>
+                <h3>Käyttäjänimi: {userData.usernick}</h3>
+                <h3>Sähköposti: {userData.email}</h3>
             </div>
         </div>
         </>

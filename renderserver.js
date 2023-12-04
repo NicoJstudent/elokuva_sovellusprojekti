@@ -66,11 +66,21 @@ app.post('/groups', async (req, res) => {
     }
 });
 
+app.get('/customer', async (req, res) => {
+    try {
+      const result = await pool.query('SELECT usernick, email FROM customer WHERE usernick = $1', [req.query.usernick]);
+      res.json(result.rows[0]);
+    } catch (error) {
+      console.error('Error executing query', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
 app.get('/groups', async (req, res) => {
     const { usernick } = req.query;
 
     try {
-        const result = await pool.query('SELECT userid, groupid FROM users WHERE usernick = $1', [usernick]);
+        const result = await pool.query('SELECT userid, groupid FROM groups WHERE usernick = $1', [usernick]);
 
         if (result.rows.length > 0) {
             res.json({ userid: result.rows[0].userid, groupid: result.rows[0].groupid });

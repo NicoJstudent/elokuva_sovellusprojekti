@@ -55,7 +55,7 @@ const Kirjaudu = () => {
             <div className='luettelo kirjoitusalueet'>
                 <div className='luettelo_osa leveys20'><h3>Salasana:</h3></div>
                 <div className='luettelo_osa leveys80'>
-                    <input className='tekstialue tekstialue_leveys90' placeholder='****'type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                    <input className='tekstialue tekstialue_leveys90' placeholder='****'type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>                    
                 </div>
             </div>
             <button className='yleinen_btn levea sininen' onClick={handleLogin}>Kirjaudu sisään</button>
