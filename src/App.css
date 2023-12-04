@@ -218,6 +218,11 @@ hr {
   margin-top: -20px;
 }
 
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
 
 @media only screen and (max-width: 800px) {
   .esittelytxt {
