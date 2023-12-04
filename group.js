@@ -29,7 +29,7 @@ router.post("/group", (req, res) => {
 });
 router.put("/group", (req, res) => {
     const { id, new_name } = req.body;
-    group[id-1].groupID = new_groupIDgggggggggggggggg;
+    group[id-1].groupID = new_groupID;
     res.json({success: true, message: "updated"});
 });
 router.delete("/group", (req, res) => {
