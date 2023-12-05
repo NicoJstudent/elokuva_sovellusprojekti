@@ -26,7 +26,7 @@ const pool = new Pool({
 const customer = [
     { usernick: 'user1', email: 'user1@example.com' },
     { usernick: 'user2', email: 'user2@example.com' },
-  ];
+];
 
 // hakee käyttäjän tiedot
 async function fetchUserData(usernick) {
@@ -155,18 +155,42 @@ app.get('/protected-route', (req, res) => {
     }
 });
 
+app.post('/add-to-favorites', async (req, res) => {
+    try {
+        const { usernick, movie_id } = req.body;
+
+        // Haetaan id käyttäjänimellä
+        const userResult = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+
+        if (userResult.rows.length === 0) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        const user_id = userResult.rows[0].id;
+
+
+        await pool.query('INSERT INTO user_favorites (user_id, movie_id) VALUES ($1, $2)', [user_id, movie_id]);
+
+        res.json({ success: true, message: 'Server: Movie added to favorites successfully' });
+    } catch (error) {
+        console.error('Server: Error adding movie to favorites:', error.message);
+        res.status(500).json({ success: false, error: error.message });
+        console.log(movie_id + ' ' + user_id)
+    }
+});
+
 app.post('/arvostelut', async (req, res) => {
     try {
-      const { rating, date, usernick, movieid } = req.body;
-  
-      const result = await pool.query('INSERT INTO reviews (rating, date, usernick, movieid) VALUES ($1, $2, $3, $4) RETURNING *', [rating, date, usernick, movieid]);
-  
-      res.json({ success: true, message: 'Arvostelun lisääminen onnistui', user: result.rows[0] });
+        const { rating, date, usernick, movieid } = req.body;
+
+        const result = await pool.query('INSERT INTO reviews (rating, date, usernick, movieid) VALUES ($1, $2, $3, $4) RETURNING *', [rating, date, usernick, movieid]);
+
+        res.json({ success: true, message: 'Arvostelun lisääminen onnistui', user: result.rows[0] });
     } catch (error) {
-      console.error('Error saving rating to database:', error.message);
-      res.status(500).json({ success: false, error: error.message });
+        console.error('Error saving rating to database:', error.message);
+        res.status(500).json({ success: false, error: error.message });
     }
-  });
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

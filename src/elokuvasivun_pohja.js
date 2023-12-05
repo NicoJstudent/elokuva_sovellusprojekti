@@ -8,7 +8,6 @@ import './elokuvasivun_pohja.css';
 import star from './images/star.png';
 import './monikkotyylit.css';
 import axios from 'axios';
-
 /* Ongelmakohdat ja muutostarpeet:
 - Ikäraja ei toimi odotetusti (vain K-18/sallittu)
 - Suosikki-nappia ei aktivoitu
@@ -50,7 +49,7 @@ const Elokuvasivu = () => {
                 </div>
             </div>
             <div className='section'>
-                <Arvostelut newMovieid={id}/>
+                <Arvostelut newMovieid={id} />
             </div>
         </>
     );
@@ -75,6 +74,30 @@ const Tiedot = ({ movie, additionalData }) => {
     const pyoristettyArvio = movie.vote_average.toFixed(1);
     const imdbId = movie.imdb_id;
     const imdbLink = imdbId ? `https://www.imdb.com/title/${imdbId}` : '#';
+    const newUsernick = localStorage.getItem('usernick');
+
+    const handleAddToFavorites = async () => {
+        try {
+            const response = await axios.post('http://localhost:5000/add-to-favorites', {
+                    usernick: newUsernick,
+                    movie_id: movie.id,
+            });
+
+            //const data = await response.json();
+
+            if (response.status >= 200 && response.status < 300) {
+                console.log('Movie added to favorites successfully');
+             
+            } else {
+                console.error('Failed to add movie to favorites:', response.statusText);
+               
+            }
+        } catch (error) {
+            console.error('Error adding movie to favorites:', error.message);
+            console.log(movie.id + ' ' + newUsernick)
+           
+        }
+    };
 
     return (
         <div className='tiedot_runko'>
@@ -111,7 +134,7 @@ const Tiedot = ({ movie, additionalData }) => {
 
                 <div className='lisatiedot_osa'>
                     <a href={imdbLink} target="_blank" rel="noopener noreferrer"><button className='yleinen_btn sininen valistys'>Lisätietoja & traileri (IMDb)</button></a>
-                    <button className='yleinen_btn oranssi valistys'>Lisää suosikiksi</button>
+                    <button className='yleinen_btn oranssi valistys' onClick={handleAddToFavorites}>Lisää suosikiksi</button>
                 </div>
             </div>
         </div>
@@ -130,14 +153,14 @@ const Arvostelut = ({ newMovieid }) => {
         setRating(newRating);
         saveRatingToDatabase(newRating);
     };
-    
+
     const saveRatingToDatabase = async (newRating) => {
         try {
-            const response = await axios.post('/arvostelut', {
+            const response = await axios.post('http://localhost:5000/arvostelut', {
                 rating: newRating,
                 date: timestamp,
                 usernick: newUsernick,
-                movieid: newMovieid,  
+                movieid: newMovieid,
             });
 
             if (response.data.success) {
@@ -145,7 +168,7 @@ const Arvostelut = ({ newMovieid }) => {
             } else {
                 console.error('Failed to save rating to the database');
             }
-            
+
         } catch (error) {
             console.error('Error saving rating to the database:', error.message);
         }
