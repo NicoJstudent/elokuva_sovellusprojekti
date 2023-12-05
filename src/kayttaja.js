@@ -15,6 +15,7 @@ const Kayttaja = () => {
         <>
             <div className='section'>
                 <h1>Tervetuloa {usernick}</h1>
+                <LogOut />
                 <Tili />
                 <TiliYhteisot />
                 <TiliArvostelut />
@@ -22,6 +23,21 @@ const Kayttaja = () => {
                 <TiliButtonit />
             </div>
         </>
+    );
+};
+
+const LogOut = () => {
+    const handleLogout = async () => {
+        localStorage.removeItem('usernick');
+        localStorage.removeItem('token');
+        localStorage.removeItem('userid');
+
+        // Ohjaa kirjautumissivulle
+        window.location.href = '/kirjaudurekisteroidy';
+    };
+
+    return (
+        <button className='yleinen_btn levea sininen' onClick={handleLogout}>Kirjaudu ulos</button>
     );
 };
 
