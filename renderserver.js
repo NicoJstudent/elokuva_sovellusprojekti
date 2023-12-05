@@ -155,6 +155,29 @@ app.get('/protected-route', (req, res) => {
     }
 });
 
+app.get('/favorites', async (req, res) => {
+    try {
+        const { usernick } = req.query;
+
+        const userResult = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+
+        if (userResult.rows.length === 0) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        const user_id = userResult.rows[0].id;
+
+        const favoritesResult = await pool.query('SELECT movie_id FROM user_favorites WHERE user_id = $1', [user_id]);
+        const favoriteMovies = favoritesResult.rows.map(row => row.movie_id);
+        res.setHeader('Content-Type', 'application/json');
+        res.json({ success: true, message: 'Server: Favorite movie list found', favoriteMovies });
+
+    } catch (error) {
+        console.error('Server: Error fetching favorite movie list:', error.message);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 app.post('/add-to-favorites', async (req, res) => {
     try {
         const { usernick, movie_id } = req.body;
