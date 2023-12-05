@@ -81,29 +81,7 @@ app.get('/customer', async (req, res) => {
     }
 });
 
-//app.delete('/deleteAccount/:usernick', (req, res) => {
-//    const { usernick } = req.params;
-//    
-//    console.log('Received request to delete account for usernick:', usernick);
-//    console.log('Current contents of customer array:', customer);
-//    // Find the user in the dummy database
-//    const userIndex = customer.findIndex(customer => customer.usernick === usernick);
-//  
-//    if (userIndex !== -1) {
-//      // Remove the user from the array
-//      customer.splice(userIndex, 1);
-//  
-//      // Respond with success
-//      res.json({ success: true, message: 'Account deleted successfully' });
-//    } else {
-//      // Log the error message
-//      console.error(`Error deleting account for usernick ${usernick}: User not found`);
-//  
-//      // Respond with failure if the user is not found
-//      res.status(404).json({ success: false, message: 'User not found' });
-//    }
-//  });
-
+// käyttäjätunnuksen poistaminen
 app.delete('/customer/:usernick', async (req, res) => {
     const { usernick } = req.params;
 
@@ -176,6 +154,19 @@ app.get('/protected-route', (req, res) => {
         res.status(401).json({ success: false, message: 'Invalid token' });
     }
 });
+
+app.post('/arvostelut', async (req, res) => {
+    try {
+      const { rating, date, usernick, movieid } = req.body;
+  
+      const result = await pool.query('INSERT INTO reviews (rating, date, usernick, movieid) VALUES ($1, $2, $3, $4) RETURNING *', [rating, date, usernick, movieid]);
+  
+      res.json({ success: true, message: 'Arvostelun lisääminen onnistui', user: result.rows[0] });
+    } catch (error) {
+      console.error('Error saving rating to database:', error.message);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

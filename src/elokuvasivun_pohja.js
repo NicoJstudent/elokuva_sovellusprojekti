@@ -7,6 +7,7 @@ import './App.css';
 import './elokuvasivun_pohja.css';
 import star from './images/star.png';
 import './monikkotyylit.css';
+import axios from 'axios';
 
 /* Ongelmakohdat ja muutostarpeet:
 - Ikäraja ei toimi odotetusti (vain K-18/sallittu)
@@ -49,7 +50,7 @@ const Elokuvasivu = () => {
                 </div>
             </div>
             <div className='section'>
-                <Arvostelut />
+                <Arvostelut newMovieid={id}/>
             </div>
         </>
     );
@@ -118,12 +119,37 @@ const Tiedot = ({ movie, additionalData }) => {
 }
 
 
-const Arvostelut = ({ }) => {
+const Arvostelut = ({ newMovieid }) => {
     const [showText, setShowText] = useState(false);
     const handleClick = () => setShowText(!showText);
     const [rating, setRating] = useState(0);
-    const changeRating = (newRating) => { setRating(newRating);};
+    const newUsernick = localStorage.getItem('usernick');
+    const currentDate = new Date();
+    const timestamp = currentDate.toISOString();
+    const changeRating = (newRating) => {
+        setRating(newRating);
+        saveRatingToDatabase(newRating);
+    };
+    
+    const saveRatingToDatabase = async (newRating) => {
+        try {
+            const response = await axios.post('/arvostelut', {
+                rating: newRating,
+                date: timestamp,
+                usernick: newUsernick,
+                movieid: newMovieid,  
+            });
 
+            if (response.data.success) {
+                console.log('Rating saved to the database successfully');
+            } else {
+                console.error('Failed to save rating to the database');
+            }
+            
+        } catch (error) {
+            console.error('Error saving rating to the database:', error.message);
+        }
+    };
     return (
         <div className='tiedot_runko leveyden_asetus'>
             <div className='runko_osa1'>
@@ -138,20 +164,21 @@ const Arvostelut = ({ }) => {
             {showText && (
                 <>
                     <h5 className='keskitys' style={{ margin: '30px 0px 10px 0px' }}>Arvostele elokuva</h5>
-                    <p className='keskitys'>
-                    <StarRatings
-                        rating={rating}
-                        starRatedColor="gold"
-                        changeRating={changeRating}
-                        numberOfStars={10}
-                        name='rating'
-                        starDimension="30px" />
-                        <br/><br/>
-                        Oma arviosi elokuvalle: {rating}/10</p>
+                    <div className='keskitys'>
+                        <StarRatings
+                            rating={rating}
+                            starRatedColor="gold"
+                            changeRating={changeRating}
+                            numberOfStars={10}
+                            name='rating'
+                            starDimension="30px" />
+                        <br /><br />
+                        Oma arviosi elokuvalle: {rating}/10</div>
                 </>)}
             <p>Tänne listataan ennestään annetut arvosanat / yleisarvosana</p>
         </div>
     )
 }
+
 
 export default Elokuvasivu;
