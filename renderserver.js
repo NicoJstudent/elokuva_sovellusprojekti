@@ -155,6 +155,31 @@ app.get('/protected-route', (req, res) => {
     }
 });
 
+app.get('/reviews', async (req, res) => {
+    try {
+        const { usernick } = req.query;
+
+        //const userResult = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+
+        //if (userResult.rows.length === 0) {
+        //    return res.status(404).json({ success: false, message: 'User not found' });
+        //}
+
+        //const user_id = userResult.rows[0].id;
+        const reviewsResult = await pool.query(
+            'SELECT rating, date, movieid FROM reviews WHERE usernick = $1',
+            [usernick]
+        );
+        const reviews = reviewsResult.rows;
+        res.setHeader('Content-Type', 'application/json');
+        res.json({ success: true, message: 'Server: Reviews found', reviews });
+
+    } catch (error) {
+        console.error('Server: Error fetching reviews:', error.message);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 app.get('/favorites', async (req, res) => {
     try {
         const { usernick } = req.query;
