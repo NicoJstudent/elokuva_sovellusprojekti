@@ -95,6 +95,7 @@ app.delete('/customer/:usernick', async (req, res) => {
     }
 });
 
+
 app.get('/groups', async (req, res) => {
     const { usernick } = req.query;
 
@@ -155,22 +156,31 @@ app.get('/protected-route', (req, res) => {
     }
 });
 
+
+app.get('/reviewsList/:movieid', async (req, res) => {
+    const { movieid } = req.params;
+  
+    try {
+      const result = await pool.query('SELECT * FROM reviews WHERE movieid = $1', [movieid]);
+  
+      if (result.rows.length > 0) {
+        res.json({ success: true, ratings: result.rows });
+      } else {
+        res.status(404).json({ success: false, message: 'Tälle elokuvalle ei ole annettu yhtään arvostelua' });
+      }
+    } catch (error) {
+      console.error('Error executing query', error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+  });
+  
+
 app.get('/reviews', async (req, res) => {
     try {
         const { usernick } = req.query;
-
-        //const userResult = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
-
-        //if (userResult.rows.length === 0) {
-        //    return res.status(404).json({ success: false, message: 'User not found' });
-        //}
-
-        //const user_id = userResult.rows[0].id;
-        const reviewsResult = await pool.query(
-            'SELECT rating, date, movieid FROM reviews WHERE usernick = $1',
-            [usernick]
-        );
+        const reviewsResult = await pool.query('SELECT rating, date, movieid FROM reviews WHERE usernick = $1', [usernick]);
         const reviews = reviewsResult.rows;
+
         res.setHeader('Content-Type', 'application/json');
         res.json({ success: true, message: 'Server: Reviews found', reviews });
 
@@ -183,7 +193,6 @@ app.get('/reviews', async (req, res) => {
 app.get('/favorites', async (req, res) => {
     try {
         const { usernick } = req.query;
-
         const userResult = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
 
         if (userResult.rows.length === 0) {
@@ -238,6 +247,21 @@ app.post('/arvostelut', async (req, res) => {
         console.error('Error saving rating to database:', error.message);
         res.status(500).json({ success: false, error: error.message });
     }
+});
+
+// Hakee arvostelujen määrät
+app.get('/rowCount/:movieId', async (req, res) => {
+  const { movieId } = req.params;
+
+  try {
+    const result = await pool.query('SELECT COUNT(*) FROM your_table_name WHERE movieid = $1', [movieId]);
+    const rowCount = result.rows[0].count;
+
+    res.json({ success: true, rowCount });
+  } catch (error) {
+    console.error('Error executing query', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
 });
 
 app.listen(port, () => {

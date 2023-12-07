@@ -131,7 +131,7 @@ const TiliArvostelut = () => {
   };
 
   if (loading) {
-    return <div>Ladataan suosikkeja...</div>;
+    return <div>Ladataan arviointeja...</div>;
   }
   // Jos ei ole arvioita tai antaa erroria, katso webdeveloper console 
   if (reviewData.length === 0) {
@@ -140,7 +140,7 @@ const TiliArvostelut = () => {
   //Koko arvostelu linkkinä kyseisen elokuvan sivulle
   return (
     <div className='kirjoitusalueet'>
-      <h5>Kirjoittamasi arviot:</h5>
+      <h5>Arvioimasi elokuvat:</h5>
       <ul className="review-list">
         {reviewData.map((review, index) => (
           <Link to={`/elokuvasivu/${review.movieid}`}>
