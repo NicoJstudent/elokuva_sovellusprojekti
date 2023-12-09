@@ -22,10 +22,11 @@ const YhteisoOmistajasivu = () => {
 };
 
 const YhteisoOmistajasivuTiedot = () => {
+    const usernick = localStorage.getItem('usernick');
     return (
         <>
             <div className='luettelo_osa'>
-                <h3>Tervetuloa *käyttäjänimi*</h3>
+                <h3>Tervetuloa {usernick}</h3>
                 <p>Aiheita yhteensä 0 kpl</p>
                 <p>Yhteisössä on 0 jäsentä</p>
                 </div>

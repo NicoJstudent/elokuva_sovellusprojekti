@@ -95,6 +95,36 @@ const YhteisoLista = () => {
         fetchGroups();
     }, []);
 
+    const handleGroupClick = async (groupId) => {
+        if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
+            window.location.href = '/kirjaudurekisteroidy';
+        } else {
+            try {
+                const usernick = localStorage.getItem('usernick');
+                const response = await axios.get(`http://localhost:5000/groups_role?group_id=${groupId}&usernick=${usernick}`);
+          
+                const userRole = response.data.role;
+          
+                const getGroupPage = (groupId, userRole) => {
+                  switch (userRole) {
+                    case 'owner':   // /${groupId}
+                      return `/yhteiso_sivuOmistaja`;
+                    case 'member':
+                      return `/yhteiso_sivuJasen`;
+                    default: // Täytyy olla kirjautuneena sisään.
+                      return `/yhteiso_liity`;
+                  }
+                };
+          
+                const url = getGroupPage(groupId, userRole);
+          
+                window.location.href = url;
+              } catch (error) {
+                console.error('Error fetching group details:', error);
+              }
+            }
+          };
+
     return (
         <>
             <div>
@@ -108,7 +138,7 @@ const YhteisoLista = () => {
 
                             <li key={group.id}>
                                 <div className='luettelo'>
-                                    <div className='luettelo_osa leveys30'><h3><a href="yhteiso_liity" >{group.group_name}</a></h3></div>
+                                    <div className='luettelo_osa leveys30'><h3><a href="#" onClick={() => handleGroupClick(group.id)}>{group.group_name}</a></h3></div>
                                     <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
                                     <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
                                 </div>

@@ -90,6 +90,41 @@ app.get('/groups_list', async (req, res) => {
     }
   });
 
+  app.get('/groups_role', async (req, res) => {
+    const { group_id, usernick } = req.query;
+
+    try {
+        const user_id_result = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+        const user_id = user_id_result.rows[0]?.id;
+
+        if (user_id_result.rows.length === 0) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+          }
+
+        const result = await pool.query('SELECT id, group_name, owner_id, members FROM groups WHERE id = $1', [group_id]);
+        const group = result.rows[0];
+
+        
+        if (!group) {
+            return res.status(404).json({ success: false, message: 'Group not found' });
+        }
+
+        const isOwner = group.owner_id === user_id;
+        const isMember = group.members.includes(user_id);
+
+        if (isOwner) { // Tarkistaa roolin yhteisössä (omistaja, jäsen, ei mitään)
+            res.json({ success: true, group, role: 'owner' });
+        } else if (isMember) {
+            res.json({ success: true, group, role: 'member' });
+        } else {
+            res.json({ success: true, group, role: 'none' });
+        }
+    } catch (error) {
+        console.error('Error fetching group details:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+  });
+
 app.get('/customer', async (req, res) => {
     try {
         const result = await pool.query('SELECT usernick, email FROM customer WHERE usernick = $1', [req.query.usernick]);
