@@ -70,7 +70,7 @@ app.post('/group_create', async (req, res) => {
         }
 
         const owner_id = owner_id_result.rows[0].id;
-        const result = await pool.query('INSERT INTO groups (owner_id, group_name, creation_date) VALUES ($1, $2, CURRENT_TIMESTAMP) RETURNING *', [owner_id, group_name]);
+        const result = await pool.query('INSERT INTO groups (owner_id, group_name, creation_date, members) VALUES ($1, $2, CURRENT_TIMESTAMP, $3) RETURNING *', [owner_id, group_name, [owner_id]]);
         res.json({ success: true, message: 'Yhteisön luominen onnistui', group: result.rows[0] });
     } catch (error) {
         console.error('Error executing query', error);
