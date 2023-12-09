@@ -59,17 +59,36 @@ app.post('/register', async (req, res) => {
 });
 
 // yhteisön luominen
-app.post('/groups', async (req, res) => {
-    const { userid, groupid } = req.body;
+app.post('/group_create', async (req, res) => {
+    const { usernick, group_name } = req.body;
 
     try {
-        const result = await pool.query('INSERT INTO groups (userid, groupid) VALUES ($1, $2) RETURNING *', [userid, groupid]);
+        const owner_id_result = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+
+        if (owner_id_result.rows.length === 0) { // Errori jos käyttäjää ei ole olemassa
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        const owner_id = owner_id_result.rows[0].id;
+        const result = await pool.query('INSERT INTO groups (owner_id, group_name, creation_date) VALUES ($1, $2, CURRENT_TIMESTAMP) RETURNING *', [owner_id, group_name]);
         res.json({ success: true, message: 'Yhteisön luominen onnistui', group: result.rows[0] });
     } catch (error) {
         console.error('Error executing query', error);
         res.status(500).json({ success: false, message: 'Internal server error' });
     }
 });
+
+app.get('/groups_list', async (req, res) => {
+    try {
+      const result = await pool.query('SELECT id, group_name FROM groups');
+      const groups = result.rows;
+  
+      res.json({ success: true, groups });
+    } catch (error) {
+      console.error('Error fetching groups:', error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+  });
 
 app.get('/customer', async (req, res) => {
     try {
