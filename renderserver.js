@@ -19,9 +19,14 @@ const pool = new Pool({
     password: 'giMExHitidVvYFnYLeZ2ETouv9Y6CmxY',
     port: 5432,
     ssl: {
-        rejectUnauthorized: false, 
+        rejectUnauthorized: false,
     },
 });
+
+const customer = [
+    { usernick: 'user1', email: 'user1@example.com' },
+    { usernick: 'user2', email: 'user2@example.com' },
+];
 
 // hakee käyttäjän tiedot
 async function fetchUserData(usernick) {
@@ -53,6 +58,61 @@ app.post('/register', async (req, res) => {
     }
 });
 
+// yhteisön luominen
+app.post('/groups', async (req, res) => {
+    const { userid, groupid } = req.body;
+
+    try {
+        const result = await pool.query('INSERT INTO groups (userid, groupid) VALUES ($1, $2) RETURNING *', [userid, groupid]);
+        res.json({ success: true, message: 'Yhteisön luominen onnistui', group: result.rows[0] });
+    } catch (error) {
+        console.error('Error executing query', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
+app.get('/customer', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT usernick, email FROM customer WHERE usernick = $1', [req.query.usernick]);
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error executing query', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// käyttäjätunnuksen poistaminen
+app.delete('/customer/:usernick', async (req, res) => {
+    const { usernick } = req.params;
+
+    try {
+        const result = await pool.query('DELETE FROM customer WHERE usernick = $1', [usernick]);
+        res.json({ success: true, message: 'Käyttäjätunnuksen poistaminen onnistui' });
+        console.log(usernick);
+    } catch (error) {
+        console.error('Error executing query', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+app.get('/groups', async (req, res) => {
+    const { usernick } = req.query;
+
+    try {
+        const result = await pool.query('SELECT userid, groupid FROM groups WHERE usernick = $1', [usernick]);
+
+        if (result.rows.length > 0) {
+            res.json({ userid: result.rows[0].userid, groupid: result.rows[0].groupid });
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 // Kirjautuminen
 app.post('/login', async (req, res) => {
     const { usernick, password } = req.body;
@@ -61,7 +121,7 @@ app.post('/login', async (req, res) => {
         const result = await pool.query('SELECT * FROM customer WHERE usernick = $1 AND password = $2', [usernick, password]);
 
         if (result.rows.length > 0) {
-            
+
             console.log('Autentikaatio onnistui, kirjauduttu sisään');
 
             const user = result.rows[0];
@@ -79,7 +139,7 @@ app.post('/login', async (req, res) => {
 
 // Varmistetaan, että käyttäjä on kirjautunut sisään
 app.get('/protected-route', (req, res) => {
-    
+
     const token = req.headers.authorization;
 
     if (!token) {
@@ -94,6 +154,114 @@ app.get('/protected-route', (req, res) => {
     } catch (error) {
         res.status(401).json({ success: false, message: 'Invalid token' });
     }
+});
+
+
+app.get('/reviewsList/:movieid', async (req, res) => {
+    const { movieid } = req.params;
+  
+    try {
+      const result = await pool.query('SELECT * FROM reviews WHERE movieid = $1', [movieid]);
+  
+      if (result.rows.length > 0) {
+        res.json({ success: true, ratings: result.rows });
+      } else {
+        res.status(404).json({ success: false, message: 'Tälle elokuvalle ei ole annettu yhtään arvostelua' });
+      }
+    } catch (error) {
+      console.error('Error executing query', error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+  });
+  
+
+app.get('/reviews', async (req, res) => {
+    try {
+        const { usernick } = req.query;
+        const reviewsResult = await pool.query('SELECT rating, date, movieid FROM reviews WHERE usernick = $1', [usernick]);
+        const reviews = reviewsResult.rows;
+
+        res.setHeader('Content-Type', 'application/json');
+        res.json({ success: true, message: 'Server: Reviews found', reviews });
+
+    } catch (error) {
+        console.error('Server: Error fetching reviews:', error.message);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+app.get('/favorites', async (req, res) => {
+    try {
+        const { usernick } = req.query;
+        const userResult = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+
+        if (userResult.rows.length === 0) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        const user_id = userResult.rows[0].id;
+
+        const favoritesResult = await pool.query('SELECT movie_id FROM user_favorites WHERE user_id = $1', [user_id]);
+        const favoriteMovies = favoritesResult.rows.map(row => row.movie_id);
+        res.setHeader('Content-Type', 'application/json');
+        res.json({ success: true, message: 'Server: Favorite movie list found', favoriteMovies });
+
+    } catch (error) {
+        console.error('Server: Error fetching favorite movie list:', error.message);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+app.post('/add-to-favorites', async (req, res) => {
+    try {
+        const { usernick, movie_id } = req.body;
+
+        // Haetaan id käyttäjänimellä
+        const userResult = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+
+        if (userResult.rows.length === 0) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        const user_id = userResult.rows[0].id;
+
+
+        await pool.query('INSERT INTO user_favorites (user_id, movie_id) VALUES ($1, $2)', [user_id, movie_id]);
+
+        res.json({ success: true, message: 'Server: Movie added to favorites successfully' });
+    } catch (error) {
+        console.error('Server: Error adding movie to favorites:', error.message);
+        res.status(500).json({ success: false, error: error.message });
+        console.log(movie_id + ' ' + user_id)
+    }
+});
+
+app.post('/arvostelut', async (req, res) => {
+    try {
+        const { rating, date, usernick, movieid } = req.body;
+
+        const result = await pool.query('INSERT INTO reviews (rating, date, usernick, movieid) VALUES ($1, $2, $3, $4) RETURNING *', [rating, date, usernick, movieid]);
+
+        res.json({ success: true, message: 'Arvostelun lisääminen onnistui', user: result.rows[0] });
+    } catch (error) {
+        console.error('Error saving rating to database:', error.message);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Hakee arvostelujen määrät
+app.get('/rowCount/:movieId', async (req, res) => {
+  const { movieId } = req.params;
+
+  try {
+    const result = await pool.query('SELECT COUNT(*) FROM your_table_name WHERE movieid = $1', [movieId]);
+    const rowCount = result.rows[0].count;
+
+    res.json({ success: true, rowCount });
+  } catch (error) {
+    console.error('Error executing query', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
 });
 
 app.listen(port, () => {

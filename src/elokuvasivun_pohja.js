@@ -7,11 +7,17 @@ import './App.css';
 import './elokuvasivun_pohja.css';
 import star from './images/star.png';
 import './monikkotyylit.css';
-
+import axios from 'axios';
+import isAuthenticated from './isAuthenticated';
 /* Ongelmakohdat ja muutostarpeet:
 - Ikäraja ei toimi odotetusti (vain K-18/sallittu)
 - Suosikki-nappia ei aktivoitu
 */
+// Aikaformaatin muuttaminen
+const formatDate = (dateString) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+};
 
 const Elokuvasivu = () => {
 
@@ -49,7 +55,7 @@ const Elokuvasivu = () => {
                 </div>
             </div>
             <div className='section'>
-                <Arvostelut />
+                <Arvostelut newMovieid={id} />
             </div>
         </>
     );
@@ -74,6 +80,30 @@ const Tiedot = ({ movie, additionalData }) => {
     const pyoristettyArvio = movie.vote_average.toFixed(1);
     const imdbId = movie.imdb_id;
     const imdbLink = imdbId ? `https://www.imdb.com/title/${imdbId}` : '#';
+    const newUsernick = localStorage.getItem('usernick');
+
+    const handleAddToFavorites = async () => {
+        try {
+            const response = await axios.post('http://localhost:5000/add-to-favorites', {
+                usernick: newUsernick,
+                movie_id: movie.id,
+            });
+
+            //const data = await response.json();
+
+            if (response.status >= 200 && response.status < 300) {
+                console.log('Movie added to favorites successfully');
+
+            } else {
+                console.error('Failed to add movie to favorites:', response.statusText);
+
+            }
+        } catch (error) {
+            console.error('Error adding movie to favorites:', error.message);
+            console.log(movie.id + ' ' + newUsernick)
+
+        }
+    };
 
     return (
         <div className='tiedot_runko'>
@@ -110,7 +140,7 @@ const Tiedot = ({ movie, additionalData }) => {
 
                 <div className='lisatiedot_osa'>
                     <a href={imdbLink} target="_blank" rel="noopener noreferrer"><button className='yleinen_btn sininen valistys'>Lisätietoja & traileri (IMDb)</button></a>
-                    <button className='yleinen_btn oranssi valistys'>Lisää suosikiksi</button>
+                    <button className='yleinen_btn oranssi valistys' onClick={handleAddToFavorites}>Lisää suosikiksi</button>
                 </div>
             </div>
         </div>
@@ -118,18 +148,71 @@ const Tiedot = ({ movie, additionalData }) => {
 }
 
 
-const Arvostelut = ({ }) => {
+const Arvostelut = ({ newMovieid }) => {
     const [showText, setShowText] = useState(false);
     const handleClick = () => setShowText(!showText);
     const [rating, setRating] = useState(0);
-    const changeRating = (newRating) => { setRating(newRating);};
+    const [ratingsList, setRatingsList] = useState([]);
+    const newUsernick = localStorage.getItem('usernick');
+    const currentDate = new Date();
+    const timestamp = currentDate.toISOString();
+    const changeRating = (newRating) => {
+        setRating(newRating);
+        saveRatingToDatabase(newRating);
+    };
+
+    const saveRatingToDatabase = async (newRating) => {
+
+        if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
+            window.location.href = '/kirjaudurekisteroidy';
+        } else {
+
+            try {
+                const response = await axios.post('http://localhost:5000/arvostelut', {
+                    rating: newRating,
+                    date: timestamp,
+                    usernick: newUsernick,
+                    movieid: newMovieid,
+                });
+
+                if (response.data.success) {
+                    console.log('Rating saved to the database successfully');
+                } else {
+                    console.error('Failed to save rating to the database');
+                }
+
+            } catch (error) {
+                console.error('Error saving rating to the database:', error.message);
+            }
+        }
+    };
+
+
+    const fetchRatings = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/reviewsList/${newMovieid}`);
+            if (response.data.success) {
+                setRatingsList(response.data.ratings);
+                console.log(ratingsList) //listan sisältö consoleen
+                console.log('Movie ID:' + newMovieid)
+            } else {
+                console.error('Failed to fetch ratings from the database');
+            }
+        } catch (error) {
+            console.error('Error fetching ratings from the database:', error.message);
+        }
+    };
+
+    useEffect(() => {
+
+        fetchRatings();
+    }, []);
 
     return (
         <div className='tiedot_runko leveyden_asetus'>
             <div className='runko_osa1'>
                 <div className='otsikko'>
                     <h1>Arvostelut</h1>
-                    <p>Yhteensä 30 arvostelua</p>
                 </div>
                 <div className='tahdet'>
                     <button onClick={handleClick} className='yleinen_btn sininen'>+ Arvostele elokuva</button>
@@ -138,20 +221,47 @@ const Arvostelut = ({ }) => {
             {showText && (
                 <>
                     <h5 className='keskitys' style={{ margin: '30px 0px 10px 0px' }}>Arvostele elokuva</h5>
-                    <p className='keskitys'>
-                    <StarRatings
-                        rating={rating}
-                        starRatedColor="gold"
-                        changeRating={changeRating}
-                        numberOfStars={10}
-                        name='rating'
-                        starDimension="30px" />
-                        <br/><br/>
-                        Oma arviosi elokuvalle: {rating}/10</p>
+                    <div className='keskitys'>
+                        <StarRatings
+                            rating={rating}
+                            starRatedColor="gold"
+                            changeRating={changeRating}
+                            numberOfStars={10}
+                            name='rating'
+                            starDimension="30px" />
+                        <br /><br />
+                        Oma arviosi elokuvalle: {rating}/10</div>
                 </>)}
-            <p>Tänne listataan ennestään annetut arvosanat / yleisarvosana</p>
+            <div className="review-list">
+                <p>Käyttäjien arvosanat</p>
+                {ratingsList.length === 0 && (
+                    <p>Tälle elokuvalle ei ole annettu yhtään arvostelua &#x1F61E;</p>
+                )}
+                {ratingsList.length > 0 && (
+                    <ul>
+                        {ratingsList.map((ratingItem, index) => (
+                            // <li key={index}>
+                            //     Käyttäjä: {ratingItem.usernick} antoi arvosanan {ratingItem.rating}/10  {formatDate(ratingItem.date)}
+                            // </li>
+
+                            <li key={index} className="review-item">
+                                <div className="review-column">
+                                    Käyttäjä {ratingItem.usernick} antoi arvosanan
+                                </div>
+                                <div className='review-column'>
+                                    {ratingItem.rating}/10
+                                </div>
+                                <div className="review-column">
+                                    {formatDate(ratingItem.date)}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
         </div>
     )
 }
+
 
 export default Elokuvasivu;

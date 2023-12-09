@@ -23,7 +23,7 @@ const connectDb = async () => {
 }
  
 connectDb()
-=======
+
 //import {Pool} from 'pg';
 const {Pool} = require('pg');
 

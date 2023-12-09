@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import './monikkotyylit.css';
+import isAuthenticated from './isAuthenticated';
+import axios from 'axios';
 
 /* HUOM!
     Tämän sivun täytyy tunnistaa jos käyttäjä ei ole kirjautunut sisään
@@ -25,7 +27,34 @@ const Yhteiso = () => {
 
 const LisaaUusiYhteisö = () => {
     const [showText, setShowText] = useState(false);
+    const [groupid, setGroupid] = useState(''); 
+    const [userid, setUserid] = useState(localStorage.getItem('usernick')); 
+
     const handleClick = () => setShowText(!showText);
+    if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
+        window.location.href = '/kirjaudurekisteroidy';
+    }
+    
+    const handleCommunityCreation = async () => {
+        if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
+            window.location.href = '/kirjaudurekisteroidy';
+        } else {
+            
+                localStorage.setItem('userid', userid);
+           
+            try {
+                const response = await axios.post('http://localhost:5000/groups', { userid, groupid });
+    
+                if (response.data.success) {
+                    console.log('Yhteisön luominen onnistui');
+                } else {
+                    console.error('Yhteisön luominen epäonnistui:', response.data.message);
+                }
+            } catch (error) {
+                console.error('Error during community registration:', error.message);
+            }
+        }
+    }
 
     return (
         <>
@@ -36,9 +65,10 @@ const LisaaUusiYhteisö = () => {
                     <div className='luettelo kirjoitusalueet'>
                         <div className='luettelo_osa leveys20'><h3>Yhteisön nimi:</h3></div>
                         <div className='luettelo_osa leveys80'>
-                            <input className='tekstialue tekstialue_leveys90' placeholder='lisää yhteisölle nimi'></input>
+                            <input className='tekstialue tekstialue_leveys90' placeholder='lisää yhteisölle nimi' type="text" value={groupid} onChange={(e) => setGroupid(e.target.value)}></input>
                         </div>
                     </div>
+                    <button className='yleinen_btn levea sininen' onClick={handleCommunityCreation}>Luo yhteisö</button>
                 </>)}
         </>
     )
