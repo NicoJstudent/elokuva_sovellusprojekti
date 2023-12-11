@@ -70,11 +70,37 @@ app.post('/group_create', async (req, res) => {
         }
 
         const owner_id = owner_id_result.rows[0].id;
+        //const applyList = await pool.query('INSERT INTO apply_list (user_id, application_date) VALUES (null, null) RETURNING apply_list_id');
+        //const applyListId = applyList.rows[0].apply_list_id;
         const result = await pool.query('INSERT INTO groups (owner_id, group_name, creation_date, members) VALUES ($1, $2, CURRENT_TIMESTAMP, $3) RETURNING *', [owner_id, group_name, [owner_id]]);
+
         res.json({ success: true, message: 'Yhteisön luominen onnistui', group: result.rows[0] });
     } catch (error) {
         console.error('Error executing query', error);
         res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
+app.post('/liittymispyynto', async (req, res) => {
+    const { usernick, group_id } = req.body;
+
+    try {
+        const user_id_result = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+        const user_id = user_id_result.rows[0]?.id;
+
+        // Insert data into the apply_list table
+        await pool.query('INSERT INTO apply_list (user_id, application_date, group_id) VALUES ($1, CURRENT_DATE, $2) RETURNING apply_list_id', [user_id, group_id]);
+//
+        //const applyListId = applyListResult.rows[0].apply_list_id;
+
+        // Insert data into the groups table
+        //const groupResult = await pool.query('UPDATE groups SET apply_list_id = $1 WHERE id = $2 RETURNING id', [applyListId, group_id]);
+        //const groupId = groupResult.rows[0].id;
+
+        res.json({ success: true, message: 'Liittymispyyntö lähetetty' });
+    } catch (error) {
+        console.error('Virhe tietokantaan tallentamisessa:', error);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 });
 
@@ -137,10 +163,10 @@ app.get('/customer', async (req, res) => {
 
 // käyttäjätunnuksen poistaminen
 app.delete('/customer/:usernick', async (req, res) => {
-    const { usernick } = req.params;
+    const { user_Ids } = req.params;
 
     try {
-        const result = await pool.query('DELETE FROM customer WHERE usernick = $1', [usernick]);
+        const result = await pool.query('DELETE FROM customer WHERE usernick = $1', [user_Ids]);
         res.json({ success: true, message: 'Käyttäjätunnuksen poistaminen onnistui' });
         console.log(usernick);
     } catch (error) {
@@ -149,6 +175,25 @@ app.delete('/customer/:usernick', async (req, res) => {
     }
 });
 
+app.get('/customer', async (req, res) => {
+    const userIds = req.query.userIds;
+
+    try {
+      // Assuming your PostgreSQL query is something like this
+      const queryResult = await pool.query('SELECT id, usernick FROM customer WHERE id = $1', [userIds]);
+  
+      // Create a map of user IDs to nicknames
+      const nicknamesMap = {};
+      queryResult.rows.forEach((row) => {
+        nicknamesMap[row.id] = row.usernick;
+      });
+  
+      res.json(nicknamesMap);
+    } catch (error) {
+      console.error('Error executing query', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 app.get('/groups', async (req, res) => {
     const { usernick } = req.query;
@@ -166,6 +211,35 @@ app.get('/groups', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+app.get('/groups_name', async (req, res) => {
+    const { group_id } = req.query;
+    try {
+        const result = await pool.query('SELECT group_name FROM groups WHERE id = $1', [group_id]);
+
+        if (result.rows.length > 0) {
+            res.json({ group_name: result.rows[0].group_name });
+        } else {
+            res.status(404).json({ error: 'Group not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/applications/:group_id', async (req, res) => {
+    const { group_id } = req.params;
+  
+    try {
+      const { rows } = await pool.query('SELECT user_id, application_date FROM apply_list WHERE group_id = $1', [group_id]);
+  
+      res.json(rows);
+    } catch (error) {
+      console.error('Error executing query', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 // Kirjautuminen
 app.post('/login', async (req, res) => {

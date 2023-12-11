@@ -10,7 +10,7 @@ import axios from 'axios';
     -> ei mahdollisuutta avata yhteisön linkkejä
 */
 
-const Yhteiso = () => {
+const Yhteiso = () => {    
     return (
         <>
             <div className='section'>
@@ -102,7 +102,7 @@ const YhteisoLista = () => {
             try {
                 const usernick = localStorage.getItem('usernick');
                 const response = await axios.get(`http://localhost:5000/groups_role?group_id=${groupId}&usernick=${usernick}`);
-          
+                sessionStorage.setItem('groupId', groupId);
                 const userRole = response.data.role;
           
                 const getGroupPage = (groupId, userRole) => {
