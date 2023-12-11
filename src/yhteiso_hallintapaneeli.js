@@ -37,7 +37,7 @@ const YhteisoHallintapaneeli = () => {
                     <YhteisoHallintaButton />
                 </div>
                 <AvoimetLiittymispyynnot />
-                </div>
+            </div>
         </>
     );
 };
@@ -82,31 +82,75 @@ const AvoimetLiittymispyynnot = () => {
             fetchData();
         }
     }, [group_id]);
+
+    const handleAccept = (user_id) => {
+        const acceptApplication = async () => {
+            try {
+                const response = await axios.put(`http://localhost:5000/application/${group_id}/${user_id}`);
+                if (response.status === 200) {
+                    //setApplications(applications.filter((app) => app.user_id !== user_id));
+                } else {
+                    console.error('Error accepting application', response.data.message);
+                }
+            } catch (error) {
+                console.error("Error response:");
+                console.error(error.response.data);    // ***
+                console.error(error.response.status);  // ***
+                console.error(error.response.headers); // ***
+            }
+        };
+
+        acceptApplication();
+
+
+    };
+    const handleReject = (user_id) => {
+        const rejectApplication = async () => {
+            try {
+                const response = await axios.delete(`http://localhost:5000/application/${group_id}/${user_id}`);
+                if (response.status === 200) {
+                    //setApplications(applications.filter((app) => app.user_id !== user_id));
+                } else {
+                    console.error('Error rejecting application', response.data.message);
+                }
+            } catch (error) {
+                console.error("Error response:");
+                console.error(error.response.data);    // ***
+                console.error(error.response.status);  // ***
+                console.error(error.response.headers); // ***
+            }
+        };
+
+        rejectApplication();
+        
+
+    };
+
     // käyttäjän id vaihdetaan nicknameen
-   // useEffect(() => {
-   //     const fetchUserNicknames = async () => {
-   //       try {
-   //         const userIds = applications.map((app) => app.user_id);
-   //         const response = await axios.get(`http://localhost:5000/customer/${userIds}`, { userIds });
-   //         
-   //         // Assuming the response is an object with user_id as key and nickname as value
-   //         const nicknamesMap = response.data;
-   // 
-   //         const updatedApplications = applications.map((app) => ({
-   //           ...app,
-   //           nickname: nicknamesMap[app.user_id],
-   //         }));
-   // 
-   //         setApplications(updatedApplications);
-   //       } catch (error) {
-   //         console.error('Error fetching user nicknames', error);
-   //       }
-   //     };
-   // 
-   //     if (applications.length > 0) {
-   //       fetchUserNicknames();
-   //     }
-   //   }, [applications]);
+    // useEffect(() => {
+    //     const fetchUserNicknames = async () => {
+    //       try {
+    //         const userIds = applications.map((app) => app.user_id);
+    //         const response = await axios.get(`http://localhost:5000/customer/${userIds}`, { userIds });
+    //         
+    //         // Assuming the response is an object with user_id as key and nickname as value
+    //         const nicknamesMap = response.data;
+    // 
+    //         const updatedApplications = applications.map((app) => ({
+    //           ...app,
+    //           nickname: nicknamesMap[app.user_id],
+    //         }));
+    // 
+    //         setApplications(updatedApplications);
+    //       } catch (error) {
+    //         console.error('Error fetching user nicknames', error);
+    //       }
+    //     };
+    // 
+    //     if (applications.length > 0) {
+    //       fetchUserNicknames();
+    //     }
+    //   }, [applications]);
     // User ID: {app.user_id}, Application Date: {app.application_date}
     return (
         <div className='section'>
@@ -114,10 +158,10 @@ const AvoimetLiittymispyynnot = () => {
             <ul>
                 {applications.map((app) => (
                     <div key={app.user_id} >
-                        <div  className='luettelo leveys60'>
+                        <div className='luettelo leveys60'>
                             <div className='luettelo_osa'><h3>{app.user_id}</h3></div>
-                            <div className='luettelo_osa hyvaksy'><a href="#">hyväksy pyyntö</a></div>
-                            <div className='luettelo_osa hylkays'><a href="#">hylkää</a></div>
+                            <div><button className='yleinen_btn sininen' onClick={() => handleAccept(app.user_id)}>hyväksy</button></div>
+                            <div><button className='yleinen_btn punainen' onClick={() => handleReject(app.user_id)}>hylkää</button></div>
                         </div>
                         <hr className='leveys70' />
                     </div>
