@@ -89,8 +89,6 @@ const Tiedot = ({ movie, additionalData }) => {
                 movie_id: movie.id,
             });
 
-            //const data = await response.json();
-
             if (response.status >= 200 && response.status < 300) {
                 console.log('Movie added to favorites successfully');
 
@@ -240,10 +238,6 @@ const Arvostelut = ({ newMovieid }) => {
                 {ratingsList.length > 0 && (
                     <ul>
                         {ratingsList.map((ratingItem, index) => (
-                            // <li key={index}>
-                            //     Käyttäjä: {ratingItem.usernick} antoi arvosanan {ratingItem.rating}/10  {formatDate(ratingItem.date)}
-                            // </li>
-
                             <li key={index} className="review-item">
                                 <div className="review-column">
                                     Käyttäjä {ratingItem.usernick} antoi arvosanan

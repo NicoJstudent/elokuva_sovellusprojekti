@@ -77,6 +77,7 @@ const Rekisteroidy = () => {
 
             if (response.data.success) {
                 console.log('Käyttäjätunnuksen luominen onnistui');
+                window.location.href = '/'; //ohjaa etusivulle rekisteröidyttyä, tarvii järkevämmän ratkaisun
             } else {
                 console.error('Käyttäjätunnuksen luominen epäonnistui:', response.data.message);
             }

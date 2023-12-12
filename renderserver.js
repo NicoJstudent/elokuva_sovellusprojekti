@@ -168,7 +168,6 @@ app.delete('/customer/:usernick', async (req, res) => {
     try {
         const result = await pool.query('DELETE FROM customer WHERE usernick = $1', [user_Ids]);
         res.json({ success: true, message: 'Käyttäjätunnuksen poistaminen onnistui' });
-        console.log(usernick);
     } catch (error) {
         console.error('Error executing query', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -276,9 +275,6 @@ app.post('/login', async (req, res) => {
         const result = await pool.query('SELECT * FROM customer WHERE usernick = $1 AND password = $2', [usernick, password]);
 
         if (result.rows.length > 0) {
-
-            console.log('Autentikaatio onnistui, kirjauduttu sisään');
-
             const user = result.rows[0];
             const token = jwt.sign({ usernick: user.usernick }, salausavain, { expiresIn: '1h' });
             res.json({ success: true, token, message: 'Autentikaatio onnistui' });
@@ -422,3 +418,5 @@ app.get('/rowCount/:movieId', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+module.exports = app;

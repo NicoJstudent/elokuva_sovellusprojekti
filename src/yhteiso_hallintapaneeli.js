@@ -126,7 +126,7 @@ const AvoimetLiittymispyynnot = () => {
 
     };
 
-    // käyttäjän id vaihdetaan nicknameen
+    // käyttäjän id vaihdetaan nicknameen kesken
     // useEffect(() => {
     //     const fetchUserNicknames = async () => {
     //       try {
