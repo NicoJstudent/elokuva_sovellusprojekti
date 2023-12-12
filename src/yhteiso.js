@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import './monikkotyylit.css';
 import isAuthenticated from './isAuthenticated';
@@ -10,7 +10,7 @@ import axios from 'axios';
     -> ei mahdollisuutta avata yhteisön linkkejä
 */
 
-const Yhteiso = () => {
+const Yhteiso = () => {    
     return (
         <>
             <div className='section'>
@@ -27,24 +27,24 @@ const Yhteiso = () => {
 
 const LisaaUusiYhteisö = () => {
     const [showText, setShowText] = useState(false);
-    const [groupid, setGroupid] = useState(''); 
-    const [userid, setUserid] = useState(localStorage.getItem('usernick')); 
+    const [group_name, setGroup_name] = useState('');
+    //const [user_id, setUserid] = useState(localStorage.getItem('usernick')); 
 
     const handleClick = () => setShowText(!showText);
     if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
         window.location.href = '/kirjaudurekisteroidy';
     }
-    
+
     const handleCommunityCreation = async () => {
         if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
             window.location.href = '/kirjaudurekisteroidy';
         } else {
-            
-                localStorage.setItem('userid', userid);
-           
+
+            const usernick = localStorage.getItem('usernick');
+
             try {
-                const response = await axios.post('http://localhost:5000/groups', { userid, groupid });
-    
+                const response = await axios.post('http://localhost:5000/group_create', { usernick, group_name });
+
                 if (response.data.success) {
                     console.log('Yhteisön luominen onnistui');
                 } else {
@@ -65,7 +65,7 @@ const LisaaUusiYhteisö = () => {
                     <div className='luettelo kirjoitusalueet'>
                         <div className='luettelo_osa leveys20'><h3>Yhteisön nimi:</h3></div>
                         <div className='luettelo_osa leveys80'>
-                            <input className='tekstialue tekstialue_leveys90' placeholder='lisää yhteisölle nimi' type="text" value={groupid} onChange={(e) => setGroupid(e.target.value)}></input>
+                            <input className='tekstialue tekstialue_leveys90' placeholder='lisää yhteisölle nimi' type="text" value={group_name} onChange={(e) => setGroup_name(e.target.value)}></input>
                         </div>
                     </div>
                     <button className='yleinen_btn levea sininen' onClick={handleCommunityCreation}>Luo yhteisö</button>
@@ -76,33 +76,104 @@ const LisaaUusiYhteisö = () => {
 
 
 const YhteisoLista = () => {
+    const [groups, setGroups] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchGroups = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/groups_list');
+                setGroups(response.data.groups);
+
+            } catch (error) {
+                console.error('Error fetching groups:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchGroups();
+    }, []);
+
+    const handleGroupClick = async (groupId) => {
+        if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
+            window.location.href = '/kirjaudurekisteroidy';
+        } else {
+            try {
+                const usernick = localStorage.getItem('usernick');
+                const response = await axios.get(`http://localhost:5000/groups_role?group_id=${groupId}&usernick=${usernick}`);
+                sessionStorage.setItem('groupId', groupId);
+                const userRole = response.data.role;
+          
+                const getGroupPage = (groupId, userRole) => {
+                  switch (userRole) {
+                    case 'owner':   // /${groupId}
+                      return `/yhteiso_sivuOmistaja`;
+                    case 'member':
+                      return `/yhteiso_sivuJasen`;
+                    default: // Täytyy olla kirjautuneena sisään.
+                      return `/yhteiso_liity`;
+                  }
+                };
+          
+                const url = getGroupPage(groupId, userRole);
+          
+                window.location.href = url;
+              } catch (error) {
+                console.error('Error fetching group details:', error);
+              }
+            }
+          };
+
     return (
         <>
-            <div className='luettelo'>
-                <div className='luettelo_osa leveys30'><h3><a href="yhteiso_liity">Yhteisön nimi (ei pääsyä)</a></h3></div>
-                <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
-                <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
-            </div>
-            <hr style={{ width: '85%' }} />
-            <div className='luettelo'>
-                <div className='luettelo_osa leveys30'><h3><a href="yhteiso_sivujasen">Yhteisön nimi (pääsy)</a></h3></div>
-                <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
-                <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
-            </div>
-            <hr style={{ width: '85%' }} />
-            <div className='luettelo'>
-                <div className='luettelo_osa leveys30'><h3><a href="yhteiso_sivuomistaja">Yhteisön nimi (omistaja)</a></h3></div>
-                <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
-                <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
-            </div>
-            <hr style={{ width: '85%' }} />
-            <div className='luettelo'>
-                <div className='luettelo_osa leveys30'><h3>Yhteisön nimi</h3></div>
-                <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
-                <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
+            <div>
+                <h1>Yhteisöt</h1>
+                {loading ? (
+                    <p>Ladataan listaa...</p>
+                ) : (
+                    <ul>
+                        {groups.map((group) => (
+                            //<li key={group.id}>{group.group_name}</li>
+
+                            <li key={group.id}>
+                                <div className='luettelo'>
+                                    <div className='luettelo_osa leveys30'><h3><a href="#" onClick={() => handleGroupClick(group.id)}>{group.group_name}</a></h3></div>
+                                    <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
+                                    <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
+                                </div>
+                                <hr style={{ width: '85%' }} />
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
         </>
     );
 }
 
+
+//<div className='luettelo'>
+//<div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
+//<div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
+//<div className='luettelo_osa leveys30'><h3><a href="yhteiso_liity">Yhteisön nimi (ei pääsyä)</a></h3></div>
+//</div>
+//<hr style={{ width: '85%' }} />
+//<div className='luettelo'>
+//<div className='luettelo_osa leveys30'><h3><a href="yhteiso_sivujasen">Yhteisön nimi (pääsy)</a></h3></div>
+//<div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
+//<div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
+//</div>
+//<hr style={{ width: '85%' }} />
+//<div className='luettelo'>
+//<div className='luettelo_osa leveys30'><h3><a href="yhteiso_sivuomistaja">Yhteisön nimi (omistaja)</a></h3></div>
+//<div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
+//<div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
+//</div>
+//<hr style={{ width: '85%' }} />
+//<div className='luettelo'>
+//<div className='luettelo_osa leveys30'><h3>Yhteisön nimi</h3></div>
+//<div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
+//<div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
+//</div>
 export default Yhteiso;

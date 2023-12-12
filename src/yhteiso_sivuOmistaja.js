@@ -1,16 +1,40 @@
 import './App.css';
 import './monikkotyylit.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 /** Saisiko tämän sivun poikkeavat funktiot yhdistettyä normaaliin jäsensivuun?
  * Jos koodi tunnistaisi tulijan ja näyttäisi sen perusteella halutut funktiot...
  * Kaikki muu on samaa kuin normaalissa sivussa, paitsi Hallintapaneeli-buttonin näkyvyys*/
 
 const YhteisoOmistajasivu = () => {
+    const [groupName, setGroupName] = useState('');
+    const group_id = sessionStorage.getItem('groupId');
+    console.log(group_id);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/groups_name', { params: { group_id: group_id } });
+                //setGroupName(response.data.group_name);
+
+                if (response.status === 200) {
+                    console.log(response.data)
+                    setGroupName(response.data.group_name);
+                } else {
+                    console.error('Virhe yhteisöä haettaessa:', response.data.message);
+                }
+            } catch (error) {
+                console.error('Virhe yhteisöä haettaessa:', error);
+            }
+        };
+
+        fetchData();
+    }, [group_id]);
     return (
         <>
             <div className='section'>
                 <h1>Yhteisö</h1>
-                <h5 style={{ margin: '20px 0px 40px 0px' }}>Yhteisön nimi</h5>
+                <h5 style={{ margin: '20px 0px 40px 0px' }}>{groupName}</h5>
                 <div className='luettelo leveys60'>
                     <YhteisoOmistajasivuTiedot />
                     <YhteisoOmistajasivuButtonit />
@@ -22,10 +46,11 @@ const YhteisoOmistajasivu = () => {
 };
 
 const YhteisoOmistajasivuTiedot = () => {
+    const usernick = localStorage.getItem('usernick');
     return (
         <>
             <div className='luettelo_osa'>
-                <h3>Tervetuloa *käyttäjänimi*</h3>
+                <h3>Tervetuloa {usernick}</h3>
                 <p>Aiheita yhteensä 0 kpl</p>
                 <p>Yhteisössä on 0 jäsentä</p>
                 </div>

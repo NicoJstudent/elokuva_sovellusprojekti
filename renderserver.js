@@ -59,14 +59,94 @@ app.post('/register', async (req, res) => {
 });
 
 // yhteisön luominen
-app.post('/groups', async (req, res) => {
-    const { userid, groupid } = req.body;
+app.post('/group_create', async (req, res) => {
+    const { usernick, group_name } = req.body;
 
     try {
-        const result = await pool.query('INSERT INTO groups (userid, groupid) VALUES ($1, $2) RETURNING *', [userid, groupid]);
+        const owner_id_result = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+
+        if (owner_id_result.rows.length === 0) { // Errori jos käyttäjää ei ole olemassa
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        const owner_id = owner_id_result.rows[0].id;
+        //const applyList = await pool.query('INSERT INTO apply_list (user_id, application_date) VALUES (null, null) RETURNING apply_list_id');
+        //const applyListId = applyList.rows[0].apply_list_id;
+        const result = await pool.query('INSERT INTO groups (owner_id, group_name, creation_date, members) VALUES ($1, $2, CURRENT_TIMESTAMP, $3) RETURNING *', [owner_id, group_name, [owner_id]]);
+
         res.json({ success: true, message: 'Yhteisön luominen onnistui', group: result.rows[0] });
     } catch (error) {
         console.error('Error executing query', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
+app.post('/liittymispyynto', async (req, res) => {
+    const { usernick, group_id } = req.body;
+
+    try {
+        const user_id_result = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+        const user_id = user_id_result.rows[0]?.id;
+
+        // Insert data into the apply_list table
+        await pool.query('INSERT INTO apply_list (user_id, application_date, group_id) VALUES ($1, CURRENT_DATE, $2) RETURNING apply_list_id', [user_id, group_id]);
+        //
+        //const applyListId = applyListResult.rows[0].apply_list_id;
+
+        // Insert data into the groups table
+        //const groupResult = await pool.query('UPDATE groups SET apply_list_id = $1 WHERE id = $2 RETURNING id', [applyListId, group_id]);
+        //const groupId = groupResult.rows[0].id;
+
+        res.json({ success: true, message: 'Liittymispyyntö lähetetty' });
+    } catch (error) {
+        console.error('Virhe tietokantaan tallentamisessa:', error);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+});
+
+app.get('/groups_list', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT id, group_name FROM groups');
+        const groups = result.rows;
+
+        res.json({ success: true, groups });
+    } catch (error) {
+        console.error('Error fetching groups:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
+app.get('/groups_role', async (req, res) => {
+    const { group_id, usernick } = req.query;
+
+    try {
+        const user_id_result = await pool.query('SELECT id FROM customer WHERE usernick = $1', [usernick]);
+        const user_id = user_id_result.rows[0]?.id;
+
+        if (user_id_result.rows.length === 0) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        const result = await pool.query('SELECT id, group_name, owner_id, members FROM groups WHERE id = $1', [group_id]);
+        const group = result.rows[0];
+
+
+        if (!group) {
+            return res.status(404).json({ success: false, message: 'Group not found' });
+        }
+
+        const isOwner = group.owner_id === user_id;
+        const isMember = group.members.includes(user_id);
+
+        if (isOwner) { // Tarkistaa roolin yhteisössä (omistaja, jäsen, ei mitään)
+            res.json({ success: true, group, role: 'owner' });
+        } else if (isMember) {
+            res.json({ success: true, group, role: 'member' });
+        } else {
+            res.json({ success: true, group, role: 'none' });
+        }
+    } catch (error) {
+        console.error('Error fetching group details:', error);
         res.status(500).json({ success: false, message: 'Internal server error' });
     }
 });
@@ -83,10 +163,10 @@ app.get('/customer', async (req, res) => {
 
 // käyttäjätunnuksen poistaminen
 app.delete('/customer/:usernick', async (req, res) => {
-    const { usernick } = req.params;
+    const { user_Ids } = req.params;
 
     try {
-        const result = await pool.query('DELETE FROM customer WHERE usernick = $1', [usernick]);
+        const result = await pool.query('DELETE FROM customer WHERE usernick = $1', [user_Ids]);
         res.json({ success: true, message: 'Käyttäjätunnuksen poistaminen onnistui' });
         console.log(usernick);
     } catch (error) {
@@ -95,6 +175,25 @@ app.delete('/customer/:usernick', async (req, res) => {
     }
 });
 
+app.get('/customer', async (req, res) => {
+    const userIds = req.query.userIds;
+
+    try {
+        // Assuming your PostgreSQL query is something like this
+        const queryResult = await pool.query('SELECT id, usernick FROM customer WHERE id = $1', [userIds]);
+
+        // Create a map of user IDs to nicknames
+        const nicknamesMap = {};
+        queryResult.rows.forEach((row) => {
+            nicknamesMap[row.id] = row.usernick;
+        });
+
+        res.json(nicknamesMap);
+    } catch (error) {
+        console.error('Error executing query', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 app.get('/groups', async (req, res) => {
     const { usernick } = req.query;
@@ -109,6 +208,62 @@ app.get('/groups', async (req, res) => {
         }
     } catch (error) {
         console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/groups_name', async (req, res) => {
+    const { group_id } = req.query;
+    try {
+        const result = await pool.query('SELECT group_name FROM groups WHERE id = $1', [group_id]);
+
+        if (result.rows.length > 0) {
+            res.json({ group_name: result.rows[0].group_name });
+        } else {
+            res.status(404).json({ error: 'Group not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/applications/:group_id', async (req, res) => {
+    const { group_id } = req.params;
+
+    try {
+        const { rows } = await pool.query('SELECT user_id, application_date FROM apply_list WHERE group_id = $1', [group_id]);
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error executing query', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.put('/application/:group_id/:user_id', async (req, res) => {
+    const { group_id, user_id } = req.params;
+
+    try {
+        await pool.query('UPDATE groups SET members = array_append(members, $1) WHERE id = $2', [user_id, group_id]);
+        await pool.query('DELETE FROM apply_list WHERE user_id = $1 AND group_id = $2', [user_id, group_id]);
+
+        res.json({ success: true, message: 'Apply accepted successfully' });
+    } catch (error) {
+        console.error('Error executing query', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.delete('/application/:group_id/:user_id', async (req, res) => {
+    const { group_id, user_id } = req.params;
+
+    try {
+        await pool.query('DELETE FROM apply_list WHERE user_id = $1 AND group_id = $2', [user_id, group_id]);
+        res.json({ success: true, message: 'Apply rejected successfully' });
+
+    } catch (error) {
+        console.error('Error executing query', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
@@ -159,21 +314,21 @@ app.get('/protected-route', (req, res) => {
 
 app.get('/reviewsList/:movieid', async (req, res) => {
     const { movieid } = req.params;
-  
+
     try {
-      const result = await pool.query('SELECT * FROM reviews WHERE movieid = $1', [movieid]);
-  
-      if (result.rows.length > 0) {
-        res.json({ success: true, ratings: result.rows });
-      } else {
-        res.status(404).json({ success: false, message: 'Tälle elokuvalle ei ole annettu yhtään arvostelua' });
-      }
+        const result = await pool.query('SELECT * FROM reviews WHERE movieid = $1', [movieid]);
+
+        if (result.rows.length > 0) {
+            res.json({ success: true, ratings: result.rows });
+        } else {
+            res.status(404).json({ success: false, message: 'Tälle elokuvalle ei ole annettu yhtään arvostelua' });
+        }
     } catch (error) {
-      console.error('Error executing query', error);
-      res.status(500).json({ success: false, message: 'Internal server error' });
+        console.error('Error executing query', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
     }
-  });
-  
+});
+
 
 app.get('/reviews', async (req, res) => {
     try {
@@ -251,17 +406,17 @@ app.post('/arvostelut', async (req, res) => {
 
 // Hakee arvostelujen määrät
 app.get('/rowCount/:movieId', async (req, res) => {
-  const { movieId } = req.params;
+    const { movieId } = req.params;
 
-  try {
-    const result = await pool.query('SELECT COUNT(*) FROM your_table_name WHERE movieid = $1', [movieId]);
-    const rowCount = result.rows[0].count;
+    try {
+        const result = await pool.query('SELECT COUNT(*) FROM your_table_name WHERE movieid = $1', [movieId]);
+        const rowCount = result.rows[0].count;
 
-    res.json({ success: true, rowCount });
-  } catch (error) {
-    console.error('Error executing query', error);
-    res.status(500).json({ success: false, message: 'Internal server error' });
-  }
+        res.json({ success: true, rowCount });
+    } catch (error) {
+        console.error('Error executing query', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 });
 
 app.listen(port, () => {

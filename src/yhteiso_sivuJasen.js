@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import './monikkotyylit.css';
 
@@ -12,10 +13,30 @@ import './monikkotyylit.css';
 */
 
 const YhteisoJasensivu = () => {
+    const [groupName, setGroupName] = useState('');
+    const group_id = sessionStorage.getItem('groupId');
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/groups_name', { params: { group_id: group_id } });
+                //setGroupName(response.data.group_name);
+
+                if (response.status === 200) {
+                    setGroupName(response.data.group_name);
+                } else {
+                    console.error('Virhe yhteisöä haettaessa:', response.data.message);
+                }
+            } catch (error) {
+                console.error('Virhe yhteisöä haettaessa:', error);
+            }
+        };
+
+        fetchData();
+    }, [group_id]);
     return (
         <>
             <div className='section'>
-                <h1>Yhteisön nimi</h1>
+                <h1>{groupName}</h1>
                     <YhteisoJasensivuTiedot />
                 <YhteisoUutiset />
             </div>
@@ -26,12 +47,12 @@ const YhteisoJasensivu = () => {
 const YhteisoJasensivuTiedot = () => {
     const [showText, setShowText] = useState(false);
     const handleClick = () => setShowText(!showText);
-
+    const usernick = localStorage.getItem('usernick');
     return (
         <>
         <div className='luettelo leveys60'>
             <div className='luettelo_osa'>
-                <h3>Tervetuloa *käyttäjänimi*</h3>
+                <h3>Tervetuloa {usernick}</h3>
                 <p>Aiheita yhteensä 0 kpl</p>
                 <p>Yhteisössä on 0 jäsentä</p>
                 </div>

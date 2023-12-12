@@ -34,9 +34,8 @@ const Kayttaja = () => {
 
 const LogOut = () => {
   const handleLogout = async () => {
-    localStorage.removeItem('usernick');
-    localStorage.removeItem('token');
-    localStorage.removeItem('userid');
+    localStorage.clear();
+    sessionStorage.clear();
 
     // Ohjaa kirjautumissivulle
     window.location.href = '/kirjaudurekisteroidy';
@@ -50,10 +49,8 @@ const LogOut = () => {
 const Tili = () => {
   const [userData, setUserData] = useState({});
   useEffect(() => {
-    // Replace 'usernick' with the actual usernick you want to fetch
     const usernick = localStorage.getItem('usernick');
 
-    // Make a request to the server-side API
     axios.get(`http://localhost:5000/customer?usernick=${usernick}`)
       .then(response => setUserData(response.data))
       .catch(error => console.error('Error fetching user data', error));
@@ -103,26 +100,26 @@ const TiliArvostelut = () => {
           console.error('Error fetching reviews:', data.message);
         } else {
           const reviewDetails = data.reviews && data.reviews.length > 0
-          ? await Promise.all(
+            ? await Promise.all(
               data.reviews.map(async (review) => {
                 const movieData = await fetchMovieData(review.movieid);
                 return { ...review, title: movieData.title };
               })
             )
-          : [];
+            : [];
 
-        setReviewData(reviewDetails);
+          setReviewData(reviewDetails);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
       }
+    };
 
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      setLoading(false);
-    }
-  };
-
-  fetchData();
-}, [usernick]);
+    fetchData();
+  }, [usernick]);
 
   const fetchMovieData = async (movieid) => {
     const response = await fetch(generateApiUrl(`/movie/${movieid}`), options);
@@ -143,16 +140,16 @@ const TiliArvostelut = () => {
       <h5>Arvioimasi elokuvat:</h5>
       <ul className="review-list">
         {reviewData.map((review, index) => (
-          <Link to={`/elokuvasivu/${review.movieid}`}>
-          <li key={index} className="review-item">
-            <div className="review-column">          
-              {review.title}              
-            </div>
-            <div className="review-column">
-              Arvosana: {review.rating}/10  |  {formatDate(review.date)}              
-            </div>                        
+          <li key={`${review.movieid}-${index}`} className="review-item">
+            <Link to={`/elokuvasivu/${review.movieid}`}>
+              <div className="review-column">
+                {review.title}
+              </div>
+              <div className="review-column">
+                Arvosana: {review.rating}/10  |  {formatDate(review.date)}
+              </div>
+            </Link>
           </li>
-          </Link>
         ))}
       </ul>
     </div>
