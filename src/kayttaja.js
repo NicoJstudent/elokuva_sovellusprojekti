@@ -76,8 +76,9 @@ const TiliYhteisot = () => {
     <div className='kirjoitusalueet'>
       <h5>Kuulut seuraaviin yhteisöihin:</h5>
       <ul>
-        <li>yhteisö1</li>
+        <li>yhteisö 1</li>
         <li>yhteisö 2</li>
+        <li>Ei vielä toiminnassa</li>
       </ul>
     </div>
   )
