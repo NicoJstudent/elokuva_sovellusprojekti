@@ -1,16 +1,7 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import './App.css';
 import './monikkotyylit.css';
-
-/* HUOMIO!
-    Koska memberin ja adminin sivut ovat lähes identtiset, suosittelen tekemään tästä sivusta yleissivun ja lisäämään adminin 'Hallintapaneeli'-napin
-    toiminnallisuuden taakse. Eli sivu tunnistaa onko tulija admin, ja näyttää napin vain silloin. Membereiltä se on piilotettu.
-    Voit laittaa Hallintapaneeli-napin 'eroa yhteisöstä'-napin tilalle koska se ei tule käyttöön.
-    
-    Hallintapaneeli-nappi:
-    <a href="yhteiso_hallintapaneeli"><button className='yleinen_btn oranssi'>Hallintapaneeli</button></a>
-*/
 
 const YhteisoJasensivu = () => {
     const [groupName, setGroupName] = useState('');
