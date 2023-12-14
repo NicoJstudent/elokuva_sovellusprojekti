@@ -1,6 +1,7 @@
-![logokino](https://github.com/TVT22-22/main/assets/118981440/683fc0a0-c810-4d38-a29d-4d355fb810ef)
-# KINOKUTKUTTAJA
-Sivusto elokuvaharrastajille
+<img src="https://github.com/TVT22-22/main/assets/118981440/683fc0a0-c810-4d38-a29d-4d355fb810ef" width="700px" align="center" />
+
+<h1 align="center">KINOKUTKUTTAJA</h1>
+<p align="center">Sivusto elokuvaharrastajille</p>
 
 Sovelluksen demo
 väliotsikot
