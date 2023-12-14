@@ -3,6 +3,8 @@
 <h1 align="center">KINOKUTKUTTAJA</h1>
 <p align="center">Sivusto elokuvaharrastajille</p>
 
+<a href="/#projektin-kuvaus">Projektin kuvaus</a> • Sivun sisältö • Tekniset ominaisuudet • Projektin eteneminen • Työryhmä • Linkit
+
 Sovelluksen demo
 väliotsikot
 
