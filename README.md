@@ -1,14 +1,12 @@
-<img src="https://github.com/TVT22-22/main/assets/118981440/683fc0a0-c810-4d38-a29d-4d355fb810ef" width="700px" align="center" />
+<p align="center"><img src="https://github.com/TVT22-22/main/assets/118981440/683fc0a0-c810-4d38-a29d-4d355fb810ef" width="80%" /></p>
 
 <h1 align="center">KINOKUTKUTTAJA</h1>
-<p align="center">Sivusto elokuvaharrastajille</p>
+<br/>
+<p align="center"><a href="/#projektin-kuvaus">Projektin kuvaus</a> • <a href="/#sivuston-ominaisuudet-ja-sisalto">Sivun sisältö</a> • <a href="/#tekniset-ominaisuudet">Tekniset ominaisuudet</a> • <a href="/#projektin-eteneminen">Projektin eteneminen</a> • <a href="/#tyoryhma">Työryhmä</a> • <a href="/#kaytetyt-sovellukset">Linkit</a></p>
+<br/>
+<p align="center"><b><a href="https://kinokutkuttaja.onrender.com">Siirry sovellukseen klikkaamalla tästä</a></b></p>
 
-<a href="/#projektin-kuvaus">Projektin kuvaus</a> • Sivun sisältö • Tekniset ominaisuudet • Projektin eteneminen • Työryhmä • Linkit
-
-Sovelluksen demo
-väliotsikot
-
-demovideo tähän
+<p align="center">demovideo tähän</p>
 
 ## Projektin kuvaus
 KinoKutkuttaja on elokuvaharrastajille suunnattu sivusto. Sivusto mahdollistaa elokuvien haun TMDB:n (The Movie Database) tietokannasta, uutisten hakemisen Finnkinon uutisarkistosta ja erilaisten elokuvaharrastajien ryhmien muodostamisen. Sivustolla voi myös tehdä arvosteluja eri elokuvista ja luoda oman käyttäjätilin. 
@@ -24,8 +22,10 @@ Sivusto toimii ilman käyttäjätunnusta, mutta kaikki hyödyt saa irti vain rek
 
 Sivustoa voi käyttää tietokoneella ja mobiililaitteilla. Käyttö vaatii internetyhteyden.
 
-![kinokutkuttaja_mockup1-cropped](https://github.com/TVT22-22/main/assets/118981440/7a2c40ce-b031-46c7-b952-6b4ba195310e)
-Kuva 1. Sovelluksen responsiivisuus.
+<br/>
+<p align="center"><img src="https://github.com/TVT22-22/main/assets/118981440/7a2c40ce-b031-46c7-b952-6b4ba195310e" width="80%" alt="Sivuston responsiivisuus eri laitteilla." />
+<br/>Kuva 1. Sovelluksen responsiivisuus.</p>
+<br/>
 
 ## Sivuston ominaisuudet ja sisältö 
 
@@ -99,8 +99,9 @@ Sivusto koostuu kuudesta pääsivusta, jotka kokoavat toiminnot helposti ymmärr
 
 Sivusto on suunniteltu käyttäjälähtöisesti mukailemaan vakiintunutta tapaa rakentaa ja käyttää vastaavia sivuja, jolloin käyttäjä osaa navigoida ja löytää etsimänsä vaivattomasti. Olemme pyrkineet luomaan käyttäjäystävällisen sivuston, jolle ei ole luotu lainkaan manipuloivia, käyttäjää ohjaavia toimintoja (esim. klikkauksia kalastelevia lisäsuosituksia). Sivusto pyrkii viestimään ammattimaisuutta ja luotettavuutta ja edustamaan heti visuaalisesti aihettaan. Käyttäjä ei voi erehtyä joutuneensa muualle kuin elokuvaharrastajien sivulle. 
 
-![kinokutkuttaja_mockup2](https://github.com/TVT22-22/main/assets/118981440/f811aed5-41de-4e12-ae30-912adf557003)
-Kuva 2. Elokuvasivu.
+<br/>
+<p align="center"><img src="https://github.com/TVT22-22/main/assets/118981440/f811aed5-41de-4e12-ae30-912adf557003" width="80%" alt="Elokuvasivu, elokuvana Oppenheimer (2023)." /> <br/>Kuva 2. Elokuvasivu. </p>
+<br/>
 
 ## Projektin eteneminen 
 
