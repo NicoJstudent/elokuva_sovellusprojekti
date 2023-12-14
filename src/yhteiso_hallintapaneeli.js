@@ -1,7 +1,7 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import './App.css';
 import './monikkotyylit.css';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 
 const YhteisoHallintapaneeli = () => {
     const [groupName, setGroupName] = useState('');
@@ -159,9 +159,9 @@ const AvoimetLiittymispyynnot = () => {
                 {applications.map((app) => (
                     <div key={app.user_id} >
                         <div className='luettelo leveys60'>
-                            <div className='luettelo_osa'><h3>{app.user_id}</h3></div>
-                            <div><button className='yleinen_btn sininen' onClick={() => handleAccept(app.user_id)}>hyväksy</button></div>
-                            <div><button className='yleinen_btn punainen' onClick={() => handleReject(app.user_id)}>hylkää</button></div>
+                            <div className='luettelo_osa leveys30'><h3>{app.user_id}</h3></div>
+                            <div className='leveys30'><button className='yleinen_btn filtterit sininen' onClick={() => handleAccept(app.user_id)}>hyväksy</button></div>
+                            <div className='leveys30'><button className='yleinen_btn filtterit punainen' onClick={() => handleReject(app.user_id)}>hylkää</button></div>
                         </div>
                         <hr className='leveys70' />
                     </div>

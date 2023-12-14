@@ -145,6 +145,3 @@ Projektiin suoritettiin testaukset onnistuneesti (_käyttäjätilin rekisteröin
 <a href="https://github.com/"><img src="https://foundations.projectpythia.org/_images/GitHub-logo.png" height="40px;" /></a> &nbsp;&nbsp;
 <a href="https://www.whatsapp.com/?lang=fi_FI"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" height="40px;" /></a> &nbsp;&nbsp;
 <a href="https://discord.com/"><img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" height="30px;" /></a>
-
-
-

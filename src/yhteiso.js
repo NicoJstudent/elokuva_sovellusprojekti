@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import './monikkotyylit.css';
-import isAuthenticated from './isAuthenticated';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import './App.css';
+import isAuthenticated from './isAuthenticated';
+import './monikkotyylit.css';
 
 /* HUOM!
     Tämän sivun täytyy tunnistaa jos käyttäjä ei ole kirjautunut sisään
@@ -138,9 +138,9 @@ const YhteisoLista = () => {
 
                             <li key={group.id}>
                                 <div className='luettelo'>
-                                    <div className='luettelo_osa leveys30'><h3><a href="#" onClick={() => handleGroupClick(group.id)}>{group.group_name}</a></h3></div>
-                                    <div className='luettelo_osa'><h4>Viimeisin kommentoija: xxx</h4></div>
-                                    <div className='luettelo_osa'><h4>Viimeisin julkaisu 00.00.0000</h4></div>
+                                    <div className='luettelo_osa leveys30'><h3><a onClick={() => handleGroupClick(group.id)}>{group.group_name}</a></h3></div>
+                                    <div className='luettelo_osa leveys30'><h4>Luotu: {group.creation_date}</h4></div>
+                                    <div className='luettelo_osa leveys30'><h4>Jäsenmäärä: {group.members} kpl</h4></div>
                                 </div>
                                 <hr style={{ width: '85%' }} />
                             </li>

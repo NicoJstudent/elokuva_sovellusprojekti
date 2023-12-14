@@ -1,7 +1,7 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import './App.css';
 import './monikkotyylit.css';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 /** Saisiko tämän sivun poikkeavat funktiot yhdistettyä normaaliin jäsensivuun?
  * Jos koodi tunnistaisi tulijan ja näyttäisi sen perusteella halutut funktiot...
@@ -72,12 +72,12 @@ const YhteisoUutiset = () => {
     return (
         <>
         <div className='uutiset'>
-            <div className='uutiset_kuva'><img src="https://www.leffatykki.com/wp-content/uploads/2023/11/thelastofuse_season1_pedorpascal_hbomax.jpg"/></div>
+            <div className='uutiset_kuva'><img src="https://www.leffatykki.com/wp-content/uploads/2023/11/thelastofuse_season1_pedorpascal_hbomax.jpg" alt="uutiskuva"/></div>
             <div><h3>Uusi näyttelijäkiinnitys saattaa olla vihje Marvelin suunnanvaihdoksesta</h3></div>
             <div className='uutiset_info'><h4>16.11.2023 julkaisija</h4></div>
         </div>
         <div className='uutiset'>
-            <div className='uutiset_kuva'><img src="https://www.leffatykki.com/wp-content/uploads/2023/11/themarvelsdisneybriejaiman2023.jpg"/></div>
+            <div className='uutiset_kuva'><img src="https://www.leffatykki.com/wp-content/uploads/2023/11/themarvelsdisneybriejaiman2023.jpg" alt="uutiskuva"/></div>
             <div><h3>Missä vika? The Marvels ei kilisytä kassaa toivotusti</h3></div>
             <div className='uutiset_info'><h4>16.11.2023 julkaisija</h4></div>
         </div>

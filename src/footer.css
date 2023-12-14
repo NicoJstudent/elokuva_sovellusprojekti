@@ -1,6 +1,6 @@
 .footer {
     width: 100%;
-    height: 80px;
+    height: 100px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,6 +13,7 @@
     font-weight: 300;
     color: #aeaeae;
     text-align: center;
+    margin-top: 40px;
 }
 
 .space {

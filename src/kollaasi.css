@@ -13,8 +13,8 @@
 }
 
 .kollaasi_osa {
-    width: 33%;
-    margin: 20px;
+    width: 45%;
+    margin: 20px 40px 0px 40px;
 }
 
 ul {
@@ -29,7 +29,7 @@ li {
 .kollaasityylit h3 {
     color: #4DAAB3;
     font-size: 12px;
-    margin-bottom: -15px;
+    margin-bottom: 20px;
     padding-left: 10px;
 }
 
@@ -38,11 +38,17 @@ li {
     font-size: 16px;
     font-weight: 500;
     padding-left: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .kollaasityylit h4:hover {
     color: #C7613D;
+}
+
+.kollaasityylit img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
 }
 
 @media only screen and (max-width: 700px) {
