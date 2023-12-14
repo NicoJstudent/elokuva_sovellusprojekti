@@ -30,9 +30,12 @@ const LisaaUusiYhteisö = () => {
     const [group_name, setGroup_name] = useState('');
     //const [user_id, setUserid] = useState(localStorage.getItem('usernick')); 
 
-    const handleClick = () => setShowText(!showText);
-    if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
-        window.location.href = '/kirjaudurekisteroidy';
+    const handleClick = () => {
+        if (!isAuthenticated()) {       // Tarkistaa onko kirjautunut sisään
+            window.location.href = '/kirjaudurekisteroidy';
+        } else {
+        setShowText(!showText);
+        }
     }
 
     const handleCommunityCreation = async () => {
