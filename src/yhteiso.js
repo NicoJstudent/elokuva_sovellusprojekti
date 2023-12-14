@@ -127,22 +127,22 @@ const YhteisoLista = () => {
 
     return (
         <>
-            <div>
-                <h1>Yhteisöt</h1>
+            <div style={{ width: '70%', margin: 'auto' }}>
+                <h1 style={{'text-align':'center'}}>Yhteisöt</h1>
                 {loading ? (
                     <p>Ladataan listaa...</p>
                 ) : (
-                    <ul>
+                    <ul style={{ listStyleType: 'none', padding: 0, width: '100%' }}>
                         {groups.map((group) => (
                             //<li key={group.id}>{group.group_name}</li>
 
                             <li key={group.id}>
                                 <div className='luettelo'>
-                                    <div className='luettelo_osa leveys30'><h3><a onClick={() => handleGroupClick(group.id)}>{group.group_name}</a></h3></div>
-                                    <div className='luettelo_osa leveys30'><h4>Luotu: {group.creation_date}</h4></div>
-                                    <div className='luettelo_osa leveys30'><h4>Jäsenmäärä: {group.members} kpl</h4></div>
+                                    <div className='luettelo_osa leveys50'><h3><a onClick={() => handleGroupClick(group.id)}>{group.group_name}</a></h3></div>
+                                    <div className='luettelo_osa'><h4>Luotu: {group.creation_date}</h4></div>
+                                    <div className='luettelo_osa'><h4>Jäsenmäärä: {group.members} kpl</h4></div>
                                 </div>
-                                <hr style={{ width: '85%' }} />
+                                <hr style={{ width: '100%' }} />
                             </li>
                         ))}
                     </ul>

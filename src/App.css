@@ -134,6 +134,10 @@ a:hover {
   width: 60%;
 }
 
+.leveys50 {
+  width: 50%;
+}
+
 .leveys30 {
   width: 30%;
 }
@@ -152,7 +156,6 @@ a:hover {
 
 .leveys100 {
   width: 100%;
-
 }
 
 hr {

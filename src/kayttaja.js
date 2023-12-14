@@ -1,10 +1,10 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { generateApiUrl, options } from './APIkey';
 import './App.css';
 import './kollaasi.css';
 import './monikkotyylit.css';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { generateApiUrl, options } from './APIkey';
 
 /* To do:
 - Muunna avatar satunnaiseksi -> arpoo yhdelle id:lle tietyn? Pitäisikö olla merkitty tietokantaan? Vai vaihtuuko joka kerta erilaiseen?
@@ -21,8 +21,8 @@ const Kayttaja = () => {
     <>
       <div className='section'>
         <h1>Tervetuloa {usernick}</h1>
-        <LogOut />
         <Tili />
+        <LogOut />
         <TiliYhteisot />
         <TiliArvostelut />
         <TiliSuosikit />
@@ -42,7 +42,7 @@ const LogOut = () => {
   };
 
   return (
-    <button className='yleinen_btn levea sininen' onClick={handleLogout}>Kirjaudu ulos</button>
+    <button className='yleinen_btn levea filtterit sininen' onClick={handleLogout}>Kirjaudu ulos</button>
   );
 };
 

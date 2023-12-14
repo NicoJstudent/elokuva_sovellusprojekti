@@ -155,18 +155,20 @@ const AvoimetLiittymispyynnot = () => {
     return (
         <div className='section'>
             <h2>Avoimet liittymispyynnöt</h2>
-            <ul>
+            <div  style={{ width: '70%', margin: 'auto' }}>
+            <ul style={{ listStyleType: 'none', padding: 0, width: '100%' }}>
                 {applications.map((app) => (
                     <div key={app.user_id} >
-                        <div className='luettelo leveys60'>
-                            <div className='luettelo_osa leveys30'><h3>{app.user_id}</h3></div>
-                            <div className='leveys30'><button className='yleinen_btn filtterit sininen' onClick={() => handleAccept(app.user_id)}>hyväksy</button></div>
-                            <div className='leveys30'><button className='yleinen_btn filtterit punainen' onClick={() => handleReject(app.user_id)}>hylkää</button></div>
+                        <div className='luettelo'>
+                            <div className='luettelo_osa leveys50'><h3>{app.user_id}</h3></div>
+                            <div className='luettelo_osa'><button className='yleinen_btn filtterit sininen' onClick={() => handleAccept(app.user_id)}>hyväksy</button></div>
+                            <div className='luettelo_osa'><button className='yleinen_btn filtterit punainen' onClick={() => handleReject(app.user_id)}>hylkää</button></div>
                         </div>
-                        <hr className='leveys70' />
+                        <hr style={{ width: '100%' }} />
                     </div>
                 ))}
             </ul>
+            </div>
         </div>
     )
 }
