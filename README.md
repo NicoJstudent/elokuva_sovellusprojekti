@@ -1,6 +1,4 @@
 <p align="center"><img src="https://github.com/TVT22-22/main/assets/118981440/683fc0a0-c810-4d38-a29d-4d355fb810ef" width="80%" /></p>
-
-<h1 align="center">KINOKUTKUTTAJA</h1>
 <br/>
 <p align="center"><a href="/#projektin-kuvaus">Projektin kuvaus</a> • <a href="/#sivuston-ominaisuudet-ja-sisalto">Sivun sisältö</a> • <a href="/#tekniset-ominaisuudet">Tekniset ominaisuudet</a> • <a href="/#projektin-eteneminen">Projektin eteneminen</a> • <a href="/#tyoryhma">Työryhmä</a> • <a href="/#kaytetyt-sovellukset">Linkit</a></p>
 <br/>
@@ -8,12 +6,15 @@
 
 <p align="center">demovideo tähän</p>
 
+<br/>
+
 ## Projektin kuvaus
-KinoKutkuttaja on elokuvaharrastajille suunnattu sivusto. Sivusto mahdollistaa elokuvien haun TMDB:n (The Movie Database) tietokannasta, uutisten hakemisen Finnkinon uutisarkistosta ja erilaisten elokuvaharrastajien ryhmien muodostamisen. Sivustolla voi myös tehdä arvosteluja eri elokuvista ja luoda oman käyttäjätilin. 
+KinoKutkuttaja on **elokuvaharrastajille suunnattu sivusto**. Sivusto mahdollistaa elokuvien haun TMDB:n (The Movie Database) tietokannasta, uutisten hakemisen Finnkinon uutisarkistosta ja erilaisten elokuvaharrastajien ryhmien muodostamisen. Sivustolla voi myös tehdä arvosteluja eri elokuvista ja luoda oman käyttäjätilin. 
 
-Projekti on osa syksyn 2023 opintoja Oulun Ammattikorkeakoulun Tieto- ja viestintätekniikan opintolinjalla. Tekijät ovat toisen vuoden opiskelijoita. Toteutettu marras-joulukuussa 2023. 
+Projekti on osa syksyn 2023 opintoja <a href="https://www.oamk.fi/fi/">Oulun Ammattikorkeakoulun</a> Tieto- ja viestintätekniikan opintolinjalla. Tekijät ovat toisen vuoden opiskelijoita. Toteutettu marras-joulukuussa 2023. 
 
- 
+<br/> 
+
 ## Käyttöönotto 
 
 Sivusto löytyy osoitteesta https://kinokutkuttaja.onrender.com. 
@@ -27,35 +28,38 @@ Sivustoa voi käyttää tietokoneella ja mobiililaitteilla. Käyttö vaatii inte
 <br/>Kuva 1. Sovelluksen responsiivisuus.</p>
 <br/>
 
+<br/>
+
 ## Sivuston ominaisuudet ja sisältö 
 
-**Käyttäjätilin luonti:** Käyttäjä luo käyttäjätilin, jolla voi tallentaa omat suosikkielokuvat ja elokuvien arvostelut sekä liittyä suljettuihin yhteisöihin. Käyttäjätilin luonti avaa kaikki sivun ominaisuudet käyttöön. 
+**• Käyttäjätilin luonti:** Käyttäjä luo käyttäjätilin, jolla voi tallentaa omat suosikkielokuvat ja elokuvien arvostelut sekä liittyä suljettuihin yhteisöihin. Käyttäjätilin luonti avaa kaikki sivun ominaisuudet käyttöön. 
 
-**Selaa elokuvia:** Käyttäjä voi hakea elokuvia eri suodatuksilla (teattereissa, suositut, arvostetuimmat, tulossa, nimihaku). Aloitusnäkymässä satunnaisia suosittuja elokuvia. 
+**• Selaa elokuvia:** Käyttäjä voi hakea elokuvia eri suodatuksilla (_teattereissa, suositut, arvostetuimmat, tulossa, nimihaku_). Aloitusnäkymässä satunnaisia suosittuja elokuvia. 
 
-**Käyttäjän luomat arvostelut:** Kirjautunut käyttäjä voi arvioida elokuvia asteikolla 1–10. Omat arvostelut tallentuvat käyttäjätilille. 
+**• Käyttäjän luomat arvostelut:** Kirjautunut käyttäjä voi arvioida elokuvia asteikolla 1–10. Omat arvostelut tallentuvat käyttäjätilille. 
 
-**Luo ryhmä:** Käyttäjä voi luoda ryhmän omalla aiheellaan, johon kiinnostuneet käyttäjät voivat liittyä. Ryhmät listataan yhteisösivulle, jonka kautta niitä voi selata ja lähettää liittymispyynnöt. Ryhmään hyväksytyt käyttäjät voivat lisätä ryhmän sivulle uutisia. 
+**• Luo ryhmä:** Käyttäjä voi luoda ryhmän omalla aiheellaan, johon kiinnostuneet käyttäjät voivat liittyä. Ryhmät listataan yhteisösivulle, jonka kautta niitä voi selata ja lähettää liittymispyynnöt. Ryhmään hyväksytyt käyttäjät voivat lisätä ryhmän sivulle uutisia. 
 
-**Uutiset:** Käyttäjä voi selata Finnkinon elokuvauutisia. 
+**• Uutiset:** Käyttäjä voi selata Finnkinon elokuvauutisia. 
 
-**Elokuvien tiedot:** Sisältää elokuvien esittelyt omana sivunaan tärkeimpien tietojen kera (kuva 2). Sivu listaa elokuvan nimen, ikärajan, valmistumisvuoden, keston, genret, arviointi IMDB:n mukaan, esittelytekstin, ohjaajan, näyttelijät ja käsikirjoittajat. Lisätietoja elokuvasta saa IMDB:n linkistä. Elokuvan voi lisätä suosikikseen, jolloin se talletetaan käyttäjätilille. Elokuvalle voi lisätä sivuston käyttäjien arviointeja. 
+**• Elokuvien tiedot:** Sisältää elokuvien esittelyt omana sivunaan tärkeimpien tietojen kera (_kuva 2_). Sivu listaa elokuvan nimen, ikärajan, valmistumisvuoden, keston, genret, arviointi IMDB:n mukaan, esittelytekstin, ohjaajan, näyttelijät ja käsikirjoittajat. Lisätietoja elokuvasta saa IMDB:n linkistä. Elokuvan voi lisätä suosikikseen, jolloin se talletetaan käyttäjätilille. Elokuvalle voi lisätä sivuston käyttäjien arviointeja. 
+
+<br/>
 
 ## Tekniset ominaisuudet  
 
-### Sovelluksen arkkitehtuuri 
-Sivuston frontend luotiin React.JS:lla, muotoilut HTML:llä ja CSS:llä. Backendista vastasi Node.JS ja Express. Tietokantana toimii PostgreSQL. Ulkopuolisina rajapintoina käytettiin The Movie Databasea (TMDB) ja Finnkinon uutisten XML:ää. Tietokanta ja valmis sovellus siirretään Render-pilvipalveluun. Ohjelmointityökaluna käytettiin Visual Studio Codea. Projektin työalustana toimi GitHub. 
+### :hammer_and_wrench:  Sovelluksen arkkitehtuuri 
+Sivuston frontend luotiin `React.JS`:lla, muotoilut `HTML`:llä ja `CSS`:llä. Backendista vastasi `Node.JS` ja `Express`. Tietokantana toimii `PostgreSQL`. Ulkopuolisina rajapintoina käytettiin The Movie Databasea (TMDB) ja Finnkinon uutisten XML:ää. Tietokanta ja valmis sovellus siirretään Render-pilvipalveluun. Ohjelmointityökaluna käytettiin Visual Studio Codea. Projektin työalustana toimi GitHub. 
 
  
-### Tietokantarakenne (database schema) 
-Tietokannassa on viisi eri taulua, account, customer, reviews, groups ja customer_groups. Nämä sisältävät kukin erilaisia datatyyppejä. Datatyyppejä ovat mm. userNick, password, movieID, reviewID ja email. 
-* tietokannasta kuva? 
+### :briefcase:  Tietokantarakenne (database schema) 
+Tietokannassa on viisi eri taulua: `account`, `customer`, `reviews`, `groups` ja `customer_groups`. Nämä sisältävät kukin erilaisia datatyyppejä. Datatyyppejä ovat mm. `userNick`, `password`, `movieID`, `reviewID` ja `email`. 
 
  
-### Rajapintakuvaus (API) 
-Elokuvien arvostelusivuston (KinoKutkuttaja) API tarjoaa monipuolisen rajapinnan, joka mahdollistaa käyttäjien hallinnan, elokuvien arvostelut, suosikkielokuvien seurannan ja yhteisöjen luomisen. Se on suunniteltu tarjoamaan käyttäjille mahdollisuuden jakaa elokuvakokemuksiaan, luoda suosikkilistojaan ja osallistua yhteisöihin.
+### :chains:  Rajapintakuvaus (API) 
+Elokuvien arvostelusivuston API tarjoaa monipuolisen rajapinnan, joka mahdollistaa käyttäjien hallinnan, elokuvien arvostelut, suosikkielokuvien seurannan ja yhteisöjen luomisen. Se on suunniteltu tarjoamaan käyttäjille mahdollisuuden jakaa elokuvakokemuksiaan, luoda suosikkilistojaan ja osallistua yhteisöihin.
 
-### Endpointit 
+### :key:  Endpointit 
 
 #### Käyttäjätilien hallinta 
 |Polku|Kuvaus|
@@ -92,12 +96,13 @@ Elokuvien arvostelusivuston (KinoKutkuttaja) API tarjoaa monipuolisen rajapinnan
 | `PUT /group` | Lisää jäsenen groupiin `members[userid]`  |
 | `DEL /group/:user_id` | Poistaa jäsenen groupista `members[usersid]` |
 
+<br/>
 
-## Käyttöliittymä- ja käyttäjäkokemussuunnitelma (UI/UX) 
+### :sparkles:  Käyttöliittymä- ja käyttäjäkokemussuunnitelma (UI/UX) 
 
-Sivusto koostuu kuudesta pääsivusta, jotka kokoavat toiminnot helposti ymmärrettäväksi paketiksi (etusivu, info, uutiset, elokuvat, yhteisö, kirjaudu/rekisteröidy). Sivusto on täysin responsiivinen erikokoisille näytöille tietokoneesta mobiiliin (kuva 1). Ulkoasuksi on valittu tummia ja kontrastisia värejä, jotka nostavat elokuvien kuvat ja tekstit pääosaan. Värien haluttiin olevan uniikkeja, ettei sivusto muistuttaisi liikaa vastaavia sivustoja ja sovelluksia.  
+Sivusto koostuu kuudesta pääsivusta, jotka kokoavat toiminnot helposti ymmärrettäväksi paketiksi (_etusivu, info, uutiset, elokuvat, yhteisö, kirjaudu/rekisteröidy_). Sivusto on täysin responsiivinen erikokoisille näytöille tietokoneesta mobiiliin (_kuva 1_). Ulkoasuksi on valittu tummia ja kontrastisia värejä, jotka nostavat elokuvien kuvat ja tekstit pääosaan. Värien haluttiin olevan uniikkeja, ettei sivusto muistuttaisi liikaa vastaavia sivustoja ja sovelluksia.  
 
-Sivusto on suunniteltu käyttäjälähtöisesti mukailemaan vakiintunutta tapaa rakentaa ja käyttää vastaavia sivuja, jolloin käyttäjä osaa navigoida ja löytää etsimänsä vaivattomasti. Olemme pyrkineet luomaan käyttäjäystävällisen sivuston, jolle ei ole luotu lainkaan manipuloivia, käyttäjää ohjaavia toimintoja (esim. klikkauksia kalastelevia lisäsuosituksia). Sivusto pyrkii viestimään ammattimaisuutta ja luotettavuutta ja edustamaan heti visuaalisesti aihettaan. Käyttäjä ei voi erehtyä joutuneensa muualle kuin elokuvaharrastajien sivulle. 
+Sivusto on suunniteltu käyttäjälähtöisesti mukailemaan vakiintunutta tapaa rakentaa ja käyttää vastaavia sivuja, jolloin käyttäjä osaa navigoida ja löytää etsimänsä vaivattomasti. Sivustosta on pyritty luomaan käyttäjäystävällinen, jolloin siihen ei ole lisätty lainkaan manipuloivia, käyttäjää ohjaavia toimintoja (_esim. klikkauksia kalastelevia lisäsuosituksia_). Sivusto pyrkii viestimään ammattimaisuutta ja luotettavuutta ja edustamaan heti visuaalisesti aihettaan. Käyttäjä ei voi erehtyä joutuneensa muualle kuin elokuvaharrastajien sivulle. 
 
 <br/>
 <p align="center"><img src="https://github.com/TVT22-22/main/assets/118981440/f811aed5-41de-4e12-ae30-912adf557003" width="80%" alt="Elokuvasivu, elokuvana Oppenheimer (2023)." /> <br/>Kuva 2. Elokuvasivu. </p>
@@ -105,15 +110,16 @@ Sivusto on suunniteltu käyttäjälähtöisesti mukailemaan vakiintunutta tapaa 
 
 ## Projektin eteneminen 
 
-Projektille luotiin alusta GitHubiin. Projektiryhmä viesti keskenään WhatsApp-ryhmässä ja Discord-kanavalla. WhatsApp toimi pääkanavana, jossa jaettiin ideoita ja tietoja nopealla aikavälillä. Discordissa pidettiin etäpalaverit, työpäiväkirjaa, projektin muistiota ja tärkeämpien tietojen jakamista. Kommunikointi toimi tehokkaasti ja kaikkia osallistavasti. 
+Projektille luotiin **alusta GitHubiin**. Projektiryhmä viesti keskenään WhatsApp-ryhmässä ja Discord-kanavalla. WhatsApp toimi pääkanavana, jossa jaettiin ideoita ja tietoja nopealla aikavälillä. Discordissa pidettiin etäpalaverit, työpäiväkirjaa, projektin muistiota ja tärkeämpien tietojen jakamista. Kommunikointi toimi tehokkaasti ja kaikkia osallistavasti. 
 
-GitHubin Kanban-tauluun merkittiin kaikki työvaiheet, joista osallistujat pystyivät varamaan itselleen halutut osat. Käytössä oli kolme taulua: BackLock (yleinen tehtävälista), In Progress (tekijälle varattu tehtävä) ja Done (valmis tehtävä tekijätietoineen). 
+GitHubin **Kanban-tauluun** merkittiin kaikki työvaiheet, joista osallistujat pystyivät varamaan itselleen halutut osat. Käytössä oli kolme taulua: BackLock (_yleinen tehtävälista_), In Progress (_tekijälle varattu tehtävä_) ja Done (_valmis tehtävä tekijätietoineen_). 
 
-Projektin kesto oli marras-joulukuu 2023. Saimme projektin aloitettua hyvissä ajoin ja ryhdyimme heti työhön. Perustimme kommunikointikanavat, kokosimme Kanbanin, kirjoitimme dokumentteja, Nico aloitti API-hakujen perustustyöt, Eeva suunnitteli tietokantarakennetta ja Saana kokosi käyttöliittymäsuunnitelman. Saana kokosi ensimmäisenä UI:n pohjalta frontendin ja sen toiminnallisuudet, johon muiden oli helpompi jatkaa. Eeva teki samaan aikaan backendia ja tietokantaa, ja Nico sairasti koronaa. Tietokannan valmistuttua Nico pääsi jatkamaan backendin parissa ja he kokosivat yhteistyössä sen kokonaan. 
+Projektin **kesto oli marras-joulukuu 2023**. Saimme projektin aloitettua hyvissä ajoin ja ryhdyimme heti työhön. Perustimme kommunikointikanavat, kokosimme Kanbanin, kirjoitimme dokumentteja, Nico aloitti API-hakujen perustustyöt, Eeva suunnitteli tietokantarakennetta ja Saana kokosi käyttöliittymäsuunnitelman. Saana kokosi ensimmäisenä UI:n pohjalta frontendin ja sen toiminnallisuudet, johon muiden oli helpompi jatkaa. Eeva teki samaan aikaan backendia ja tietokantaa, ja Nico sairasti koronaa. Tietokannan valmistuttua Nico pääsi jatkamaan backendin parissa ja he kokosivat yhteistyössä sen kokonaan. 
 
-Projektiin suoritettiin testaukset onnistuneesti (käyttäjätilin rekisteröinti, kirjautuminen ja poistaminen, käyttäjätilin ja yhteisöjen testaus). Sivusto julkaistiin Render-pilvipalveluun aikataulussa ja palautettiin arvioitavaksi. 
+Projektiin suoritettiin testaukset onnistuneesti (_käyttäjätilin rekisteröinti, kirjautuminen ja poistaminen, käyttäjätilin ja yhteisöjen testaus_). Sivusto julkaistiin Render-pilvipalveluun aikataulussa ja palautettiin arvioitavaksi. 
 
- 
+<br/>
+
 ## Työryhmä 
 
 | Tekijä | Kuvaus |
@@ -121,6 +127,8 @@ Projektiin suoritettiin testaukset onnistuneesti (käyttäjätilin rekisteröint
 | [<img src="https://github.com/NicoJstudent.png" width="150px;"/><br /><sub><a href="https://github.com/NicoJstudent">NICO JOKELAINEN</a></sub>](https://github.com/NicoJstudent) | - Pohjakoodit Finnkinon ja TMDB (The movie database) API:n käyttöön <br> - Käyttäjätilien hallinta (endpointit, tilin luominen, kirjautuminen ja tilinpoisto) <br>- Tietyn sisällön piilottaminen kirjautumisen taakse (autentikaatio) <br>- Yhteisöt (endpointit, yhteisön luominen, jäsenten lisääminen ja poistaminen) <br> - Arvostelut (endpointit ja listaus) |
 | [<img src="https://github.com/saanalapinkangas.png" width="150px;"/><br /><sub><a href="https://github.com/saanalapinkangas">SAANA LAPINKANGAS</a></sub>](https://github.com/saanalapinkangas) | - Koko frontend, UI/UX-kokonaisuus suunnittelusta toteutukseen (React, HTML, CSS) <br> - Elokuva-sivu (sisältötietojen haku ja sijoittelu API:n kautta, arvosteluiden tähdet) <br> - Elokuvien selaus (suodattimet ja niiden näkymä, tekstihaku, aloitusnäkymä) <br> - Uutiset <br> - Responsiivisuus <br> - UI-dokumentaatio ja Mockup, REST-dokumentaatio |
 | [<img src="https://github.com/EevaKR.png" width="150px;"/><br /><sub><a href="https://github.com/EevaKR">EEVA RONTTI</a></sub>](https://github.com/EevaKR) | - Projektinvetäjä <br> - Postgre-tietokannan luonti Render-palvelussa <br> - Tietokannan rakentaminen Postgre-ohjelmassa <br> - Server.js-, group.js-, register.js-, login.js- ja review.js-tiedostojen luonti <br> - Database-yhteyden luonti <br> - ER-kaavion luonti, API-dokumentaatio |
+
+<br/>
 
 ## Käytetyt sovellukset
 <a href="https://render.com/"><img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_477db83f729d63210139ec7cd29c1351/render-render.png" height="40px;" /></a> &nbsp;&nbsp;
