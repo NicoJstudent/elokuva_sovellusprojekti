@@ -102,6 +102,11 @@
     padding-top: 20px;
     animation-name: slideOut;
   }
+  
+  .logo img {
+    height: 80px;
+    width: auto;
+  }
 
   .links.open {
     display: flex;
