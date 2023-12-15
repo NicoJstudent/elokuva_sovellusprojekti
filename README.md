@@ -4,7 +4,7 @@
 <br/>
 <p align="center"><b><a href="https://elokuvasivusto-kinokutkuttaja.onrender.com/">Siirry sovellukseen klikkaamalla tästä</a></b></p>
 
-<p align="center">demovideo tähän</p>
+<p align="center"><b><a href="https://youtu.be/g8iscVeMFBc">Demovideo nähtävissä täällä</a></b></p>
 
 <br/>
 
