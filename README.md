@@ -2,7 +2,7 @@
 <br/>
 <p align="center"><a href="/#projektin-kuvaus">Projektin kuvaus</a> • <a href="/#sivuston-ominaisuudet-ja-sisalto">Sivun sisältö</a> • <a href="/#tekniset-ominaisuudet">Tekniset ominaisuudet</a> • <a href="/#projektin-eteneminen">Projektin eteneminen</a> • <a href="/#tyoryhma">Työryhmä</a> • <a href="/#kaytetyt-sovellukset">Linkit</a></p>
 <br/>
-<p align="center"><b><a href="https://kinokutkuttaja.onrender.com">Siirry sovellukseen klikkaamalla tästä</a></b></p>
+<p align="center"><b><a href="https://elokuvasivusto-kinokutkuttaja.onrender.com/">Siirry sovellukseen klikkaamalla tästä</a></b></p>
 
 <p align="center">demovideo tähän</p>
 
@@ -17,7 +17,7 @@ Projekti on osa syksyn 2023 opintoja <a href="https://www.oamk.fi/fi/">Oulun Amm
 
 ## Käyttöönotto 
 
-Sivusto löytyy osoitteesta https://kinokutkuttaja.onrender.com. 
+Sivusto löytyy osoitteesta https://elokuvasivusto-kinokutkuttaja.onrender.com/. 
 
 Sivusto toimii ilman käyttäjätunnusta, mutta kaikki hyödyt saa irti vain rekisteröitymällä. Rekisteröitymätön kävijä voi selata uutisia, etsiä elokuvia suodatuksilla ja nähdä yhteisöjen nimet. Kirjautuneena käyttäjä pääsee lisäksi liittymään yhteisöihin, tallentaa omia suosikkielokuviaan ja arvostelemaan elokuvia.  
 
