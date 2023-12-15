@@ -9,7 +9,7 @@ const YhteisoJasensivu = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/groups_name', { params: { group_id: group_id } });
+                const response = await axios.get('/groups_name', { params: { group_id: group_id } });
                 //setGroupName(response.data.group_name);
 
                 if (response.status === 200) {

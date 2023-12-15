@@ -21,7 +21,7 @@ const YhteisoLiity = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/groups_name', { params: { group_id: group_id } });
+                const response = await axios.get('/groups_name', { params: { group_id: group_id } });
                 //setGroupName(response.data.group_name);
 
                 if (response.status === 200) {
@@ -74,7 +74,7 @@ const YhteisoLiityButton_Liity = () => {
         const group_id = sessionStorage.getItem('groupId');
 
         try {
-            const response = await axios.post('http://localhost:5000/liittymispyynto', { usernick, group_id });
+            const response = await axios.post('/liittymispyynto', { usernick, group_id });
 
             if (response.data.success) {
                 console.log('Liittymispyyntö lähetetty onnistuneesti');

@@ -22,7 +22,7 @@ const TilinpoistoButtonit = () => {
     const handleAccountDelete = async () => {
         try {
             const usernick = localStorage.getItem('usernick'); 
-            const response = await axios.delete(`http://localhost:5000/customer/${usernick}`);
+            const response = await axios.delete(`/customer/${usernick}`);
       
             if (response.data.success) {
               console.log('Account deleted successfully');

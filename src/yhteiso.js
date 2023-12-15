@@ -46,7 +46,7 @@ const LisaaUusiYhteisö = () => {
             const usernick = localStorage.getItem('usernick');
 
             try {
-                const response = await axios.post('http://localhost:5000/group_create', { usernick, group_name });
+                const response = await axios.post('/group_create', { usernick, group_name });
 
                 if (response.data.success) {
                     console.log('Yhteisön luominen onnistui');
@@ -85,7 +85,7 @@ const YhteisoLista = () => {
     useEffect(() => {
         const fetchGroups = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/groups_list');
+                const response = await axios.get('/groups_list');
                 setGroups(response.data.groups);
 
             } catch (error) {
@@ -104,7 +104,7 @@ const YhteisoLista = () => {
         } else {
             try {
                 const usernick = localStorage.getItem('usernick');
-                const response = await axios.get(`http://localhost:5000/groups_role?group_id=${groupId}&usernick=${usernick}`);
+                const response = await axios.get(`/groups_role?group_id=${groupId}&usernick=${usernick}`);
                 sessionStorage.setItem('groupId', groupId);
                 const userRole = response.data.role;
           

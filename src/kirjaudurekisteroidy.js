@@ -29,7 +29,7 @@ const Kirjaudu = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/login', { usernick, password });
+            const response = await axios.post('/login', { usernick, password });
 
             if (response.data.success) {
                 localStorage.setItem('token', response.data.token); // Tallentaa tokenin local storageen
@@ -73,7 +73,7 @@ const Rekisteroidy = () => {
 
     const handleRegister = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/register', { usernick, password, email });
+            const response = await axios.post('/register', { usernick, password, email });
 
             if (response.data.success) {
                 console.log('Käyttäjätunnuksen luominen onnistui');

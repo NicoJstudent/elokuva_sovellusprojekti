@@ -84,7 +84,7 @@ const Tiedot = ({ movie, additionalData }) => {
 
     const handleAddToFavorites = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/add-to-favorites', {
+            const response = await axios.post('/add-to-favorites', {
                 usernick: newUsernick,
                 movie_id: movie.id,
             });
@@ -166,7 +166,7 @@ const Arvostelut = ({ newMovieid }) => {
         } else {
 
             try {
-                const response = await axios.post('http://localhost:5000/arvostelut', {
+                const response = await axios.post('/arvostelut', {
                     rating: newRating,
                     date: timestamp,
                     usernick: newUsernick,
@@ -188,7 +188,7 @@ const Arvostelut = ({ newMovieid }) => {
 
     const fetchRatings = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/reviewsList/${newMovieid}`);
+            const response = await axios.get(`/reviewsList/${newMovieid}`);
             if (response.data.success) {
                 setRatingsList(response.data.ratings);
                 console.log(ratingsList) //listan sisältö consoleen

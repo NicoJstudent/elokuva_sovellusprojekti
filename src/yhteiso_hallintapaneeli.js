@@ -10,7 +10,7 @@ const YhteisoHallintapaneeli = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/groups_name', { params: { group_id: group_id } });
+                const response = await axios.get('/groups_name', { params: { group_id: group_id } });
                 //setGroupName(response.data.group_name);
 
                 if (response.status === 200) {
@@ -71,7 +71,7 @@ const AvoimetLiittymispyynnot = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/applications/${group_id}`);
+                const response = await axios.get(`/applications/${group_id}`);
                 setApplications(response.data);
             } catch (error) {
                 console.error('Error fetching applications', error);
@@ -86,7 +86,7 @@ const AvoimetLiittymispyynnot = () => {
     const handleAccept = (user_id) => {
         const acceptApplication = async () => {
             try {
-                const response = await axios.put(`http://localhost:5000/application/${group_id}/${user_id}`);
+                const response = await axios.put(`/application/${group_id}/${user_id}`);
                 if (response.status === 200) {
                     //setApplications(applications.filter((app) => app.user_id !== user_id));
                 } else {
@@ -107,7 +107,7 @@ const AvoimetLiittymispyynnot = () => {
     const handleReject = (user_id) => {
         const rejectApplication = async () => {
             try {
-                const response = await axios.delete(`http://localhost:5000/application/${group_id}/${user_id}`);
+                const response = await axios.delete(`/application/${group_id}/${user_id}`);
                 if (response.status === 200) {
                     //setApplications(applications.filter((app) => app.user_id !== user_id));
                 } else {
@@ -131,7 +131,7 @@ const AvoimetLiittymispyynnot = () => {
     //     const fetchUserNicknames = async () => {
     //       try {
     //         const userIds = applications.map((app) => app.user_id);
-    //         const response = await axios.get(`http://localhost:5000/customer/${userIds}`, { userIds });
+    //         const response = await axios.get(`/customer/${userIds}`, { userIds });
     //         
     //         // Assuming the response is an object with user_id as key and nickname as value
     //         const nicknamesMap = response.data;

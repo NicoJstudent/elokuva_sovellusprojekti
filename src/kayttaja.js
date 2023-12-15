@@ -51,7 +51,7 @@ const Tili = () => {
   useEffect(() => {
     const usernick = localStorage.getItem('usernick');
 
-    axios.get(`http://localhost:5000/customer?usernick=${usernick}`)
+    axios.get(`/customer?usernick=${usernick}`)
       .then(response => setUserData(response.data))
       .catch(error => console.error('Error fetching user data', error));
   }, []);
@@ -92,7 +92,7 @@ const TiliArvostelut = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/reviews?usernick=${usernick}`);
+        const response = await fetch(`/reviews?usernick=${usernick}`);
         const data = await response.json();
 
         //console.log('data', data);
@@ -169,7 +169,7 @@ const TiliSuosikit = () => {
     const fetchData = async () => {
       try {
         // Haetaan suosikki elokuvat
-        const response = await fetch(`http://localhost:5000/favorites?usernick=${usernick}`);
+        const response = await fetch(`/favorites?usernick=${usernick}`);
         const data = await response.json();
 
 
